@@ -13,8 +13,7 @@ if (rootElement != null) {
         <React.StrictMode >
             <div className='flex flex-col'>
                 <Home></Home>
-                <AboutMe></AboutMe>
-                <Services></Services>
+
             </div>
         </React.StrictMode>
     )

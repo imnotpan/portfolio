@@ -15,19 +15,18 @@ import Star from '../assets/planets/Star.svg'
 
 function Home (): React.ReactNode {
     return (
-        <div id='home' 
-            className='h-screen w-full relative'>
-            <div className='w-full h-full items-center justify-center text-left  lg:text-center '>
-                <div className='leading-null pt-[15%] break-words'>
-                    <p className='text-xl lg:mr-[700px]'>
+        <section id='home' 
+            className='h-screen w-full relative '>
+            <div className='absolute w-full h-full text-left md:text-center lg:text-center z-20'>
+                <div className='leading-null break-words  mt-16'>
+                    <p className='text-xl lg:mr-[700px] ml-[2%]'>
                         i&apos;m &lt;
                         <span className='font-bold'>Kevin Medina</span>
                         &gt;
                     </p>
-                    <div>
-                        <p className='font-archivoblack text-9xl text-wrap '>DEVELOPER</p>
-                        <p className=' font-archivoblack webkit-text-blue-500 outline-text
-                                        text-9xl'>
+                    <div className='text-8xl lg:text-9xl md:text-8xl '>
+                        <p className='font-archivoblack text-wrap '>DEVELOPER</p>
+                        <p className=' font-archivoblack webkit-text-blue-500 outline-text'>
                             & DESIGNER.
                         </p>
                     </div>
@@ -36,10 +35,17 @@ function Home (): React.ReactNode {
                     <img src={Avatar}/>
                 </div>
             </div>
-
-
-
-        </div>
+            <div className='absolute flex bottom-0 z-10 w-full justify-center'>
+                <div className=' flex w-full lg:w-[300px] w-[45vh]'>
+                    <img className='' src={Avatar} alt="Avatar"/>
+                </div>
+            </div>
+            <div className='w-full h-full flex justify-center items-center z-5'>                
+                <img className='fixed' src={Ellipse}/>
+                <img className='fixed' src={Ellipse2}/>
+                <img className='fixed' src={Ellipse3 }/>
+            </div>
+        </section>
     );
 }
 
