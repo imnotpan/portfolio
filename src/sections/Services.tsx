@@ -1,14 +1,11 @@
 import React from 'react'
-import BrushIcon from '../assets/services_icons/BrushIcon.svg'
-import ProgrammingIcon from '../assets/services_icons/ProgrammingIcon.svg'
-import VideoGameIcon from '../assets/services_icons/VideoGameIcon.svg'
 import TagElement from '../components/services/TagElement';
 
 
 function Services (): React.ReactNode {
     return (
         <section id='services' className='w-full h-full bg-white z-10 flex flex-col md:flex-row
-                                        items-center justify-center text-left  '>
+                                        items-center justify-center text-left overflow-hidden '>
             <div>
                 <p className='font-dugaspro text-9xl tracking-widest break-words  '>
                     A LOT OF <br/>
@@ -24,13 +21,13 @@ function Services (): React.ReactNode {
                         DEVELOP  
                     </p>
                     <div className='mx-4'>
-                        <p> sistem programming and web design </p>
+                        <p className='font-ibmmono truncate'> MINIMALIST WEB SITES AND WEB APPS </p>
                         <div className='flex'>
                             <p className='mt-1 font-bold'> TOOLS </p>
-                            <TagElement name={'React'}/> 
-                            <TagElement name={'Angular'}/>                    
-                            <TagElement name={'VUE'}/>                    
-                            <TagElement name={'JS / TS'}/>                    
+                            <TagElement name={'react'}/> 
+                            <TagElement name={'angular'}/>                    
+                            <TagElement name={'vue'}/>                    
+                            <TagElement name={'js-ts'}/>                    
 
                         </div>
                     </div>
@@ -44,13 +41,12 @@ function Services (): React.ReactNode {
                         DEVELOP  
                     </p>
                     <div className='mx-4'>
-                        <p> sistem programming and web design </p>
+                        <p className='font-ibmmono truncate'> DATABASES - REST/API AND DATA ANALYSIS </p>
                         <div className='flex'>
                             <p className='mt-1 font-bold'> TOOLS </p>
-                            <TagElement name={'React'}/> 
-                            <TagElement name={'Python'}/>                    
-                            <TagElement name={'React'}/>                    
-                            <TagElement name={'React'}/>                    
+                            <TagElement name={'python'}/> 
+                            <TagElement name={'js-ts'}/>                    
+                            <TagElement name={'sql'}/>                    
 
                         </div>
                     </div>
@@ -64,13 +60,12 @@ function Services (): React.ReactNode {
                         DEVELOP  
                     </p>
                     <div className='mx-4'>
-                        <p> sistem programming and web design </p>
+                        <p className='font-ibmmono truncate'> ARCADE GAMES FOR MOBILE AND WEBS </p>
                         <div className='flex'>
                             <p className='mt-1 font-nunito font-bold'> TOOLS </p>
-                            <TagElement name={'React'}/> 
-                            <TagElement name={'Python'}/>                    
-                            <TagElement name={'React'}/>                    
-                            <TagElement name={'React'}/>                    
+                            <TagElement name={'godot'}/> 
+                            <TagElement name={'unity'}/>                    
+                            <TagElement name={'gamemaker'}/>                    
                         </div>
                     </div>
                 </div>
@@ -84,13 +79,13 @@ function Services (): React.ReactNode {
                         DESIGNER 
                     </p>
                     <div className='mx-4'>
-                        <p> sistem programming and web design </p>
+                        <p className='font-ibmmono truncate'>  PIXEL & DIGITAL ART AND VISUALIZERS </p>
                         <div className='flex'>
                             <p className='mt-1 font-bold'> TOOLS </p>
-                            <TagElement name={'React'}/> 
-                            <TagElement name={'Python'}/>                    
-                            <TagElement name={'React'}/>                    
-                            <TagElement name={'React'}/>                    
+                            <TagElement name={'procreate'}/> 
+                            <TagElement name={'photoshop'}/>                    
+                            <TagElement name={'afterfx'}/>    
+
 
                         </div>
                     </div>

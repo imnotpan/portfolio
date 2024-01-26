@@ -5,6 +5,7 @@ import Home from './sections/Home'
 import AboutMe from './sections/AboutMe'
 import NavBar from './sections/NavBar'
 import Services from './sections/Services'
+import Projects from './sections/Projects'
 
 const rootElement = document.getElementById('root')
 
@@ -15,6 +16,7 @@ if (rootElement != null) {
             <Home/>
             <AboutMe/>
             <Services/>
+            <Projects/>
         </React.StrictMode>
     )
 } else {

@@ -11,6 +11,7 @@ export default {
             archivoblack: ['Archivo Black', 'sans-serif'],
             ibmmono: ['IBM Plex Mono', 'monospace'],
             nunito: ['Nunito', 'sans-serif'],
+            robotoslab: ['Roboto Slab', 'serif'],
             dugaspro: 'DugasPro'
         },
         textColor: {

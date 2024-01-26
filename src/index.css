@@ -10,6 +10,13 @@
         -webkit-text-stroke-color: #000;
         -webkit-text-stroke-width: 2px;
     }
+    .zoom-img {
+        transition: transform 0.3s; /* Agrega una transición para suavizar el efecto */
+      }
+    
+    .zoom-img:hover {
+        transform: scale(1.1); /* Cambia la escala al 110% al pasar el mouse sobre la imagen */
+    }
 }
 @font-face {
     font-family: DugasPro;
