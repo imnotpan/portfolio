@@ -3,39 +3,44 @@ import {Link} from 'react-scroll'
 
 function NavBar (): React.ReactNode {
     return (
-        <div className='fixed flex w-full z-50'>
-            <nav className='mx-auto w-full'>
-                <ul className=' bg-white flex space-x-5 justify-center items-center font-nunito text-xl mb-1'>
-                    <li className='hover:bg-yellow-400 hover:text-white'>
-                        <Link to='home'>
-                            <div className='mt-4 mb-1 mx-2'>
-                                home
-                            </div>
-                        </Link>
+        <div className='fixed z-50  hidden md:block lg:block top-[15%]'>
+            <ul className=' bg-white flex flex-col text-left justify-left font-nunito text-xl'>
+                <Link to='home'>
+                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
+                        <div className='mx-4'>
+                            home
+                        </div>
                     </li>
-                    <li className='hover:bg-yellow-400 hover:text-white'>
-                        <Link to='about'>
-                            <div className='mt-4 mb-1 mx-2'>
-                                about
-                            </div>
-                        </Link>
+                </Link>
+                <Link to='about'>
+                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
+                        <div className='mx-4'>
+                            about
+                        </div>
                     </li>
-                    <li className='hover:bg-yellow-400 hover:text-white'>
-                        <Link to='home'>
-                            <div className='mt-4 mb-1 mx-2'>
-                                    projects
-                            </div>
-                        </Link>
+                </Link>
+                <Link to='services'>
+                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
+                        <div className='mx-4'>
+                            services
+                        </div>
                     </li>
-                    <li className='hover:bg-yellow-400 hover:text-white'>
-                        <Link to='works'>
-                            <div className='mt-4 mb-1 mx-2'>
-                                works
-                            </div>
-                        </Link>
+                </Link>
+                <Link to='projects'>
+                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
+                        <div className='mx-4'>
+                        projects
+                        </div>
                     </li>
-                </ul>
-            </nav>
+                </Link>
+                <Link to='works'>
+                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
+                        <div className='mx-4'>
+                        works
+                        </div>
+                    </li>
+                </Link>
+            </ul>
      
         </div>
     );

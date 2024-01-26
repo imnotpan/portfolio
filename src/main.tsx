@@ -11,10 +11,10 @@ const rootElement = document.getElementById('root')
 if (rootElement != null) {
     ReactDOM.createRoot(rootElement).render(
         <React.StrictMode >
-            <div className='flex flex-col'>
-                <Home></Home>
-
-            </div>
+            <NavBar/>
+            <Home/>
+            <AboutMe/>
+            <Services/>
         </React.StrictMode>
     )
 } else {

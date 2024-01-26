@@ -7,74 +7,97 @@ import TagElement from '../components/services/TagElement';
 
 function Services (): React.ReactNode {
     return (
-        <div className='w-full h-full bg-white z-10'>
-            <div className='mx-24 lg:mx-64 my-4'>
-                <span className='font-nunito text-2xl '> services </span>
-                <div className='mt-8 flex flex-row font-nunito  items-center text-center space-x-10'>
-                    <div className='flex-1'>
-                        <div className='w-full mb-4'>
-                            <img className='mx-auto w-12'  src={BrushIcon}></img>
-                        </div>
-                        <span className='text-2xl'> FULL STACK DEVELOP </span>
-                        <p className='text-center  text-md mt-5 text-gray-600'>
-                            I enjoy creating music visualizers and designing 
-                            minimalist interfaces for websites. 
-                        </p>
-                        <div className='mt-4 text-left'>
-                            <span> Tools: </span>
-                            <div className='flex flex-wrap  justify-left  '>
-                                <TagElement name='REACT'/>
-                                <TagElement name='PYTHON'/>
-                                <TagElement name='NODE'/>
-                                <TagElement name='MARIADB'/>
-                                <TagElement name='POSTGRESQL'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex-1'>
-                        <div className='w-full mb-4'>
-                            <img className='mx-auto w-12'  src={ProgrammingIcon}></img>
-                        </div>
-                        <span className='text-2xl'> GAME DEVELOPER </span>
-                        <p className='text-center  text-md mt-5 text-gray-600'>
-                            I enjoy creating music visualizers and designing 
-                            minimalist interfaces for web pages
-                        </p>
-                        <div className='mt-4 text-left'>
-                            <span> Tools: </span>
-                            <div className='flex flex-wrap  justify-left  '>
-                                <TagElement name='UNITY'/>
-                                <TagElement name='GODOT'/>
-                                <TagElement name='GAME MAKER'/>
-                                <TagElement name='C#'/>
-                                <TagElement name='GDM'/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex-1'>
-                        <div className='w-full mb-4'>
-                            <img className='mx-auto w-12'  src={VideoGameIcon}></img>
-                        </div>
-                        <span className='text-2xl '> DESIGNER / ARTIST </span>
-                        <p className='text-center text-md mt-5 text-gray-600'>
-                            I have a passion for crafting music visualizers and 
-                            creating minimalist designs for web pages.
-                        </p>
-                        <div className='mt-4 text-left'>
-                            <span> Tools: </span>
-                            <div className='flex flex-wrap justify-left  '>
-                                <TagElement name='PHOTOSHOP'/>
-                                <TagElement name='PROCREATE'/>
-                                <TagElement name='AFTER EFFECTS'/>
-                                <TagElement name='PREMIERE'/>
+        <section id='services' className='w-full h-full bg-white z-10 flex flex-col md:flex-row
+                                        items-center justify-center text-left  '>
+            <div>
+                <p className='font-dugaspro text-9xl tracking-widest break-words  '>
+                    A LOT OF <br/>
+                    THINGS <br/>
+                    i DO ......
+                </p>
+            </div>
+            <div className='mt-10'>
+                <div className='flex sm:flex-row flex-col w-full '>
+                    <p className='font-bold text-xl mr-16 w-10 lg:w-32 ml-4'> 
+                        FRONTEND
+                        <span className='hidden sm:inline'> <br/> </span>
+                        DEVELOP  
+                    </p>
+                    <div className='mx-4'>
+                        <p> sistem programming and web design </p>
+                        <div className='flex'>
+                            <p className='mt-1 font-bold'> TOOLS </p>
+                            <TagElement name={'React'}/> 
+                            <TagElement name={'Angular'}/>                    
+                            <TagElement name={'VUE'}/>                    
+                            <TagElement name={'JS / TS'}/>                    
 
-
-                            </div>
                         </div>
                     </div>
                 </div>
+                <hr className='bg-black h-[2px]'/>
+
+                <div className='flex sm:flex-row flex-col w-full mt-8'>
+                    <p className='font-bold text-xl mr-16 w-10 lg:w-32 ml-4 '>
+                        BACKEND 
+                        <span className='hidden sm:inline'> <br/> </span>
+                        DEVELOP  
+                    </p>
+                    <div className='mx-4'>
+                        <p> sistem programming and web design </p>
+                        <div className='flex'>
+                            <p className='mt-1 font-bold'> TOOLS </p>
+                            <TagElement name={'React'}/> 
+                            <TagElement name={'Python'}/>                    
+                            <TagElement name={'React'}/>                    
+                            <TagElement name={'React'}/>                    
+
+                        </div>
+                    </div>
+                </div>
+                <hr className='bg-black h-[2px]'/>
+
+                <div className='flex sm:flex-row flex-col w-full mt-8'>
+                    <p className='font-bold text-xl mr-16 w-10 lg:w-32 ml-4'> 
+                        VIDEO GAME 
+                        <span className='hidden sm:inline'> <br/> </span> 
+                        DEVELOP  
+                    </p>
+                    <div className='mx-4'>
+                        <p> sistem programming and web design </p>
+                        <div className='flex'>
+                            <p className='mt-1 font-nunito font-bold'> TOOLS </p>
+                            <TagElement name={'React'}/> 
+                            <TagElement name={'Python'}/>                    
+                            <TagElement name={'React'}/>                    
+                            <TagElement name={'React'}/>                    
+                        </div>
+                    </div>
+                </div>
+                
+                <hr className='bg-black h-[2px]'/>
+                <div className='flex sm:flex-row flex-col w-full mt-8'>
+                    <p className='font-bold text-xl mr-16 w-10 lg:w-32 ml-4'> 
+                        ARTIST 
+                        <span className='hidden sm:inline'> <br/> </span>
+ 
+                        DESIGNER 
+                    </p>
+                    <div className='mx-4'>
+                        <p> sistem programming and web design </p>
+                        <div className='flex'>
+                            <p className='mt-1 font-bold'> TOOLS </p>
+                            <TagElement name={'React'}/> 
+                            <TagElement name={'Python'}/>                    
+                            <TagElement name={'React'}/>                    
+                            <TagElement name={'React'}/>                    
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
     );
 }
 

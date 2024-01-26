@@ -11,3 +11,7 @@
         -webkit-text-stroke-width: 2px;
     }
 }
+@font-face {
+    font-family: DugasPro;
+    src: url('../src/assets/fonts/DugasPro-BoldNormal.ttf') format("truetype");
+  }

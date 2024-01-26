@@ -6,9 +6,9 @@ interface props{
 
 function TagElement (props: props): React.ReactNode {
     return (
-        <div className='bg-black rounded my-1 mx-1'>
-            <div className='mx-3 '>
-                <span className='font-nunito font-thin text-md  text-gray-200'>
+        <div className='border rounded-xl my-1 mx-1 hover:bg-black hover:border-white hover:text-white cursor-pointer'>
+            <div className='mx-3'>
+                <span className='font-ibmmono text-md '>
                     {props.name} 
                 </span>
             </div>

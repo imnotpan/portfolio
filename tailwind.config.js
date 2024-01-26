@@ -10,7 +10,8 @@ export default {
         fontFamily: {
             archivoblack: ['Archivo Black', 'sans-serif'],
             ibmmono: ['IBM Plex Mono', 'monospace'],
-            nunito: ['Nunito', 'sans-serif']
+            nunito: ['Nunito', 'sans-serif'],
+            dugaspro: 'DugasPro'
         },
         textColor: {
           'webkit': '-webkit-text-fill-color',
