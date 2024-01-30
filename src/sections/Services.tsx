@@ -4,15 +4,15 @@ import TagElement from '../components/services/TagElement';
 
 function Services (): React.ReactNode {
     return (
-        <section id='services' className='w-full h-full bg-white z-10 flex flex-col md:flex-row
-                                        items-center justify-center text-left overflow-hidden mb-10'>
-            <div >
+        <section id='services' className='relative w-full h-full bg-white z-10 flex flex-col md:flex-row
+                                        items-center justify-center text-left overflow-hidden '>
+            <div className='mb-10' >
                 <p className='font-dugaspro text-9xl tracking-widest break-words  '>
                     A LOT OF <br/>
                     THINGS <br/>
                 </p>
             </div>
-            <div className='mt-10'>
+            <div className='my-10'>
                 <div className='flex sm:flex-row flex-col w-full '>
                     <p className='font-bold text-xl mr-16 w-10 lg:w-32 ml-4'> 
                         FRONTEND
@@ -74,7 +74,7 @@ function Services (): React.ReactNode {
                     <p className='font-bold text-xl mr-16 w-10 lg:w-32 ml-4'> 
                         ARTIST 
                         <span className='hidden sm:inline'> <br/> </span>
- 
+
                         DESIGNER 
                     </p>
                     <div className='mx-4'>
@@ -89,7 +89,6 @@ function Services (): React.ReactNode {
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     );

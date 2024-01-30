@@ -1,38 +1,31 @@
 import React from 'react'
-import Ellipse from '../../assets/planets/Ellipse.svg'
 import PlusSymbol from '../../assets/planets/PlusSymbol.svg'
 import Star from '../../assets/planets/Star.svg'
 import Point from '../../assets/planets/Point.svg'
 
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 
 function BackgroundPlanets (): React.ReactNode {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+    const mouseX = useMotionValue(200);
+    const mouseY = useMotionValue(200);
 
-    const offsetX = useTransform(mouseX, (value: number) => value - 50); 
-    const offsetY = useTransform(mouseY, (value: number) => value - 50); 
-  
+    
 
     return (
         <motion.div id='circles' 
-            className='relative w-full h-full flex justify-center items-center '
+            className='fixed w-full h-full flex justify-center items-center z-0 '
             onMouseMove={(event) => {
                 mouseX.set(event.clientX);
                 mouseY.set(event.clientY);
             }}> 
 
-            <motion.img 
-                
-                className='absolute hidden md:block' src={Ellipse}/>
-            <img className='absolute hidden md:block w-[60rem]' src={Ellipse}/>
-            <img className='absolut hidden md:block w-[80rem]' src={Ellipse}/>
+
             <motion.div
                 animate={{ rotate: 360 }}
                 transition={{duration:8, repeat: Infinity, ease: 'linear' }}
-                className='absolute hidden md:block w-[110vw] md:w-[40rem] lg:w-[46rem]'>
+                className='absolute  w-[110vw] md:w-[40rem] lg:w-[46rem] '>
                 
-                <img src={PlusSymbol} alt="Plus Symbol" />
+                <img className='' src={PlusSymbol} alt="Plus Symbol" />
             </motion.div>
             <motion.div
                 initial={{rotate:140}}
