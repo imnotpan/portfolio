@@ -12,7 +12,7 @@ function Home (): React.ReactNode {
     return (
         <>
             <section id='home' 
-                className='h-screen w-full relative overflow-y-hidden  overflow-x-hidden z-10'>
+                className='flex flex-col     h-screen w-full relative overflow-y-hidden  overflow-x-hidden z-10'>
   
                 <div className='absolute w-full h-full text-left md:text-center lg:text-center z-10'>
                     <div className='leading-null break-words  mt-16'>
@@ -53,9 +53,20 @@ function Home (): React.ReactNode {
 
                 </div>
 
-
+ 
                 <BackgroundPlanets/>
-             
+
+            </section>
+            <section className='block md:hidden'>
+                <div className='w-full z-50 text-2xl bg-white '>
+                    <div className='border border-1 border-black'>
+                        <SocialMediaButton name={'Twitter'} url={'https://twitter.com/imnotapan'}/>
+                    </div>
+                    <div className='border border-1 border-black border-t-0 '>
+
+                        <SocialMediaButton name={'Instagram'} url={'https://www.instagram.com/imnotapan/?hl=es'}/>
+                    </div>
+                </div>
             </section>
 
         </>
