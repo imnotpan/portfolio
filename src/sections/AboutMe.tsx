@@ -2,7 +2,7 @@ import React from 'react'
 
 function NavBar (): React.ReactNode {
     return (
-        <section id='about' className='w-full flex bg-black z-5'>
+        <section id='about' className='w-full flex bg-black z-50'>
             <div className='flex w-full justify-center items-center text-center lg:mx-[25vh]'>
                 <div className=' relative z-20 border border-2 border-black border-r-gray-800'>
                     <p className='my-10 text-gray-300 text-xl font-ibmmono text-base ml-16 mr-4 text-right'>

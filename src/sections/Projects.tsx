@@ -1,51 +1,85 @@
-import React from 'react'
+import React, { useEffect , useState } from 'react'
+import { motion } from "framer-motion"
+import PortfolioCarousel from '../components/projects/PortfolioCarousel';
+import CoverChulako from '../assets/desings/CoverChulako.jpg'
+import CoverCotuuYan from '../assets/desings/CoverCotuuYan.jpg'
+import CoverFarAway from '../assets/desings/CoverFarAway.jpg'
+import CoverFazumTempo from '../assets/desings/CoverFazumTempo.jpg'
+import CoverLazerAgua from '../assets/desings/CoverLazerAgua.jpg'
+import CoverMuevelo from '../assets/desings/CoverMuevelo.jpg'
+import CoverNiña from '../assets/desings/CoverNiña.jpg'
+import CoverSick from '../assets/desings/CoverSick.jpg'
+import CoverSkinny from '../assets/desings/CoverSkinny.jpg'
+import ImageCoverDesign from '../components/projects/ImageCoverDesign';
 
-import ProjectCard from '../components/projects/ProjectCard';
-import Kamoki from '../assets/projects/kamoki.png'
-import nomorethan13legs from '../assets/projects/nomorethan13legs.png'
-import littlecleaner from '../assets/projects/littlecleaner.png'
 
 
-function Projects (): React.ReactNode {
+
+function  Projects (): React.ReactNode {
+    const [carouselWidth, setCarouselWidth] = useState<number | undefined>();
+    const [carouselWidthImages, setCarouselWidthImages] = useState<number | undefined>();
+
+    const carouselref = React.useRef<HTMLInputElement>(null);
+    const carouselimages = React.useRef<HTMLInputElement>(null);
+
+    useEffect( () => {
+        const handleResize = ():void => {
+            if (carouselref.current?.scrollWidth !== undefined) {
+                setCarouselWidth(carouselref.current.scrollWidth - carouselref.current.offsetWidth);
+            }   
+            if (carouselimages.current?.scrollWidth !== undefined) {
+                setCarouselWidthImages(carouselimages.current.scrollWidth - carouselimages.current.offsetWidth);
+            }   
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    },[]) 
+
     return (
-        <section id='projects' className='w-full h-full flex flex-row overflow-hidden'>
-            <div className='w-full flex flex-col bg-gray-200'>
-                <button className='w-full h-full hover:bg-black hover:text-white border 
-                                border-b-0 border-r-0 border-black'>
-                    devs
-                </button>
-                <button className='w-full h-full  hover:bg-black hover:text-white border 
-                                border-b-0 border-r-0 border-black'>                    
-                    games
-                </button>
-                <button className='h-full w-full  hover:bg-black hover:text-white border 
-                                border-b-0 border-r-0 border-black'>                    
-                    design
-                </button>
-            </div>
-            <div className='w-full flex '>
-
-                <div className='w-full flex inline-flex '>
-                    <ProjectCard 
-                        img={Kamoki} 
-                        headertitle={'GAME JAM PROTOTYPE'} 
-                        maintitle={'KAMOKI'} 
-                        description={'This is a prototype game made for the weekly game jam #128 - camouflage'} 
-                        tags={['GAME MAKER', 'ASEPRITE', 'GAMEJAM']} />
-                    <ProjectCard 
-                        img={nomorethan13legs} 
-                        headertitle={'TRIJAM PROTOTYPE'} 
-                        maintitle={'KAMOKI'} 
-                        description={'An entry for "TriJam #46: 13 legs is a weird game made in just 3 hours, the main concept around the game is not '} 
-                        tags={['UNITY', 'PHOTOSHOP', 'TRIJAM']} />
-                    <ProjectCard 
-                        img={littlecleaner} 
-                        headertitle={'YOGCAST GAME JAM'} 
-                        maintitle={'LITTLE CLEANER'} 
-                        description={'Little Cleaner" is a entry for YogCast GameJam 2019 with the theme, Giving. ...'} 
-                        tags={['UNITY', '3D', 'BLENDER']} />
+        <section id='projects' className='w-full h-full flex flex-row overflow-hidden z-50'>
+            <div className='text-black w-full flex flex-col h-full'>
+                <div className='w-full bg-black text-white flex '>
+                    <div className='w-full overflow-hidden flex'>
+                        <div className='font-archivoblack inline-block w-full flex text-center '>                            
+                            <p className='w-full  text-8xl font-flexa font-extrabold mt-3'> PROJECTS I WORK. </p> 
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <motion.div
+                    ref={carouselref}
+                    drag="x"
+                    dragConstraints={{ right: 0, left: -(carouselWidth ?? 0) + 100 }}
+                    className=''
+                >
+                    <PortfolioCarousel/>
+                </motion.div>
+
+                <div className='font-archivoblack inline-block w-full flex text-center mt-3  '>
+                    <div className='flex w-full text-center justify-center'>
+                        <p className='  text-8xl  font-flexa font-extrabold'> DESING WORLD </p> 
+                        <p className='text-left mt-5 ml-4 text-xl font-ibmmono  '> WORKS I DO <br/> <span className='font-robotoslab'> WHEN I NO PROGRAM 👀 </span> </p>
+                    </div>
+                </div>
+                <motion.div 
+                    ref={carouselimages}
+                    drag="x"
+                    className='flex w-full cursor-grab' 
+                    dragConstraints={{ right: 0, left: -(carouselWidthImages ?? 0) + 100 }}>
+                    <ImageCoverDesign image={CoverChulako} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverCotuuYan} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverFarAway} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverFazumTempo} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverLazerAgua} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverMuevelo} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverNiña} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverSick} name={'Cover Chulako'} />
+                    <ImageCoverDesign image={CoverSkinny} name={'Cover Chulako'} />
+                </motion.div>
+            </div>          
+
         </section>
     );
 }

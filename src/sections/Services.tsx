@@ -5,12 +5,11 @@ import TagElement from '../components/services/TagElement';
 function Services (): React.ReactNode {
     return (
         <section id='services' className='w-full h-full bg-white z-10 flex flex-col md:flex-row
-                                        items-center justify-center text-left overflow-hidden '>
-            <div>
+                                        items-center justify-center text-left overflow-hidden mb-10'>
+            <div >
                 <p className='font-dugaspro text-9xl tracking-widest break-words  '>
                     A LOT OF <br/>
                     THINGS <br/>
-                    i DO ......
                 </p>
             </div>
             <div className='mt-10'>

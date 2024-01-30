@@ -1,5 +1,6 @@
 import React from 'react'
 import TagElement from '../services/TagElement';
+import { motion } from 'framer-motion';
 
 interface props{
     img: string,
@@ -12,16 +13,18 @@ interface props{
 function ProjectCard (props: props): React.ReactNode {
     
     return (
-        <div className='w-[54rem] border border-black border-l-0  bg-white hover:bg-black 
-                        hover:text-white cursor-pointer '>
-            <div className='w-full'>
-                <div className='my-2'>
-                    <p className='text-sm font-robotoslab font-semibold hover:font-nunito'>
+        <section className='min-w-[35rem]  max-w-[35rem] border border-black border-l-0  bg-white hover:bg-black 
+                        hover:text-white group cursor-grab '>
+            <motion.div className='overflow-x-hidden w-full h-full'>
+                <div className='w-full my-3'>
+                    <p className='text-sm font-robotoslab font-semibold group-hover:font-nunito group-hover:font-bold group-hover:scrolling-text '>
                         {props.headertitle}
                     </p>
                 </div>
-                <div className='overflow-hidden md:h-[18vw] h-[160px] ]'> {/* Agrega la propiedad overflow:hidden */}
-                    <img className='w-full border border-black zoom-img' src={props.img} 
+                <div className='overflow-hidden md:h-[15vw]  ]'> {/* Agrega la propiedad overflow:hidden */}
+                    <img
+                        onDragStart={(e) => {e.preventDefault()}} 
+                        className='w-full border border-black zoom-img ' src={props.img} 
                         style={{ maxWidth: '100%', height: 'auto' }} /> 
                 </div>
                 <div className='p-2'>
@@ -39,8 +42,8 @@ function ProjectCard (props: props): React.ReactNode {
                         </>
                     )}
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </section>
     );
 }
 

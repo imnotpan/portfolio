@@ -17,8 +17,27 @@
     .zoom-img:hover {
         transform: scale(1.1); /* Cambia la escala al 110% al pasar el mouse sobre la imagen */
     }
+
+    .scrolling-text {
+        animation: animate-left-to-right 5s linear infinite;
+    }
+    
+    .active {
+        background-color: rgb(255, 238, 0);
+    }
 }
+
+@keyframes animate-left-to-right {
+    0% {
+        transform: translateX(-25%);
+      }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 @font-face {
     font-family: DugasPro;
     src: url('../src/assets/fonts/DugasPro-BoldNormal.ttf') format("truetype");
   }
+

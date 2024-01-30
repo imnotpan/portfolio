@@ -10,6 +10,7 @@ export default {
         fontFamily: {
             archivoblack: ['Archivo Black', 'sans-serif'],
             ibmmono: ['IBM Plex Mono', 'monospace'],
+            flexa: ['GT Flexa Lt', 'sans-serif'],
             nunito: ['Nunito', 'sans-serif'],
             robotoslab: ['Roboto Slab', 'serif'],
             dugaspro: 'DugasPro'
@@ -21,7 +22,16 @@ export default {
           'null': '0.8',
           'extra-loose': '2.5',
           '12': '3rem',
-        }
+        },
+        animation: {
+            'infinite-scroll': 'infinite-scroll 25s linear infinite',
+          },
+          keyframes: {
+            'infinite-scroll': {
+              from: { transform: 'translateX(0)' },
+              to: { transform: 'translateX(-100%)' },
+            }
+          }       
     },
   },
   plugins: [

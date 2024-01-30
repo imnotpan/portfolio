@@ -1,48 +1,43 @@
-import React from 'react'
-import {Link} from 'react-scroll'
+import React, { useEffect } from 'react'
+import NavBarButton from '../components/navBar/NavBarButton';
 
 function NavBar (): React.ReactNode {
+    useEffect(() => {
+        const handleScroll = (): void => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('header nav a');
+
+            sections.forEach(sec => {
+                const top = window.scrollY;
+                const offset = sec.offsetTop;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        document.querySelector('header nav a[href*=' + id + ']')?.classList.add('active');
+                    });
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+
     return (
-        <div className='fixed z-50  hidden md:block lg:block top-[15%]'>
-            <ul className=' bg-white flex flex-col text-left justify-left font-nunito text-xl'>
-                <Link to='home'>
-                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
-                        <div className='mx-4'>
-                            home
-                        </div>
-                    </li>
-                </Link>
-                <Link to='about'>
-                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
-                        <div className='mx-4'>
-                            about
-                        </div>
-                    </li>
-                </Link>
-                <Link to='services'>
-                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
-                        <div className='mx-4'>
-                            services
-                        </div>
-                    </li>
-                </Link>
-                <Link to='projects'>
-                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
-                        <div className='mx-4'>
-                        projects
-                        </div>
-                    </li>
-                </Link>
-                <Link to='works'>
-                    <li className='hover:bg-yellow-400 hover:cursor-pointer hover:text-white'>
-                        <div className='mx-4'>
-                        works
-                        </div>
-                    </li>
-                </Link>
-            </ul>
-     
-        </div>
+        <header className='fixed z-50  hidden md:block lg:block top-[15%]'>
+            <nav className=' bg-white flex flex-col '>
+                <NavBarButton section='home'/>
+                <NavBarButton section='about'/>
+                <NavBarButton section='services'/>
+                <NavBarButton section='projects'/>
+            </nav>
+        </header>
     );
 }
 
