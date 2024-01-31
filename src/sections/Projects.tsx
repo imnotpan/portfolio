@@ -17,20 +17,15 @@ import useTextWriteAppear from '../hooks/useText';
 
 
 function  Projects (): React.ReactNode {
-    const [carouselWidth, setCarouselWidth] = useState<number | undefined>();
 
     const [carouselWidthImages, setCarouselWidthImages] = useState<number | undefined>();
-
-    const carouselref = React.useRef<HTMLInputElement>(null);
     const carouselimages = React.useRef<HTMLInputElement>(null);
+
     const ref = useRef(null);
     const isOnView = useInView(ref)
     
     useEffect( () => {
         const handleResize = ():void => {
-            if (carouselref.current?.scrollWidth !== undefined) {
-                setCarouselWidth(carouselref.current.scrollWidth - carouselref.current.offsetWidth);
-            }   
             if (carouselimages.current?.scrollWidth !== undefined) {
                 setCarouselWidthImages(carouselimages.current.scrollWidth - carouselimages.current.offsetWidth);
             }   
@@ -59,15 +54,9 @@ function  Projects (): React.ReactNode {
                         </motion.div>
                     </div>
                 </div>
-                <motion.div
-                    ref={carouselref}
-                    drag="x"
-                    dragConstraints={{ right: 0, left: -(carouselWidth ?? 0) + 100 }}
-                    className=''
-                >
-                    <PortfolioCarousel/>
-                </motion.div>
 
+                <PortfolioCarousel/>
+                
                 <div  className='font-archivoblack inline-block w-full flex text-center mt-3 z-50 '>
                     <motion.div ref={ref} className='flex w-full text-center justify-center'>
                         <p className='  text-8xl  font-flexa font-extrabold'> DESING WORLD </p> 

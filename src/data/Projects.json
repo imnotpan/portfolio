@@ -1,0 +1,21 @@
+{
+    "projects": [
+        {
+            "key": "dataresearch_filesystem",
+            "headertitle": "FULL STACK PROJECT",
+            "mainTitle": "DATA RESEARCH FILE SYSTEM",
+            "description": "Freelancer full stack work about a file storage system to data analysis with DATABASE, CRUD, FRONTEND, DASHBOARD and USERLOGIN", 
+            "tags": ["POSTGRES", "FASTAPI", "REACT"],
+            "mainImage": "src/assets/projects/DataResearch/Dataresearch.png",
+            "images": ["src/assets/projects/DataResearch/img_1.png", 
+                        "src/assets/projects/DataResearch/img_2.png",
+                        "src/assets/projects/DataResearch/img_3.png",
+                        "src/assets/projects/DataResearch/img_4.png",
+                        "src/assets/projects/DataResearch/img_5.png"],
+            "redirectLink": "https://github.com/imnotpan"        
+            
+        }
+
+
+    ]
+}

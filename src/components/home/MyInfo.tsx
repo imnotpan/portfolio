@@ -18,12 +18,12 @@ function MyInfo (): React.ReactNode {
                     </div>
                     <hr/>
                     <div className='relative z-50 mt-4 flex flex-col hidden md:block '>
-                        <SocialMediaButton name={'Twitter'} url={'https://twitter.com/imnotapan'}/>
-                        <SocialMediaButton name={'Instagram'} url={'https://www.instagram.com/imnotapan/?hl=es'}/>
+                        <SocialMediaButton name={'> Twitter'} url={'https://twitter.com/imnotapan'}/>
+                        <SocialMediaButton name={'> Instagram'} url={'https://www.instagram.com/imnotapan/?hl=es'}/>
+                        <SocialMediaButton name={'> Github'} url={'https://github.com/imnotpan'}/>
                     </div>
                 </div>
             </div>
-
         </div>
 
     );

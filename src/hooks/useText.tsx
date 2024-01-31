@@ -10,7 +10,6 @@ export default function useTextWriteAppear(text:string, isOnView: boolean) :  Mo
     );
 
     useEffect(() => {
-        console.log(isOnView, text)
         const controls = animate(count, baseText.length, {
             type: "tween",
             duration: 1.5,

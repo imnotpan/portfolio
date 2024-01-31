@@ -1,22 +1,51 @@
 import React, {  useRef } from 'react'
 import TagElement from '../services/TagElement';
 import {  motion, useInView } from 'framer-motion';
+import { useStoreProjects } from '../../store/StoreProjects';
+import { useStoreOverview } from '../../store/StoreOverview';
 
-interface props{
-    img: string,
-    headertitle: string,
-    maintitle: string,
+
+interface props {
+    headerTitle: string,
+    mainTitle: string,
     description: string,
-    tags: string[]
+    mainImage: string,
+    images: string[],
+    tags: string[],
+    redirectLink: string,
+
 }
 
 function ProjectCard (props: props): React.ReactNode {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: false });
+    const dragged = useStoreProjects((state) => state.dragged);
+    const setStateFullScreenOverview = useStoreOverview((state) => state.setStateFullScreenOverview);
+
+    const setMainTitle = useStoreOverview((state) => state.setMainTitle);
+    const setDescription = useStoreOverview((state) => state.setDescription);
+    const setMainImage = useStoreOverview((state) => state.setMainImage);
+    const setTags = useStoreOverview((state) => state.setTags);
+    const setImages = useStoreOverview((state) => state.setImages);
+    const redirectLink = useStoreOverview((state) => state.setRedirectLink);
+
+    const onClick = ():void => {
+        setStateFullScreenOverview(true)
+        setMainTitle(props.mainTitle)
+        setDescription(props.description)
+        setMainImage(props.mainImage)
+        setTags(props.tags)
+        setImages(props.images)
+        redirectLink(props.redirectLink)
+
+    }   
 
     return (
-        <section ref={ref} className='min-w-[35rem] max-w-[35rem] border border-black border-l-0  bg-white hover:bg-black 
-                        hover:text-white group cursor-grab z-10'>
+        <section 
+            ref={ref}
+            onClick={() => {!dragged && onClick()}}
+            className='min-w-[35rem] max-w-[35rem] border border-black border-l-0  
+                bg-white hover:bg-black hover:text-white group cursor-grab z-10'>
             <motion.div 
                 style={{
                     transform: isInView ? "none" : "translateY(50px)",
@@ -26,20 +55,20 @@ function ProjectCard (props: props): React.ReactNode {
                 className='overflow-x-hidden w-full h-full'>
                 <div className='w-full my-3'>
                     <p className='text-sm font-robotoslab font-semibold group-hover:font-nunito group-hover:font-bold group-hover:scrolling-text '>
-                        {props.headertitle}
+                        {props.headerTitle}
                     </p>
                 </div>
-                <div className='overflow-hidden h-[240px]'> {/* Agrega la propiedad overflow:hidden */}
+                <div className='overflow-hidden h-[240px]'>
                     <img
                         onDragStart={(e) => {e.preventDefault()}} 
-                        className='w-full border border-black zoom-img ' src={props.img} 
+                        className='w-full border border-black zoom-img ' src={props.mainImage} 
                         style={{ maxWidth: '100%', height: 'auto' }} /> 
                 </div>
                 <div className='p-2'>
                     <p className='font-nunito text-2xl font-bold my-1'> 
-                        {props.maintitle} - PROTOTYPE
+                        {props.mainTitle}
                     </p>
-                    <p className='font-ibmmono my-4'>
+                    <p className='font-ibmmono my-4 white-space:'>
                         {props.description}
                     </p>
                 </div>  

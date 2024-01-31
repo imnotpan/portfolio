@@ -18,7 +18,7 @@ function MainHeader (): React.ReactNode {
                 </div>
                 <div className='text-6xl sm:text-7xl md:text-9xl lg:text-9xl  ml-2 md:ml-0'>
                     <p className='font-archivoblack text-wrap '>DEVELOPER</p>
-                    <p className=' font-archivoblack md:text-8xl  webkit-text-blue-500 outline-text'>
+                    <p className=' font-archivoblack md:text-8xl lg:text-9xl  webkit-text-blue-500 outline-text'>
                         & DESIGNER.
                     </p>
                 </div>
