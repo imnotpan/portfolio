@@ -9,6 +9,7 @@ function GameDevProjects (): React.ReactNode {
     const [carouselWidth, setCarouselWidth] = useState<number | undefined>();
     const setDragged = useStoreProjects((state) => state.setDragged)
     
+
     useEffect( () => {
         const handleResize = ():void => {
             if (carouselref.current?.scrollWidth !== undefined) {
@@ -23,36 +24,37 @@ function GameDevProjects (): React.ReactNode {
             window.removeEventListener('resize', handleResize);
         };
         
-    },[]) 
+    },[document.body.clientWidth]) 
 
+    const handleDragEnd = (info: any):void => {
+        setDragged(false);
+
+
+    };
 
     return (
         <motion.div
             ref={carouselref}
             drag="x"
             onDragStart={() => {setDragged(true)}}
-            onDragEnd={() => {setDragged(false)}}
-        
-
-            dragConstraints={{ right: 0, left: -(carouselWidth ?? 0) + 100 }}
-            className=''
+            onDragEnd={(event, info) => {handleDragEnd(info)}}
+            dragConstraints={{ right: 0, left: -(carouselWidth ?? 0) }}
+            className='w-full flex'
         >
-            <motion.div className='flex w-full'>
-                {projectsData.projects.map((project) => 
-                    (
-                        <ProjectCard 
-                            key={project.key}
-                            headerTitle={project.headertitle} 
-                            mainTitle={project.mainTitle} 
-                            description={project.description} 
-                            mainImage={project.mainImage} 
-                            images={project.images} 
-                            tags={project.tags} 
-                            redirectLink={project.redirectLink} />
-                    ))
-                }
-              
-            </motion.div>
+            {projectsData.projects.map((project, index) => 
+                (
+                    <ProjectCard 
+                        key={index}
+                        headerTitle={project.headertitle} 
+                        mainTitle={project.mainTitle} 
+                        description={project.description} 
+                        mainImage={project.mainImage} 
+                        images={project.images} 
+                        tags={project.tags} 
+                        redirectLink={project.redirectLink} />
+                ))
+            }
+            
         </motion.div>
 
     );
