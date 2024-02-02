@@ -11,12 +11,10 @@
         -webkit-text-stroke-width: 2px;
     }
     .zoom-img {
-        transition: transform 0.3s; /* Agrega una transición para suavizar el efecto */
-      }
-    
-    .zoom-img:hover {
-        transform: scale(1.1); /* Cambia la escala al 110% al pasar el mouse sobre la imagen */
+        transition: transform 0.3s; 
+        transform: scale(1.1);  
     }
+    
 
     .scrolling-text {
         animation: animate-left-to-right 5s linear infinite;
@@ -25,6 +23,13 @@
     .active {
         background-color: rgb(255, 238, 0);
     }
+    ::-webkit-scrollbar {
+        width: 2px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgb(245, 245, 245);
+        border-radius: 1px;
+      }
 }
 
 @keyframes animate-left-to-right {

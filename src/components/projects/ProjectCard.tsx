@@ -1,7 +1,6 @@
 import React, {  useRef } from 'react'
 import TagElement from '../services/TagElement';
-import {  MotionValue, motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { useStoreProjects } from '../../store/StoreProjects';
+import { motion, useInView } from 'framer-motion';
 import { useStoreOverview } from '../../store/StoreOverview';
 
 
@@ -21,7 +20,6 @@ interface props {
 function ProjectCard (props: props): React.ReactNode {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: false });
-    const dragged = useStoreProjects((state) => state.dragged);
     const setStateFullScreenOverview = useStoreOverview((state) => state.setStateFullScreenOverview);
 
     const setMainTitle = useStoreOverview((state) => state.setMainTitle);
@@ -46,9 +44,9 @@ function ProjectCard (props: props): React.ReactNode {
     return (
         <section 
             ref={ref}
-            onClick={() => {!dragged && onClick()}}
+            onClick={() => {onClick()}}
             className='min-w-[35rem]  max-w-[35rem] border border-black border-l-0  
-                bg-white hover:bg-black hover:text-white group cursor-grab z-10'>
+                bg-white hover:bg-black hover:text-white group cursor-pointer z-10'>
             <motion.div 
                 style={{
                     transform: isInView ? "none" : "translateY(50px)",
@@ -64,7 +62,7 @@ function ProjectCard (props: props): React.ReactNode {
                 <div className='overflow-hidden h-[240px] '>
                     <img
                         onDragStart={(e) => {e.preventDefault()}} 
-                        className='w-full border border-black zoom-img ' src={props.mainImage} 
+                        className='w-full border border-black group-hover:zoom-img ' src={props.mainImage} 
                         style={{ maxWidth: '100%', height: 'auto' }} /> 
                 </div>
                 <div className='p-2 flex flex-col'>

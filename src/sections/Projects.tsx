@@ -75,9 +75,7 @@ function  Projects (): React.ReactNode {
                 
                 <motion.div 
                     ref={carouselimages}
-                    drag="x"
-                    className='flex w-full cursor-grab z-50' 
-                    dragConstraints={{ right: 0, left: -(carouselWidthImages ?? 0) + 100 }}>
+                    className='flex w-full z-[50] overflow-x-auto overflow-y-hidden overflow-y-clip' >
                     <ImageCoverDesign image={CoverChulako} name={'Cover Chulako'} />
                     <ImageCoverDesign image={CoverCotuuYan} name={'Cover Chulako'} />
                     <ImageCoverDesign image={CoverFarAway} name={'Cover Chulako'} />
