@@ -16,14 +16,14 @@ function  Projects (): React.ReactNode {
                     <motion.div 
                         animate="animate"
                         className='font-archivoblack inline-block w-full flex text-center '>                            
-                        <p className='w-full  text-7xl sm:text-8xl font-archivoblack font-extrabold mt-3'>  PROJECTS I WORK. </p> 
+                        <p className='w-full  text-6xl sm:text-8xl font-archivoblack font-extrabold mt-3'>  PROJECTS I WORK. </p> 
                     </motion.div>
                 </div>
             </div>
             <PortfolioCarousel/>
             <div  className='bg-black text-white font-archivoblack inline-block w-full flex text-center z-50 '>
                 <motion.div ref={ref} className='flex flex-col sm:flex-row w-full text-center justify-center'>
-                    <p className=' text-8xl  sm:text-8xl  font-archivoblack font-extrabold'> DESING WORLD </p> 
+                    <p className=' text-7xl  sm:text-8xl  font-archivoblack font-extrabold'> DESING WORLD </p> 
                     <motion.p className=' sm:mt-5 sm:ml-4 text-xl font-ibmmono  text-center sm:text-left flex flex-col '>
                         <motion.span className='font-robotoslab sm:text-base text-5xl'> 
                             {useTextWriteAppear('THINGS I DO', isOnView, 1)}
