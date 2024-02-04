@@ -6,12 +6,12 @@
             "mainTitle": "DATA RESEARCH FILE SYSTEM",
             "description": "Freelancer full stack work about a file storage system for data research to data analysis with DATABASE, CRUD, FRONTEND, DASHBOARD and USERLOGIN", 
             "tags": ["POSTGRES", "FASTAPI", "REACT"],
-            "mainImage": "public/assets/projects/DataResearch/Dataresearch.png",
-            "images": ["public/assets/projects/DataResearch/img_1.png", 
-                        "public/assets/projects/DataResearch/img_2.png",
-                        "public/assets/projects/DataResearch/img_3.png",
-                        "public/assets/projects/DataResearch/img_4.png",
-                        "public/assets/projects/DataResearch/img_5.png"],
+            "mainImage": "/static/img/projects/DataResearch/Dataresearch.png",
+            "images": ["/static/img/projects/DataResearch/img_1.png", 
+                        "/static/img/projects/DataResearch/img_2.png",
+                        "/static/img/projects/DataResearch/img_3.png",
+                        "/static/img/projects/DataResearch/img_4.png",
+                        "/static/img/projects/DataResearch/img_5.png"],
             "redirectLink": "https://github.com/imnotpan"        
             
         },
@@ -21,10 +21,10 @@
             "mainTitle": "NATIONAL WELFARE (CHILE)",
             "description": "This university project has a primary goal of extracting comprehensive data from diverse sources to assess the overall well-being of communities within a specific country. This initiative explores various dimensions, including health, culture, security, and other pertinent factors, to gain a thorough understanding of the intricate components contributing to societal prosperity. Employing a systematic approach, the project gathers and analyzes data from an extensive range of resources, such as public health records, cultural indices, security databases, and other relevant repositories. ",
             "tags": ["PYTHON", "NODEJS", "CRON", "REACT"],
-            "mainImage": "public/assets/projects/Bienestar/Bienestar.png",
-            "images": ["public/assets/projects/Bienestar/img_1.png", 
-                        "public/assets/projects/Bienestar/img_2.png",
-                        "public/assets/projects/Bienestar/img_3.png"],
+            "mainImage": "/static/img//projects/Bienestar/Bienestar.png",
+            "images": ["/static/img/projects/Bienestar/img_1.png", 
+                        "/static/img/projects/Bienestar/img_2.png",
+                        "/static/img/projects/Bienestar/img_3.png"],
             "redirectLink": "https://github.com/imnotpan"        
         },
         {
@@ -33,10 +33,10 @@
             "mainTitle": "KAMOKI - PROTOTYPE",
             "description": "This is a prototype game made for the weekly game jam #128 - camouflage Hi thing who is playing this thing, im the son of a guard you killed on the laboratory, i don't know if you are a human or a mutation but you ruin my life, my family, everything. i know you killed a lot of people and this won't be like that. I H A T E Y O U.in this game you need to scape from the laboratory, we don't know because you are here, but you can't stay in his place one more moment. ",
             "tags": ["ASEPRITE", "GAMEJAM", "GAME MAKER"],
-            "mainImage": "public/assets/projects/kamoki/kamoki.png",
-            "images": ["public/assets/projects/kamoki/img_1.png", 
-                        "public/assets/projects/kamoki/img_2.png",
-                        "public/assets/projects/kamoki/img_3.png"],
+            "mainImage": "/static/img/projects/kamoki/kamoki.png",
+            "images": ["/static/img/projects/kamoki/img_1.png", 
+                        "/static/img/projects/kamoki/img_2.png",
+                        "/static/img/projects/kamoki/img_3.png"],
             "redirectLink": "https://imnotapan.itch.io/kamoki"        
         }
         ,
@@ -47,9 +47,9 @@
             "description": "Use your powerful machine to feed the [Collector]. 'Little Cleaner' is a entry for YogCast GameJam 2019 with the theme, Giving. In this game you need giving garbage to the collector, a big trash monster who need to feed with garbage to not disappear. In this game you can play [SOLO] or with one friend in the [COOPERATIVE] mode",
             "tags": ["BLENDER", "GAMEJAM", "UNITY"],
             "mainImage": "src/assets/projects/littlecleaner/littlecleaner.png",
-            "images": ["public/assets/projects/littlecleaner/img_1.png", 
-                        "public/assets/projects/littlecleaner/img_2.png",
-                        "public/assets/projects/littlecleaner/img_3.png"],
+            "images": ["/static/img/projects/littlecleaner/img_1.png", 
+                        "/static/img/projects/littlecleaner/img_2.png",
+                        "/static/img/projects/littlecleaner/img_3.png"],
             "redirectLink": "https://imnotapan.itch.io/little-cleaner"        
         },
         {
@@ -59,9 +59,9 @@
             "description": "An entry for 'TriJam #46: 13 legs' is a weird game made in just 3 hours, the main concept around the game is not drop the legs that appear randomly in the screen. To play you just need move te MOUSE LEFT or RIGHT, and press left click to apply  a force in some leg. If you get 14 legs on the screen, you win the game. Is a simple and hard game at once.",
             "tags": ["BLENDER", "GAMEJAM", "UNITY"],
             "mainImage": "src/assets/projects/nomorethan13legs/nomorethan13legs.png",
-            "images": ["public/assets/projects/nomorethan13legs/img_1.png", 
-                        "public/assets/projects/nomorethan13legs/img_2.png",
-                        "public/assets/projects/nomorethan13legs/img_3.png"],
+            "images": ["/static/img/projects/nomorethan13legs/img_1.png", 
+                        "/static/img/projects/nomorethan13legs/img_2.png",
+                        "/static/img//projects/nomorethan13legs/img_3.png"],
             "redirectLink": "https://imnotapan.itch.io/nmt13l"        
         }
         
