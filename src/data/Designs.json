@@ -16,11 +16,6 @@
             "path": "/static/img/CoverFarAway.jpg"
         },
         {
-            "key": "coverfazumtempo",
-            "headertitle": "FAZ UM TEMPO",
-            "path": "/static/img/CoverFazumtempo.jpg"
-        },
-        {
             "key": "coverbajolalluvia",
             "headertitle": "BAJO LA LLUVIA",
             "path": "/static/img/CoverLazerAgua.jpg"
