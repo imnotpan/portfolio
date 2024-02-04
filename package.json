@@ -1,9 +1,12 @@
 {
+  "homepage": "https://imnotpan.github.io/portfolio",
   "name": "portfolio-web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -11,11 +14,11 @@
   },
   "dependencies": {
     "@types/react-slick": "^0.23.13",
+    "autoprefixer": "^10.4.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-slick": "^0.30.1",
-    "zustand": "^4.5.0",
-    "autoprefixer": "^10.4.17"
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -31,6 +34,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "framer-motion": "^11.0.3",
+    "gh-pages": "^6.1.1",
     "react-remove-scroll": "^2.5.7",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
