@@ -56,3 +56,7 @@
     src: url('../src/assets/fonts/DugasPro-BoldNormal.ttf') format("truetype");
   }
 
+@font-face {
+    font-family: Neue Montreal;
+    src: url('../src/assets/fonts/PPNeueMontreal-Medium.otf') format("truetype");
+}

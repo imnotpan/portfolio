@@ -13,7 +13,9 @@ export default {
             flexa: ['GT Flexa Lt', 'sans-serif'],
             nunito: ['Nunito', 'sans-serif'],
             robotoslab: ['Roboto Slab', 'serif'],
-            dugaspro: 'DugasPro'
+            dugaspro: 'DugasPro',
+            neue: 'Neue Montreal'
+
         },
         textColor: {
           'webkit': '-webkit-text-fill-color',

@@ -48,7 +48,7 @@ function ProjectCard (props: props): React.ReactNode {
             onClick={() => {!dragged && onClick()}}
             
             id='items-card'
-            className=' relative items-card max-h-[30rem]
+            className=' relative items-card border-1 border border-black border-l-0 max-h-[30rem]
                 bg-white hover:bg-black hover:text-white group cursor-pointer z-10 overflow-x-hidden'>
             <motion.div 
               
@@ -65,7 +65,7 @@ function ProjectCard (props: props): React.ReactNode {
                         style={{ maxWidth: '100%', height: 'auto' }} /> 
                 </div>
                 <div className='p-2 flex flex-col'>
-                    <p className='truncate font-nunito text-2xl font-bold my-1'> 
+                    <p className='truncate font-neue text-2xl font-bold my-1'> 
                         {props.mainTitle}
                     </p>
                     <p className='line-clamp-3 font-ibmmono my-4 white-space '>

@@ -9,7 +9,7 @@ function Services (): React.ReactNode {
 
  
     return (
-        <section ref={ref}  id='services' className=' section__page relative w-full h-full bg-white z-10 flex flex-col md:flex-row
+        <section ref={ref}  id='services' className=' section__page relative w-full h-full bg-white text-black z-10 flex flex-col md:flex-row
                                         items-center justify-center text-left overflow-hidden '>
             <div className='mb-0 md:mb-10 font-dugaspro text-8xl sm:text-9xl  tracking-widest break-words' >
                 <span>

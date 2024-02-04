@@ -62,7 +62,7 @@ function FullScreenOverview (): React.ReactNode {
                     {images.map((img, index) => (
                         <img  
                             key={index}
-                            className=' hover:zoom-img hover:z-[100] grayscale hover:grayscale-0  z-10 opacity-25 hover:opacity-100' 
+                            className=' sm:hover:zoom-img hover:z-[100] sm:grayscale hover:grayscale-0  z-10 sm:opacity-25 sm:hover:opacity-100' 
                             src={img}/>
                     ) )}
                 </div>

@@ -3,7 +3,7 @@ import useTextWriteAppear from '../hooks/useText';
 import { motion, useInView } from 'framer-motion';
 
 function NavBar (): React.ReactNode {
-    const baseText = "Started game development at 15 on platforms like Newgrounds. Enrolled at" + 
+    const baseText = "Started game development at 15 on platforms like Newgrounds. Enrolled at " + 
                     "Austral University in 2019, expanded to digital design in 2020, creating " +
                     "visualizers for Lollapalooza, cover art, and animated music videos for " +
                     "national/international artists."
@@ -11,18 +11,22 @@ function NavBar (): React.ReactNode {
     const isOnView = useInView(ref)
 
     return (
-        <section  ref={ref}  id='about' className='overflow-x-hidden section__page relative w-full flex bg-black z-10'>
-            <div className='flex w-full justify-center items-center text-center lg:mx-[25vh] '>
-                <div   className='relative z-20 border border-2 border-black border-r-gray-800'>
-                    <motion.p className='hidden sm:block my-10 text-gray-300 text-xl font-ibmmono text-base ml-16 mr-4 text-right'>
+        <section  ref={ref}  id='about' className='relative overflow-y-hidden overflow-x-hidden section__page relative w-full flex bg-black z-10'>
+            
+            <div className='flex flex-col w-full  mx-[5vh] lg:mx-[30vh] '>
+
+                <div   className='sm:ml-10 mix-blend-difference relative z-20 '>
+                    <p className='font-archivoblack text-white text-8xl  mt-10 '> ABOUT  </p>
+                    <motion.p className='hidden sm:block mb-10 text-gray-300 text-3xl font-bold font-neue text-base mr-4 text-left'>
                         {useTextWriteAppear(baseText, isOnView, 0.9)}
                     </motion.p>
-                    <p className='block sm:hidden my-10 text-gray-300 text-xl font-ibmmono text-base ml-16 mr-4 text-right'>
+            
+                    <p className='block sm:hidden my-10 text-gray-300 text-xl font-ibmmono text-base mr-4 text-left'>
                         {baseText}
                     </p>
                 </div>
-
             </div>
+    
         </section>
     );
 }
