@@ -21,7 +21,7 @@ function NavBar (): React.ReactNode {
                         {useTextWriteAppear(baseText, isOnView, 0.9)}
                     </motion.p>
             
-                    <p className='block sm:hidden my-10 text-gray-300 text-3xl font-bold font-neue text-base mr-4 text-left'>
+                    <p className='block sm:hidden my-10 text-gray-300 text-4xl font-bold font-neue text-base mr-4 text-left'>
                         {baseText}
                     </p>
                 </div>
