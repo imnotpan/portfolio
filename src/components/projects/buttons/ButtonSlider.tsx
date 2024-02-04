@@ -9,7 +9,8 @@ interface props {
 function ButtonSlider ( props: props ): React.ReactNode {
 
     return (
-        <div className='mix-blend-difference group/select-button hover:zoom-buttom invisible group-hover/button:visible z-50'>
+        <div className='relative mix-blend-difference group/select-button hover:zoom-buttom invisible 
+                        group-hover/button:visible z-50'>
             <div className='mx-5'>
                 <button
                     className=" text-black bg-white p-5 px-7 rounded-full font-archivoblack"

@@ -16,20 +16,19 @@ function  Projects (): React.ReactNode {
                     <motion.div 
                         animate="animate"
                         className='font-archivoblack inline-block w-full flex text-center '>                            
-                        <p className='w-full  text-8xl font-flexa font-extrabold mt-3'>  PROJECTS I WORK. </p> 
+                        <p className='w-full  text-7xl sm:text-8xl font-flexa font-extrabold mt-3'>  PROJECTS I WORK. </p> 
                     </motion.div>
                 </div>
             </div>
             <PortfolioCarousel/>
             <div  className='font-archivoblack inline-block w-full flex text-center mt-3 z-50 '>
-                <motion.div ref={ref} className='flex w-full text-center justify-center'>
-                    <p className='  text-8xl  font-flexa font-extrabold'> DESING WORLD </p> 
-                    <motion.p className='text-left mt-5 ml-4 text-xl font-ibmmono  flex flex-col '>
-                        <motion.span className='font-robotoslab'> 
+                <motion.div ref={ref} className='flex flex-col sm:flex-row w-full text-center justify-center'>
+                    <p className=' text-8xl  sm:text-8xl  font-flexa font-extrabold'> DESING WORLD </p> 
+                    <motion.p className=' sm:mt-5 sm:ml-4 text-xl font-ibmmono  text-center sm:text-left flex flex-col '>
+                        <motion.span className='font-robotoslab sm:text-base text-5xl'> 
                             {useTextWriteAppear('THINGS I DO', isOnView, 1)}
                         </motion.span> 
-                        <motion.span className='font-robotoslab'> 
-                            
+                        <motion.span className='font-robotoslab '> 
                             {useTextWriteAppear('WHEN I NO PROGRAM 👀 ', isOnView, 1)}
 
                         </motion.span>

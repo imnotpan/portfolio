@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Designs from '../../data/Designs.json'
 import Slider from 'react-slick'
 import ButtonSlider from './buttons/ButtonSlider'
 import ImageCoverDesign from './ImageCoverDesign';
+import { useStoreProjects } from '../../store/StoreProjects';
 
 
 
 function CoverCarousel (): React.ReactNode {
     const slider = React.useRef(null);
+    const currentCover = useStoreProjects((state) => state.currentCover)
+    const setCurrentCover = useStoreProjects((state) => state.setCurrentCover)
+
+    const coverElsRef = useRef<NodeListOf<Element> | null>(null);
+
+    useEffect(() => {
+        coverElsRef.current = document.querySelectorAll('.cover-art img');
+    }, [])
+
+    useEffect(() => {
+        coverElsRef.current?.forEach((cover) => {
+            const href = (cover as HTMLImageElement ).alt;
+            cover.classList.remove('grayscale-0')
+            if(href === Designs.Designs[currentCover].headertitle){
+                cover.classList.add('grayscale-0');
+                console.log(cover)
+            }
+        });
+    },[currentCover])
 
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
+        speed: 200,
         slidesToShow: 5,
         slidesToScroll: 1,
         initialSlide: 0,
@@ -63,9 +83,10 @@ function CoverCarousel (): React.ReactNode {
             <Slider 
                 {...settings}
                 ref={slider}
-                className=' w-full h-full ' >
-                {Designs.Designs.map((cover) => (
-                    <ImageCoverDesign image={cover.path} key={cover.key} name={cover.headertitle}/>
+                afterChange={(current) => {setCurrentCover(current)}}
+                className='slider w-full h-full ' >
+                {Designs.Designs.map((cover, index) => (
+                    <ImageCoverDesign coverIndex={index} image={cover.path} key={cover.key} name={cover.headertitle}/>
                 ))}
             </Slider>
         </div>

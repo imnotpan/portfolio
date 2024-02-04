@@ -52,12 +52,26 @@ function NavBar (): React.ReactNode {
 
     return (
         <header
-            className='fixed z-50  hidden md:block lg:block top-[15%]'>
-            <nav className=' bg-white flex flex-col '>
-                <NavBarButton setCurrentSection={setCurrentSection} section='home'/>
-                <NavBarButton setCurrentSection={setCurrentSection} section='about'/>
-                <NavBarButton setCurrentSection={setCurrentSection} section='services'/>
-                <NavBarButton setCurrentSection={setCurrentSection} section='projects'/>
+            className='fixed z-50  hidden md:block lg:block w-full'>
+            
+            <nav className=' bg-white flex flex-row '>
+
+                <a 
+                    onClick={() => {setCurrentSection('home')}}
+                    className='nav__link' 
+                    id={'#home'} 
+                    href={'#home'} >
+                    <div className='mx-4 text-left justify-left text-2xl  font-archivoblack ml-2'>
+                        {'IMNOTAPAN'}
+                    </div>
+                </a>
+                    
+                <div className='flex justify-end w-full '>
+                    <NavBarButton setCurrentSection={setCurrentSection} section='home'/>
+                    <NavBarButton setCurrentSection={setCurrentSection} section='about'/>
+                    <NavBarButton setCurrentSection={setCurrentSection} section='services'/>
+                    <NavBarButton setCurrentSection={setCurrentSection} section='projects'/>
+                </div>
             </nav>
         </header>
     );

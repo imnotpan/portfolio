@@ -11,9 +11,9 @@ function Home (): React.ReactNode {
     return (
         <section
             
-            className='section__page' id='home'>
+            className='section__page ' id='home'>
             <div
-                className='section flex flex-col h-screen w-full relative overflow-y-hidden  overflow-x-hidden z-0'>
+                className='overflow-x-hidden section flex flex-col h-screen w-full relative overflow-y-hidden  overflow-x-hidden z-0'>
                 <div className='mt-5 md:mt-24'>
                     <MainHeader/>
                 </div>

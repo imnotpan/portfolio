@@ -14,7 +14,7 @@ function NavBarButton (props: props): React.ReactNode {
             className='nav__link' 
             id={'#' + props.section} 
             href={'#' + props.section} >
-            <div className='mx-4 hover:underline text-left justify-left font-nunito text-xl'>
+            <div className='mx-4 hover:underline text-left justify-left font-ibmmono text-xl'>
                 {props.section}
             </div>
         </a>

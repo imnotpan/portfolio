@@ -48,7 +48,7 @@ function ProjectCard (props: props): React.ReactNode {
             onClick={() => {!dragged && onClick()}}
             
             id='items-card'
-            className=' relative items-card border-1 border border-black border-l-0 max-h-[30rem]
+            className=' relative items-card max-h-[30rem]
                 bg-white hover:bg-black hover:text-white group cursor-pointer z-10 overflow-x-hidden'>
             <motion.div 
               

@@ -65,12 +65,12 @@ function GameDevProjects (): React.ReactNode {
     return (
         <section className='relative flex flex-col w-full group/button'>
 
-            <div className='visible sm:invisible absolute right-0 h-full items-center  flex'>
+            <div className='visible sm:invisible absolute right-0 h-full items-center flex'>
                 <ButtonSlider 
                     sliderRef={() => { (slider.current as any)?.slickNext()}}
                     symbol={'>'} />
             </div>
-            <div className='visible sm:invisible absolute left-0 h-full items-center flex'>
+            <div className='visible sm:invisible absolute left-0 h-full items-center flex '>
                 <ButtonSlider 
                     sliderRef={() => { (slider.current as any)?.slickPrev()}}
                     symbol={'<'} />

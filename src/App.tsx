@@ -20,11 +20,11 @@ function App (): React.ReactNode {
 
     return (
         <div className='flex flex-col w-full'>
-            {!isFullScreenOverviewActive && <div className='fixed mix-blend-difference z-[200] right-0 bottom-0 p-12'>
+            {!isFullScreenOverviewActive && <div className='fixed mix-blend-difference z-[200] right-0 bottom-0 p-2 md:p-12 sm:scale-[1] scale-[0.7]'>
                 <button 
                     onClick={topFunction}
                     className='font-bold mix-blend-difference p-5 rounded-full 
-                        hover:zoom-buttom text-black bg-white'>
+                        md:hover:zoom-buttom  text-black bg-white'>
                     <p> {"UP"} </p>
                 </button>
             </div>
@@ -35,7 +35,7 @@ function App (): React.ReactNode {
             <AboutMe/>
             <Services/>
             <Projects/>
-            <div className='relative z-10 bg-white text-8xl text-center overflow-x-hidden overflow-y-hidden'>
+            <div className='relative z-10 bg-white text-5xl sm:text-8xl text-center overflow-x-hidden overflow-y-hidden'>
                 <SocialMediaButton name={'HIRE ME'} url={'mailto:imnotapan@gmail.com'}/>
             </div>
             <Footer/>
