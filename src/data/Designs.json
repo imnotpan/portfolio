@@ -3,47 +3,47 @@
         {
             "key": "coverchulako",
             "headertitle": "CHULAKO",
-            "path": "src/assets/desings/CoverChulako.jpg"
+            "path": "public/assets/desings/CoverChulako.jpg"
         },
         {
             "key": "coverCotuuYan",
             "headertitle": "COTUU X YAN",
-            "path": "src/assets/desings/CoverCotuuYan.jpg"
+            "path": "public/assets/desings/CoverCotuuYan.jpg"
         },
         {
             "key": "coverfaraway",
             "headertitle": "FAR AWAY",
-            "path": "src/assets/desings/CoverFarAway.jpg"
+            "path": "public/assets/desings/CoverFarAway.jpg"
         },
         {
             "key": "coverfazumtempo",
             "headertitle": "FAZ UM TEMPO",
-            "path": "src/assets/desings/CoverFazumtempo.jpg"
+            "path": "public/assets/desings/CoverFazumtempo.jpg"
         },
         {
             "key": "coverbajolalluvia",
             "headertitle": "BAJO LA LLUVIA",
-            "path": "src/assets/desings/CoverLazerAgua.jpg"
+            "path": "public/assets/desings/CoverLazerAgua.jpg"
         },
         {
             "key": "covermuevelo",
             "headertitle": "MUEVELO",
-            "path": "src/assets/desings/CoverMuevelo.jpg"
+            "path": "public/assets/desings/CoverMuevelo.jpg"
         },
         {
             "key": "coverniña",
             "headertitle": "NIÑA",
-            "path": "src/assets/desings/CoverNiña.jpg"
+            "path": "public/assets/desings/CoverNiña.jpg"
         },
         {
             "key": "coversick",
             "headertitle": "SICK",
-            "path": "src/assets/desings/CoverSick.jpg"
+            "path": "public/assets/desings/CoverSick.jpg"
         },
         {
             "key": "coverskinny",
             "headertitle": "SI TE VAS",
-            "path": "src/assets/desings/CoverSkinny.jpg"
+            "path": "public/assets/desings/CoverSkinny.jpg"
         }
         
     ]
