@@ -21,6 +21,8 @@ function MyInfo (): React.ReactNode {
                         <SocialMediaButton name={'> Twitter'} url={'https://twitter.com/imnotapan'}/>
                         <SocialMediaButton name={'> Instagram'} url={'https://www.instagram.com/imnotapan/?hl=es'}/>
                         <SocialMediaButton name={'> Github'} url={'https://github.com/imnotpan'}/>
+                        <SocialMediaButton name={'> Email'} url={'mailto:imnotapan@gmail.com'}/>
+
                     </div>
                 </div>
             </div>

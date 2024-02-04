@@ -1,0 +1,50 @@
+{
+    "Designs": [
+        {
+            "key": "coverchulako",
+            "headertitle": "CHULAKO",
+            "path": "src/assets/desings/CoverChulako.jpg"
+        },
+        {
+            "key": "coverCotuuYan",
+            "headertitle": "COTUU X YAN",
+            "path": "src/assets/desings/CoverCotuuYan.jpg"
+        },
+        {
+            "key": "coverfaraway",
+            "headertitle": "FAR AWAY",
+            "path": "src/assets/desings/CoverFarAway.jpg"
+        },
+        {
+            "key": "coverfazumtempo",
+            "headertitle": "FAZ UM TEMPO",
+            "path": "src/assets/desings/CoverFazumtempo.jpg"
+        },
+        {
+            "key": "coverbajolalluvia",
+            "headertitle": "BAJO LA LLUVIA",
+            "path": "src/assets/desings/CoverLazerAgua.jpg"
+        },
+        {
+            "key": "covermuevelo",
+            "headertitle": "MUEVELO",
+            "path": "src/assets/desings/CoverMuevelo.jpg"
+        },
+        {
+            "key": "coverniña",
+            "headertitle": "NIÑA",
+            "path": "src/assets/desings/CoverNiña.jpg"
+        },
+        {
+            "key": "coversick",
+            "headertitle": "SICK",
+            "path": "src/assets/desings/CoverSick.jpg"
+        },
+        {
+            "key": "coverskinny",
+            "headertitle": "SI TE VAS",
+            "path": "src/assets/desings/CoverSkinny.jpg"
+        }
+        
+    ]
+}

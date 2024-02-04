@@ -12,7 +12,7 @@ function LittleResume (): React.ReactNode {
 
     return (
         <motion.p  ref={ref} className='font-ibmmono w-[200px] z-50'>
-            <motion.span>{useTextWriteAppear(defaulttext, isOnView)}</motion.span>
+            <motion.span>{useTextWriteAppear(defaulttext, isOnView, 1)}</motion.span>
             <CursorBlinker/>
         </motion.p>
     );

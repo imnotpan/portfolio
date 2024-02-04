@@ -1,7 +1,7 @@
 import { type MotionValue, animate, useMotionValue, useTransform } from 'framer-motion';
 import { useEffect } from 'react';
 
-export default function useTextWriteAppear(text:string, isOnView: boolean) :  MotionValue<string>{
+export default function useTextWriteAppear(text:string, isOnView: boolean, time: number) :  MotionValue<string>{
     const baseText = text
     const count = useMotionValue(0);
     const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -12,7 +12,7 @@ export default function useTextWriteAppear(text:string, isOnView: boolean) :  Mo
     useEffect(() => {
         const controls = animate(count, baseText.length, {
             type: "tween",
-            duration: 1.5,
+            duration: time,
             ease: "easeInOut", 
         });
         if(isOnView){
@@ -22,7 +22,6 @@ export default function useTextWriteAppear(text:string, isOnView: boolean) :  Mo
             controls.stop();
             
         }   
-
 
     }, [isOnView]);
 

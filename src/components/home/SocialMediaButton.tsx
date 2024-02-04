@@ -31,7 +31,7 @@ function SocialMediaButton (props: props): React.ReactNode {
 
     return (
         <motion.a
-            className="text-inherit font-ibmmono flex flex-col relative  "
+            className="text-inherit font-ibmmono flex flex-col "
             animate={selectedButton ? 'hover' : 'normal'}
             variants={parentAnimation}
             target="_blank"

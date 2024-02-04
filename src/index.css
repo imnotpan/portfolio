@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+    
     .outline-text
     {
         color: #000;
@@ -13,6 +14,10 @@
     .zoom-img {
         transition: transform 0.3s; 
         transform: scale(1.1);  
+    }
+    .zoom-buttom {
+        transition: transform 0.1s; 
+        transform: scale(1.4);  
     }
     
 
@@ -26,11 +31,13 @@
     ::-webkit-scrollbar {
         width: 2px;
       }
-      ::-webkit-scrollbar-thumb {
-        background: rgb(245, 245, 245);
-        border-radius: 1px;
-      }
-}
+    ::-webkit-scrollbar-thumb {
+    background: rgb(245, 245, 245);
+    border-radius: 1px;
+    }
+
+
+    .tracking-in-expand{animation:tracking-in-expand 0.4s linear both} @keyframes tracking-in-expand{0%{letter-spacing:-.2em;opacity:0}40%{opacity:.6}100%{opacity:1}}}
 
 @keyframes animate-left-to-right {
     0% {

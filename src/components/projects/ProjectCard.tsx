@@ -1,7 +1,8 @@
 import React, {  useRef } from 'react'
 import TagElement from '../services/TagElement';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useStoreOverview } from '../../store/StoreOverview';
+import { useStoreProjects } from '../../store/StoreProjects';
 
 
 interface props {
@@ -19,8 +20,8 @@ interface props {
 
 function ProjectCard (props: props): React.ReactNode {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: false });
     const setStateFullScreenOverview = useStoreOverview((state) => state.setStateFullScreenOverview);
+    const dragged = useStoreProjects((state) => state.dragged);
 
     const setMainTitle = useStoreOverview((state) => state.setMainTitle);
     const setDescription = useStoreOverview((state) => state.setDescription);
@@ -44,29 +45,27 @@ function ProjectCard (props: props): React.ReactNode {
     return (
         <section 
             ref={ref}
-            onClick={() => {onClick()}}
-            className='min-w-[35rem]  max-w-[35rem] border border-black border-l-0  
-                bg-white hover:bg-black hover:text-white group cursor-pointer z-10'>
+            onClick={() => {!dragged && onClick()}}
+            
+            id='items-card'
+            className=' relative items-card border-1 border border-black border-l-0 max-h-[30rem]
+                bg-white hover:bg-black hover:text-white group cursor-pointer z-10 overflow-x-hidden'>
             <motion.div 
-                style={{
-                    transform: isInView ? "none" : "translateY(50px)",
-                    opacity: isInView ? 1 : 0,
-                    transition: " cubic-bezier(0.17, 0.55, 0.55, 1) 0.7s"
-                }}
+              
                 className='overflow-x-hidden w-full '>
                 <div className='w-full my-3'>
-                    <p className='text-sm font-robotoslab font-semibold group-hover:font-nunito group-hover:font-bold group-hover:scrolling-text '>
+                    <p className='text-sm  font-robotoslab font-semibold group-hover:font-nunito group-hover:font-bold group-hover:scrolling-text '>
                         {props.headerTitle}
                     </p>
                 </div>
-                <div className='overflow-hidden h-[240px] '>
+                <div className='overflow-hidden h-[10rem] max-h-[12rem] sm:h-[300px] md:h-[270px] '>
                     <img
                         onDragStart={(e) => {e.preventDefault()}} 
                         className='w-full border border-black group-hover:zoom-img ' src={props.mainImage} 
                         style={{ maxWidth: '100%', height: 'auto' }} /> 
                 </div>
                 <div className='p-2 flex flex-col'>
-                    <p className=' font-nunito text-2xl font-bold my-1'> 
+                    <p className='truncate font-nunito text-2xl font-bold my-1'> 
                         {props.mainTitle}
                     </p>
                     <p className='line-clamp-3 font-ibmmono my-4 white-space '>

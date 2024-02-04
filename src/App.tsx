@@ -7,25 +7,39 @@ import Services from './sections/Services';
 import Projects from './sections/Projects';
 import Footer from './sections/Footer';
 import { useStoreOverview } from './store/StoreOverview';
-
+import SocialMediaButton from './components/home/SocialMediaButton';
 
 function App (): React.ReactNode {
     const isFullScreenOverviewActive = useStoreOverview((state) => state.isFullScreenOverviewActive)
+    const topFunction = ():void => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 
     return (
-        <div className='flex flex-col'>
-            {isFullScreenOverviewActive && <FullScreenOverview 
-                mainTitle={''} 
-                mainDescription={''} 
-                tags={[]} 
-                mainImage={''} 
-                images={[]}/>} 
+        <div className='flex flex-col w-full'>
+            {!isFullScreenOverviewActive && <div className='fixed mix-blend-difference z-[200] right-0 bottom-0 p-12'>
+                <button 
+                    onClick={topFunction}
+                    className='font-bold mix-blend-difference p-5 rounded-full 
+                        hover:zoom-buttom text-black bg-white'>
+                    <p> {"UP"} </p>
+                </button>
+            </div>
+            }
+            {isFullScreenOverviewActive && <FullScreenOverview/>} 
             {!isFullScreenOverviewActive && <NavBar/>} 
             <Home/>
             <AboutMe/>
             <Services/>
             <Projects/>
+            <div className='relative z-10 bg-white text-8xl text-center overflow-x-hidden overflow-y-hidden'>
+                <SocialMediaButton name={'HIRE ME'} url={'mailto:imnotapan@gmail.com'}/>
+            </div>
             <Footer/>
+
         </div>
     );
 }

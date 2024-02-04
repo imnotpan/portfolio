@@ -11,11 +11,11 @@ function NavBar (): React.ReactNode {
     const isOnView = useInView(ref)
 
     return (
-        <section  ref={ref}  id='about' className='relative w-full flex bg-black z-10'>
+        <section  ref={ref}  id='about' className='section__page relative w-full flex bg-black z-10'>
             <div className='flex w-full justify-center items-center text-center lg:mx-[25vh]'>
                 <div   className=' relative z-20 border border-2 border-black border-r-gray-800'>
                     <motion.p className='my-10 text-gray-300 text-xl font-ibmmono text-base ml-16 mr-4 text-right'>
-                        {useTextWriteAppear(baseText, isOnView)}
+                        {useTextWriteAppear(baseText, isOnView, 0.9)}
                     </motion.p>
                 </div>
                 <div className='relative break-all	'>

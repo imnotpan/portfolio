@@ -1,17 +1,28 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import ServiceSection from '../components/services/ServiceSection';
+import { motion, useInView } from 'framer-motion';
+import useTextWriteAppear from '../hooks/useText';
 
 
 function Services (): React.ReactNode {
+    const text = " A LOT OF ";
+    const text2= " THINGS ";
+    const ref = useRef(null);
+
+    const isOnView = useInView(ref)
+ 
     return (
-        <section id='services' className='relative w-full h-full bg-white z-10 flex flex-col md:flex-row
+        <section ref={ref}  id='services' className='section__page relative w-full h-full bg-white z-10 flex flex-col md:flex-row
                                         items-center justify-center text-left overflow-hidden '>
-            <div className='mb-10' >
-                <p className='font-dugaspro text-9xl tracking-widest break-words  '>
-                    A LOT OF <br/>
-                    THINGS <br/>
-                </p>
-            </div>
+            <motion.div className='mb-0 md:mb-10 font-dugaspro text-9xl tracking-widest break-words' >
+                <motion.span>
+                    {useTextWriteAppear(text,isOnView, 0.8)}
+                </motion.span>
+                <br></br>
+                <motion.span>
+                    {useTextWriteAppear(text2,isOnView, 0.8)}
+                </motion.span>            
+            </motion.div>
             <div className='my-10'>
                 <ServiceSection 
                     topMainName = {'FRONTEND'}
