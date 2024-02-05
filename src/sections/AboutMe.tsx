@@ -16,12 +16,12 @@ function NavBar (): React.ReactNode {
             <div className='flex flex-col w-full  mx-[5vh] lg:mx-[30vh] '>
 
                 <div   className='md:ml-10 mix-blend-difference relative z-20 '>
-                    <p className='font-archivoblack text-white text-8xl sm:text-8xl  mt-10 '> ABOUT  </p>
-                    <motion.p className='hidden sm:block mb-10 text-gray-300 text-3xl font-bold font-neue text-base mr-4 text-left'>
+                    <p className='font-archivoblack text-white text-7xl sm:text-8xl  mt-10 '> ABOUT  </p>
+                    <motion.p className='hidden sm:block mb-10 text-gray-300 text-z font-bold font-neue text-4xl mr-4 text-left'>
                         {useTextWriteAppear(baseText, isOnView, 0.9)}
                     </motion.p>
             
-                    <p className='block sm:hidden my-10 text-gray-300 text-4xl font-bold font-neue text-base mr-4 text-left'>
+                    <p className='block sm:hidden my-5 mb-5 text-gray-300 text-4xl font-bold font-neue text-xl mr-4 text-left'>
                         {baseText}
                     </p>
                 </div>
