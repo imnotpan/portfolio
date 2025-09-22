@@ -1,98 +1,104 @@
-import React from 'react'
-import ProjectCard from './ProjectCard';
-import projectsData from '../../data/Projects.json'
-import { useStoreProjects } from '../../store/StoreProjects';
-import Slider from "react-slick";
-import ButtonSlider from './buttons/ButtonSlider';
+// src/components/projects/CoverCarousel.tsx
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
+import pixel from '../../data/pixel.json';
+import { useLanguageStore } from '../../store/useLenguageStore';
 
+// Slug igual que en tu store (sin guiones). Cambia el último replace por '-' si prefieres con guiones.
+const slugify = (s: string): string =>
+  s.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+   .toLowerCase().trim().replace(/[^a-z0-9]+/g, '');
 
-function GameDevProjects (): React.ReactNode {
-    const setDragged = useStoreProjects((state) => state.setDragged);
-    const slider = React.useRef(null);
+type Lang = 'es' | 'en';
 
+type PixelItem = {
+  key: string;
+  i18n: {
+    en: { headerTitle?: string; title?: string; description?: string };
+    es: { headerTitle?: string; title?: string; description?: string };
+  };
+  mainImage?: string;
+  images?: string[];
+};
 
-    const handleBeforeChange = (currentSlide: number, nextSlide: any):void => {
-        if (currentSlide !== nextSlide) {
-            setDragged(true);
-        }
+type TileData = {
+  slug: string;
+  name: string;
+  image: string;
+};
+
+/** Tarjeta cuadrada memoizada */
+const Tile = React.memo(function Tile({ item }: { item: TileData }) {
+  return (
+    <Link
+      key={item.slug}
+      to={`/pixel/${item.slug}`}
+      aria-label={`Open pixel project ${item.name}`}
+      className="block"
+      style={{
+        contentVisibility: 'auto',
+        containIntrinsicSize: '320px 360px', // estimación para reservar espacio
+      }}
+    >
+      {/* Contenedor cuadrado + overlay + título */}
+      <div className="group relative aspect-square overflow-hidden border border-black bg-white rounded">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+          onDragStart={(e) => e.preventDefault()}
+        />
+
+        {/* Oscurecer al hover */}
+        <div className="pointer-events-none absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+        {/* Título centrado */}
+        <div className="pointer-events-none absolute inset-0 grid place-items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <p className="px-3 py-1 text-white text-center font-robotoslab font-semibold tracking-wide drop-shadow">
+            {item.name}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+});
+
+export default function CoverGrid(): JSX.Element {
+  const lang = useLanguageStore((s) => s.language) as Lang;
+
+  // Lista cruda desde pixel.json
+  const rawList = useMemo<PixelItem[]>(
+    () => (((pixel as any)?.projects ?? []) as PixelItem[]),
+    []
+  );
+
+  // Precomputo de slug, título localizado y src de imagen
+  const list: TileData[] = useMemo(() => {
+    const getTitle = (p: PixelItem): string => {
+      const t = (p.i18n?.[lang] || p.i18n?.en) || { headerTitle: '', title: '' };
+      return (t.headerTitle || t.title || '').toString();
     };
-    
-    const handleAfterChange = ():void => {
-        setDragged(false);
-    };
+    const getImage = (p: PixelItem): string =>
+      p.mainImage || (Array.isArray(p.images) && p.images[0]) || '';
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        initialSlide: 0,
-        autoplay: true,
-        focusOnSelect: true,
-        responsive: [
-            {
-                breakpoint: 1900,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 1400,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 1100,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 800,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                }
-            },
-        ],
-        beforeChange: handleBeforeChange,
-        afterChange: handleAfterChange,
-    };
+    return rawList.map((p) => ({
+      slug: slugify(p.key),
+      name: getTitle(p),
+      image: getImage(p),
+    }));
+  }, [rawList, lang]);
 
-    return (
-        <section className='relative flex flex-col w-full group/button'>
-
-            <div className='visible sm:invisible absolute right-0 h-full items-center flex'>
-                <ButtonSlider 
-                    sliderRef={() => { (slider.current as any)?.slickNext()}}
-                    symbol={'>'} />
-            </div>
-            <div className='visible sm:invisible absolute left-0 h-full items-center flex '>
-                <ButtonSlider 
-                    sliderRef={() => { (slider.current as any)?.slickPrev()}}
-                    symbol={'<'} />
-            </div>
-            <Slider ref={slider} className='w-full  ' {...settings} >
-                {projectsData.projects.map((project, index) => 
-                    (
-                        <ProjectCard 
-                            key={index}
-                            headerTitle={project.headertitle} 
-                            mainTitle={project.mainTitle} 
-                            description={project.description} 
-                            mainImage={project.mainImage} 
-                            images={project.images} 
-                            tags={project.tags} 
-                            redirectLink={project.redirectLink} />
-                    ))
-                }
-            </Slider>
-        </section>
-
-    );
+  return (
+    <section className="relative w-full">
+      {/* GRID responsive tipo galería, sin carrusel */}
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {list.map((item) => (
+          <Tile key={item.slug} item={item} />
+        ))}
+      </div>
+    </section>
+  );
 }
-
-export default GameDevProjects

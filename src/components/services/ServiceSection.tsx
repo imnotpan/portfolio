@@ -19,7 +19,6 @@ function ServiceSection (props: props): React.ReactNode {
             <div className='sm:mx-4'>
                 <p className='font-ibmmono ml-4 sm:ml-0 text-sm truncate'>  {props.name} </p>
                 <div className='flex'>
-                    <p className='hidden sm:block mt-1 font-bold'> TOOLS </p>
                     {props.tags.map((tag, index) => (
                         <TagElement key = {index} name={tag} />
                     ))}

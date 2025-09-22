@@ -1,18 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { HelmetProvider } from 'react-helmet-async';
+import ProjectRegistry from './bootstrap/ProjectRegistry';
 
-const rootElement = document.getElementById('root')
-
+const rootElement = document.getElementById('root');
 
 if (rootElement != null) {
-    ReactDOM.createRoot(rootElement).render(
-        <React.StrictMode >
-            <App/>
-        </React.StrictMode>
-    )
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <HelmetProvider>
+        <ProjectRegistry /> 
+        <App />
+      </HelmetProvider>
+    </React.StrictMode>
+  );
 } else {
-    // Handle the case when the 'root' element is not found.
-    console.error("Element with ID 'root' not found")
+  // Handle the case when the 'root' element is not found.
+  console.error("Element with ID 'root' not found");
 }

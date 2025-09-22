@@ -1,0 +1,130 @@
+{
+  "projects": [
+    {
+      "key": "esecorte",
+      "i18n": {
+        "en": {
+          "headerTitle": "ESE CORTE REMIX - MUSIC VIDEO",
+          "title": "Ese Corte Remix",
+          "description": "This cut is a video integrated into the song 'Ese Corte Remix' with more than 25 million views. Different pixel art scenes were created for the realization of this project.\n\nEse Corte Rmx - Balbi El Chamako, Alexio, Jordan 23, Ak4:20, Julianno Sosa, Pablo Chill-E, Standly"
+        },
+        "es": {
+          "headerTitle": "ESE CORTE REMIX - MUSIC VIDEO",
+          "title": "Ese Corte Remix",
+          "description": "Ese corte es un video que se integró a la canción 'Ese Corte Remix' con más de 25 millones de visitas. Se realizaron distintas escenas pixel art para la realización del proyecto.\n\nEse Corte Rmx - Balbi El Chamako, Alexio, Jordan 23, Ak4:20, Julianno Sosa, Pablo Chill-E, Standly"
+        }
+      },
+      "tags": ["PIXELART", "MUSICVIDEO", "ILLUSTRATION"],
+      "mainImage": "/static/img/pixel/esecorte/main.png",
+      "images": [
+        "/static/img/pixel/esecorte/img_0.png",
+        "/static/img/pixel/esecorte/img_1.png",
+        "/static/img/pixel/esecorte/img_2.png",
+        "/static/img/pixel/esecorte/img_3.png",
+        "/static/img/pixel/esecorte/img_4.png",
+        "/static/img/pixel/esecorte/img_5.png",
+        "/static/img/pixel/esecorte/img_6.png"
+      ],
+      "redirectLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    {
+      "key": "minina",
+      "i18n": {
+        "en": {
+          "headerTitle": "MININA - MUSIC VIDEO",
+          "title": "Minina",
+          "description": "Minina is a pixel art music video inspired by Habbo style, which has surpassed 20 million views on YouTube. The project recreates nostalgic virtual environments and playful interactions through isometric pixel scenes."
+        },
+        "es": {
+          "headerTitle": "MININA - VIDEO MUSICAL",
+          "title": "Minina",
+          "description": "Minina es un video musical en pixel art al estilo Habbo que ha superado las 20 millones de visitas en YouTube. El proyecto recrea entornos virtuales nostálgicos y escenas isométricas con un estilo lúdico y detallado."
+        }
+      },
+      "tags": ["PIXELART", "MUSICVIDEO", "HABBO", "ANIMATION"],
+      "mainImage": "/static/img/pixel/minina/main.jpg",
+      "images": [
+        "/static/img/pixel/minina/img_1.png",
+        "/static/img/pixel/minina/img_2.png",
+        "/static/img/pixel/minina/img_3.png",
+        "/static/img/pixel/minina/img_4.png",
+        "/static/img/pixel/minina/img_5.png"
+      ],
+      "redirectLink": "https://www.youtube.com/watch?v=oE2rfyhIsuk"
+    },
+    {
+      "key": "postersuach",
+      "i18n": {
+        "en": {
+          "headerTitle": "WORKSHOP POSTERS - UNIVERSIDAD AUSTRAL DE CHILE",
+          "title": "Workshop Posters - UACh",
+          "description": "Series of graphic posters designed for the Informatics Workshop at Universidad Austral de Chile. The designs combine modern aesthetics and academic identity, focusing on clarity of information and visual impact to promote the event."
+        },
+        "es": {
+          "headerTitle": "POSTERS WORKSHOP - UNIVERSIDAD AUSTRAL DE CHILE",
+          "title": "Posters Workshop - UACh",
+          "description": "Serie de afiches diseñados para la Workshop de Informática en la Universidad Austral de Chile. Los diseños combinan estética moderna e identidad académica, priorizando la claridad informativa y el impacto visual para la difusión del evento."
+        }
+      },
+      "tags": ["GRAPHIC DESIGN", "POSTER", "ACADEMIC", "WORKSHOP"],
+      "mainImage": "/static/img/pixel/postersuach/main.png",
+      "images": [
+        "/static/img/pixel/postersuach/img_1.png",
+        "/static/img/pixel/postersuach/img_2.png",
+        "/static/img/pixel/postersuach/img_3.png"
+      ],
+      "redirectLink": ""
+    },
+    {
+      "key": "rat",
+      "i18n": {
+        "en": {
+          "headerTitle": "RAT - LIMINAL VOID",
+          "title": "RAT",
+          "description": "RAT is a fast-paced pixel-art runner where a mouse must escape before the timer hits zero. Dodge traps, cats and puddles; collect cheese to gain extra seconds; dash and slide to keep momentum. Includes UI mockups and level concepts (kitchen, alley, sewer).\n\nCore loop: run → avoid hazards → collect cheese (time + score) → reach the exit before time up."
+        },
+        "es": {
+          "headerTitle": "RAT - LIMINAL VOID",
+          "title": "RAT",
+          "description": "RAT es un runner en pixel art donde un ratón debe escapar antes de que el tiempo llegue a cero. Esquiva trampas, gatos y charcos; recoge queso para sumar segundos; usa dash y deslizamiento para mantener el ritmo. Incluye mockups de UI y conceptos de niveles (cocina, callejón, alcantarillas).\n\nBucle central: correr → evitar peligros → recoger queso (tiempo + puntaje) → llegar a la salida antes de que se acabe el tiempo."
+        }
+      },
+      "tags": ["GAME", "RUNNER", "PIXELART", "MOCKUP", "PROTOTYPE"],
+      "mainImage": "/static/img/pixel/rat/main.png",
+      "images": [
+        "/static/img/pixel/rat/img_1.gif",
+        "/static/img/pixel/rat/img_2.png",
+        "/static/img/pixel/rat/img_3.png",
+        "/static/img/pixel/rat/img_4.png",
+        "/static/img/pixel/rat/img_5.png"
+      ],
+      "redirectLink": ""
+    },
+    {
+      "key": "tinygolf",
+      "i18n": {
+        "en": {
+          "headerTitle": "TINY GOLF - HYPERCASUAL GAME",
+          "title": "Tiny Golf",
+          "description": "Hypercasual mobile project where I worked as the lead artist. I handled character design and frame-by-frame animations, plus sprite sheets and polish for gameplay feedback. The mockups include character poses, idle/run cycles, hit reactions and celebration animations, as well as moment-to-moment gameplay snapshots."
+        },
+        "es": {
+          "headerTitle": "TINY GOLF - HYPERCASUAL",
+          "title": "Tiny Golf",
+          "description": "Proyecto hypercasual para móvil donde fui artista principal. Me encargué del diseño de personajes y de las animaciones (sprites y frame-by-frame), además del pulido visual para feedback de juego. Los mockups incluyen poses, ciclos de idle/run, reacciones de golpe y celebraciones, junto con capturas del gameplay."
+        }
+      },
+      "tags": ["GAME", "HYPERCASUAL", "ART", "ANIMATION", "CHARACTER DESIGN", "PIXELART"],
+      "mainImage": "/static/img/pixel/tinygolf/main.png",
+      "images": [
+        "/static/img/pixel/tinygolf/img_1.gif",
+        "/static/img/pixel/tinygolf/img_2.gif",
+        "/static/img/pixel/tinygolf/img_3.gif",
+        "/static/img/pixel/tinygolf/img_4.png",
+        "/static/img/pixel/tinygolf/img_5.png",
+        "/static/img/pixel/tinygolf/img_6.gif"
+      ],
+      "redirectLink": ""
+    }
+  ]
+}
