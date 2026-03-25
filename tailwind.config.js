@@ -5,8 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-
     extend: {
+        // AQUÍ REEMPLAZAMOS EL BLANCO Y NEGRO PURO
+        colors: {
+          black: '#121212', // El negro suave de tu fondo
+          white: '#E0E0E0', // El blanco mate de tu texto
+        },
         fontFamily: {
             archivoblack: ['Archivo Black', 'sans-serif'],
             ibmmono: ['IBM Plex Mono', 'monospace'],
@@ -15,7 +19,6 @@ export default {
             robotoslab: ['Roboto Slab', 'serif'],
             dugaspro: 'DugasPro',
             neue: 'Neue Montreal'
-
         },
         textColor: {
           'webkit': '-webkit-text-fill-color',
@@ -27,16 +30,15 @@ export default {
         },
         animation: {
             'infinite-scroll': 'infinite-scroll 25s linear infinite',
-          },
-          keyframes: {
-            'infinite-scroll': {
-              from: { transform: 'translateX(0)' },
-              to: { transform: 'translateX(-100%)' },
-            }
-          }       
+        },
+        keyframes: {
+          'infinite-scroll': {
+            from: { transform: 'translateX(0)' },
+            to: { transform: 'translateX(-100%)' },
+          }
+        }       
     },
   },
   plugins: [
   ],
 }
-

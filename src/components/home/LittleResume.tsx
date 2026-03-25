@@ -12,14 +12,15 @@ const dict: Record<Lang, {
   ariaLabel: string;
 }> = {
   es: {
-    fullText: "Hola 👋 Soy game developer y designer de Chile.",
+    // Texto directo: Rol híbrido + Logro masivo + Enfoque actual
+    fullText: "Lead Pixel Artist & Creative Developer. +25M de vistas creando visuales para artistas globales y advergaming de alto impacto.",
     ariaLabel:
-      'Presentación breve: Hola, soy game developer y designer de Chile.',
+      'Resumen: Lead Pixel Artist y Desarrollador Creativo con más de 25 millones de vistas en proyectos para artistas internacionales.',
   },
   en: {
-    fullText: "Hello 👋 I'm a game developer and designer from Chile.",
+    fullText: "Lead Pixel Artist & Creative Developer. +25M views creating visuals for global artists and high-impact advergaming.",
     ariaLabel:
-      "Short intro: Hello, I'm a game developer and designer from Chile.",
+      "Summary: Lead Pixel Artist and Creative Developer with over 25 million views on projects for global artists.",
   },
 };
 
@@ -36,30 +37,26 @@ function LittleResume(): JSX.Element {
   return (
     <motion.p
       ref={ref}
-      className="font-ibmmono w-[260px] z-50 leading-snug"
+      className="font-ibmmono w-[280px] z-50 leading-tight text-black"
       lang={lang}
       dir="ltr"
       aria-label={t.ariaLabel}
       itemScope
       itemType="https://schema.org/Person"
     >
-      {/* Texto completo para SEO / accesibilidad */}
+      {/* Accesibilidad */}
       <span className="sr-only">{seoText}</span>
 
-      {/* Texto animado visible */}
+      {/* Animación de escritura */}
       <motion.span aria-hidden="true">
         {animated}
       </motion.span>
       <CursorBlinker />
 
-      {/* Microdatos SEO */}
+      {/* Metadata SEO (Aquí sí mantenemos el título de ingeniero para los motores de búsqueda) */}
       <meta itemProp="name" content="Kevin Medina" />
       <meta itemProp="alternateName" content="imnotapan" />
-      <meta
-        itemProp="jobTitle"
-        content={lang === 'es' ? 'Game developer y designer' : 'Game developer and designer'}
-      />
-      <meta itemProp="homeLocation" content="Chile" />
+      <meta itemProp="jobTitle" content="Lead Pixel Artist & Computer Engineer" />
     </motion.p>
   );
 }

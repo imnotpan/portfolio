@@ -68,54 +68,6 @@
         "/static/img/nomorethan13legs/img_3.jpg"
       ],
       "redirectLink": "https://imnotapan.itch.io/nmt13l"
-    },
-    {
-      "key": "wizardwrite",
-      "i18n": {
-        "en": {
-          "headerTitle": "TYPING GAME",
-          "title": "WIZARD WRITE",
-          "description": "Defend your house from falling bombs using the power of your hands and your typing skills. **Wizard Write** is a fast-paced typing game where you must destroy all the bombs before they hit. A mobile version is planned in the future with more content, new levels, and additional challenges."
-        },
-        "es": {
-          "headerTitle": "JUEGO DE MECANOGRAFÍA",
-          "title": "WIZARD WRITE",
-          "description": "Defiende tu casa de las bombas que caen usando el poder de tus manos y tu velocidad al escribir. **Wizard Write** es un juego de tipeo dinámico en el que debes destruir todas las bombas antes de que impacten. En el futuro se lanzará una versión para móviles con más contenido, nuevos niveles y desafíos adicionales."
-        }
-      },
-      "tags": ["UNITY", "TYPING", "GAMEPLAY"],
-      "mainImage": "/static/img/wizardwrite/CoverWizardWrite.png",
-      "images": [
-        "/static/img/wizardwrite/image_1.png",
-        "/static/img/wizardwrite/image_2.png",
-        "/static/img/wizardwrite/image_3.png",
-        "/static/img/wizardwrite/image_4.png"
-      ],
-      "redirectLink": "https://www.newgrounds.com/portal/view/721357"
-    },
-    {
-  "key": "lootboxsimulator",
-  "i18n": {
-    "en": {
-      "headerTitle": "PROTOTYPE",
-      "title": "LOOTBOX SIMULATOR",
-      "description": "A free loot box simulator where you can unlock items without spending a single coin. **LootBox Simulator** is an experimental prototype: if the concept works, it will grow into a full game with minigames tied to the unlockables, planned for Android and iOS. Share your ideas and feedback to help shape the project. Medals and more content coming soon!"
-    },
-    "es": {
-      "headerTitle": "PROTOTIPO",
-      "title": "SIMULADOR DE LOOTBOXES",
-      "description": "Un simulador de cajas de botín gratuito donde puedes desbloquear objetos sin gastar ni una moneda. **Simulador de LootBoxes** es un prototipo experimental: si el concepto funciona, evolucionará en un juego completo con minijuegos vinculados a los desbloqueables, planeado para Android e iOS. Comparte tus ideas y comentarios para ayudar a darle forma al proyecto. ¡Medallas y más contenido próximamente!"
     }
-  },
-  "tags": ["GAME MAKER", "SIMULATOR"],
-  "mainImage": "/static/img/lootboxsimulator/LootBoxMain.png",
-  "images": [
-    "/static/img/lootboxsimulator/img_1.png",
-    "/static/img/lootboxsimulator/img_2.png",
-    "/static/img/lootboxsimulator/img_3.png",
-    "/static/img/lootboxsimulator/img_4.png"
-
-  ],
-  "redirectLink": "https://www.newgrounds.com/portal/view/724095"}
   ]
 }

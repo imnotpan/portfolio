@@ -41,7 +41,6 @@ type MediaProps = {
 
 function Media({ src, alt, eager = false, className }: MediaProps) {
   if (isVideo(src)) {
-    // Renderiza video inline (silencioso y en loop)
     return (
       <video
         className={className}
@@ -50,16 +49,12 @@ function Media({ src, alt, eager = false, className }: MediaProps) {
         autoPlay
         loop
         preload={eager ? 'auto' : 'metadata'}
-        // poster opcional: si quieres, coloca una imagen estática relacionada
-        // poster={src.replace(/\.(mp4|webm|ogg)(\?.*)?$/i, '.jpg')}
       >
-        {/* Incluye múltiples sources si quieres mayor compatibilidad */}
         <source src={src} />
       </video>
     );
   }
 
-  // Cubre PNG/JPG/WEBP/AVIF/SVG y también GIF (animará solo)
   return (
     <img
       src={src}
@@ -102,22 +97,73 @@ function FullScreenOverview(): JSX.Element {
         {t.close}
       </button>
 
-      {/* Fondo decorativo */}
       <div className="absolute inset-0 opacity-20 z-[10] pointer-events-none">
         <BackgroundPlanets />
       </div>
 
-      {/* Layout principal: 2 columnas */}
+      {/* Contenedor principal: 
+          Móvil: Flex en columna y scroll general (overflow-y-auto).
+          Escritorio (lg): Grid de 2 columnas sin scroll general (overflow-hidden) para que cada columna haga scroll por su lado. 
+      */}
       <div
-        className="relative z-40 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] h-full"
+        className="relative z-40 flex flex-col lg:grid lg:grid-cols-[1.2fr_1fr] h-full overflow-y-auto lg:overflow-hidden"
         role="dialog"
         aria-label={t.aria}
       >
+        
+        {/* COLUMNA DE TEXTO (Renderiza primero para móvil) */}
+        {/* Móvil: Fluye normal arriba. Escritorio (lg): Se va a la columna 2 y tiene scroll interno */}
+        <main
+          className="relative bg-black/60 lg:bg-black/40 text-white p-6 sm:p-8 lg:p-12 lg:h-full lg:overflow-y-auto lg:order-2"
+          aria-label={lang === 'es' ? 'Detalles del proyecto' : 'Project details'}
+        >
+          <div className="mt-12 lg:mt-0"> {/* Margen extra en móvil para que el botón de CERRAR no tape el título */}
+            <header className="mb-6">
+              <h1 className="text-3xl sm:text-4xl font-archivoblack leading-tight">
+                {mainTitle}
+              </h1>
+            </header>
+
+            <section className="prose prose-invert max-w-none mb-8">
+              <p className="font-ibmmono text-base md:text-lg text-neutral-200 whitespace-pre-line">
+                {mainDescription}
+              </p>
+            </section>
+
+            {redirectLink && (
+              <div className="mb-8">
+                <a
+                  className="hover:underline font-ibmmono text-lg md:text-xl inline-flex items-center focus:outline-none focus:ring-2 focus:ring-white/60"
+                  href={redirectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.cta}
+                </a>
+              </div>
+            )}
+
+            {tags && tags.length > 0 && (
+              <section aria-label={t.tagsLabel}>
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag: string, index: number) => (
+                    <TagElement key={`${tag}-${index}`} name={tag} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <div className="h-16" />
+          </div>
+        </main>
+
+        {/* COLUMNA DE IMÁGENES (Renderiza después) */}
+        {/* Móvil: Fluye normal abajo. Escritorio (lg): Se va a la columna 1 y tiene scroll interno */}
         <aside
-          className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-transparent p-4 sm:p-6 lg:p-8"
+          className="p-4 sm:p-6 lg:p-8 lg:h-full lg:overflow-y-auto lg:order-1 flex flex-col items-center"
           aria-label={lang === 'es' ? 'Galería de imágenes del proyecto' : 'Project image gallery'}
         >
-          <div className="mx-auto w-full max-w-5xl space-y-6 flex flex-col items-center">
+          <div className="w-full max-w-5xl space-y-6 flex flex-col items-center pb-12">
             {images && images.length > 0 ? (
               images.map((src: string, i: number) => (
                 <figure key={`${src}-${i}`} className="w-full flex justify-center">
@@ -137,53 +183,6 @@ function FullScreenOverview(): JSX.Element {
           </div>
         </aside>
 
-        {/* Columna derecha: texto (sticky en desktop) */}
-        <main
-          className="relative bg-black/60 text-white h-full overflow-y-auto lg:overflow-y-auto p-6 sm:p-8 lg:p-12"
-          aria-label={lang === 'es' ? 'Detalles del proyecto' : 'Project details'}
-        >
-          <div className="lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
-            <header className="mb-6">
-              <h1 className="text-3xl sm:text-4xl font-archivoblack leading-tight">
-                {mainTitle}
-              </h1>
-            </header>
-
-            <section className="prose prose-invert max-w-none mb-8">
-              <p className="font-ibmmono text-base md:text-lg text-neutral-200 whitespace-pre-line">
-                {mainDescription}
-              </p>
-            </section>
-
-            {/* CTA */}
-            {redirectLink && (
-              <div className="mb-8">
-                <a
-                  className="hover:underline font-ibmmono text-lg md:text-xl inline-flex items-center focus:outline-none focus:ring-2 focus:ring-white/60"
-                  href={redirectLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t.cta}
-                </a>
-              </div>
-            )}
-
-            {/* Tags */}
-            {tags && tags.length > 0 && (
-              <section aria-label={t.tagsLabel}>
-                <div className="flex flex-wrap gap-2">
-                  {tags.map((tag: string, index: number) => (
-                    <TagElement key={`${tag}-${index}`} name={tag} />
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Relleno al final para que el sticky no “corte” el último elemento */}
-            <div className="h-16" />
-          </div>
-        </main>
       </div>
     </RemoveScroll>
   );

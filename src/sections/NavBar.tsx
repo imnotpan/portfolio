@@ -79,8 +79,6 @@ function NavBar(): JSX.Element {
 
           {/* Items traducidos */}
           <NavBarButton setCurrentSection={setCurrentSection} section="home"     label={t.sections.home} />
-          <NavBarButton setCurrentSection={setCurrentSection} section="about"    label={t.sections.about} />
-          <NavBarButton setCurrentSection={setCurrentSection} section="services" label={t.sections.services} />
           <NavBarButton setCurrentSection={setCurrentSection} section="projects" label={t.sections.projects} />
         <div className="mr-2 flex gap-1">
             <button

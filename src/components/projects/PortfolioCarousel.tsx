@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import pixel from '../../data/pixel.json';
 import { useLanguageStore } from '../../store/useLenguageStore';
 
-// Slug igual que en tu store (sin guiones). Cambia el último replace por '-' si prefieres con guiones.
 const slugify = (s: string): string =>
   s.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
    .toLowerCase().trim().replace(/[^a-z0-9]+/g, '');
@@ -28,39 +27,33 @@ type TileData = {
   image: string;
 };
 
-/** Tarjeta cuadrada memoizada */
 const Tile = React.memo(function Tile({ item }: { item: TileData }) {
   return (
     <Link
       key={item.slug}
       to={`/pixel/${item.slug}`}
       aria-label={`Open pixel project ${item.name}`}
-      className="block"
-      style={{
-        contentVisibility: 'auto',
-        containIntrinsicSize: '320px 360px', // estimación para reservar espacio
-      }}
+      // aspect-square fuerza el cuadrado perfecto siempre
+      className="relative block w-full aspect-square overflow-hidden group bg-black"
     >
-      {/* Contenedor cuadrado + overlay + título */}
-      <div className="group relative aspect-square overflow-hidden border border-black bg-white rounded">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-          loading="lazy"
-          decoding="async"
-          onDragStart={(e) => e.preventDefault()}
-        />
+      <img
+        src={item.image}
+        alt={item.name}
+        // object-cover rellena el cuadrado sin estirar ni deformar la imagen
+        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+        loading="lazy"
+        decoding="async"
+        onDragStart={(e) => e.preventDefault()}
+      />
 
-        {/* Oscurecer al hover */}
-        <div className="pointer-events-none absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      {/* Overlay oscuro al pasar el ratón */}
+      <div className="pointer-events-none absolute inset-0 bg-black/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-        {/* Título centrado */}
-        <div className="pointer-events-none absolute inset-0 grid place-items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <p className="px-3 py-1 text-white text-center font-robotoslab font-semibold tracking-wide drop-shadow">
-            {item.name}
-          </p>
-        </div>
+      {/* Título centrado ajustado para que no se desborde en móviles (text-base) */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 p-4">
+        <p className="text-white text-center text-base sm:text-lg md:text-xl font-robotoslab font-bold tracking-wide drop-shadow-md">
+          {item.name}
+        </p>
       </div>
     </Link>
   );
@@ -69,13 +62,11 @@ const Tile = React.memo(function Tile({ item }: { item: TileData }) {
 export default function CoverGrid(): JSX.Element {
   const lang = useLanguageStore((s) => s.language) as Lang;
 
-  // Lista cruda desde pixel.json
   const rawList = useMemo<PixelItem[]>(
     () => (((pixel as any)?.projects ?? []) as PixelItem[]),
     []
   );
 
-  // Precomputo de slug, título localizado y src de imagen
   const list: TileData[] = useMemo(() => {
     const getTitle = (p: PixelItem): string => {
       const t = (p.i18n?.[lang] || p.i18n?.en) || { headerTitle: '', title: '' };
@@ -92,9 +83,13 @@ export default function CoverGrid(): JSX.Element {
   }, [rawList, lang]);
 
   return (
-    <section className="relative w-full">
-      {/* GRID responsive tipo galería, sin carrusel */}
-      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <section className="relative w-full bg-black">
+      {/* Cambio de layout:
+        Móvil (default): 2 columnas mínimo
+        Tablet (md): 3 columnas
+        Escritorio (lg en adelante): 4 columnas máximo
+      */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0">
         {list.map((item) => (
           <Tile key={item.slug} item={item} />
         ))}

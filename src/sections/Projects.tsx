@@ -19,16 +19,16 @@ const dict: Record<
   }
 > = {
   en: {
-    headingTop: 'PROJECTS',
-    headingSub: 'Game dev & art',
+    headingTop: 'GAME DEV',
+    headingSub: 'Game dev',
     designHeading: 'PIXEL ART',
     animatedLines: ['Selected works', 'Beyond code: art'],
     animatedAria:
       'Selected projects: game development and game art, including gameplay, tools and visual work.',
   },
   es: {
-    headingTop: 'PROYECTOS',
-    headingSub: 'Game dev & arte',
+    headingTop: 'GAME DEV',
+    headingSub: 'Game dev',
     designHeading: 'PIXEL ART',
     animatedLines: ['Trabajos seleccionados', 'Más allá del código: arte'],
     animatedAria:
@@ -40,11 +40,8 @@ function Projects(): JSX.Element {
   const lang = useLanguageStore((s) => s.language) as Lang;
 
   const ref = useRef<HTMLElement | null>(null);
-  const isOnView = useInView(ref);
 
   const t = dict[lang];
-  const animatedLine1 = useTextWriteAppear(t.animatedLines[0], isOnView, 1);
-  const animatedLine2 = useTextWriteAppear(t.animatedLines[1], isOnView, 1);
 
   // Texto completo para SEO / accesibilidad (crawlers ven el contenido aunque la animación muestre por partes)
   const seoText = useMemo(
@@ -60,6 +57,22 @@ function Projects(): JSX.Element {
       aria-label={t.animatedAria}
       ref={ref}
     >
+        {/* Segundo banner (diseño / arte) */}
+      <div className="bg-black text-white font-archivoblack w-full text-center z-50">
+        <div className="flex flex-col sm:flex-row w-full text-center justify-center items-center py-6">
+          <h3 className="text-6xl sm:text-5xl font-extrabold">
+            {t.designHeading}
+          </h3>
+
+          {/* Texto accesible completo para SEO */}
+          <span className="sr-only">{seoText}</span>
+
+         
+        </div>
+      </div>
+
+      {/* Carrusel de portadas / artes */}
+      <PortfolioCarousel/>
       {/* Banner superior */}
       <div className="w-full bg-black text-white">
         <div className="w-full overflow-hidden flex">
@@ -67,14 +80,10 @@ function Projects(): JSX.Element {
             animate="animate"
             className="font-archivoblack inline-block w-full flex flex-col items-center text-center py-4"
           >
-            <h2 className="w-full text-6xl sm:text-8xl font-archivoblack font-extrabold">
+            <h2 className="w-full text-6xl sm:text-5xl font-archivoblack font-extrabold">
               {t.headingTop}
             </h2>
-            {t.headingSub && (
-              <p className="mt-1 text-base sm:text-lg font-ibmmono opacity-80">
-                {t.headingSub}
-              </p>
-            )}
+            
           </motion.div>
         </div>
       </div>
@@ -82,38 +91,7 @@ function Projects(): JSX.Element {
       {/* Carrusel de proyectos (juegos / técnicas) */}
       <PortfolioGrid />
 
-      {/* Segundo banner (diseño / arte) */}
-      <div className="bg-black text-white font-archivoblack w-full text-center z-50">
-        <div className="flex flex-col sm:flex-row w-full text-center justify-center items-center py-6">
-          <h3 className="text-6xl sm:text-7xl font-extrabold">
-            {t.designHeading}
-          </h3>
-
-          {/* Texto accesible completo para SEO */}
-          <span className="sr-only">{seoText}</span>
-
-          {/* Texto animado en desktop */}
-          <motion.p
-            className="sm:mt-3 sm:ml-4 text-xl font-ibmmono text-center sm:text-left flex flex-col"
-            aria-hidden="true"
-          >
-            <motion.span className="font-robotoslab sm:text-base text-3xl">
-              {animatedLine1}
-            </motion.span>
-            <motion.span className="font-robotoslab">
-              {animatedLine2}
-            </motion.span>
-          </motion.p>
-
-          {/* Texto estático en mobile (para evitar parpadeos de animación) */}
-          <p className="sm:hidden mt-2 text-base font-ibmmono opacity-90">
-            {t.animatedLines.join(' — ')}
-          </p>
-        </div>
-      </div>
-
-      {/* Carrusel de portadas / artes */}
-      <PortfolioCarousel/>
+    
     </section>
   );
 }

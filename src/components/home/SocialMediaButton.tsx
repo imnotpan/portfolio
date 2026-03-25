@@ -5,12 +5,9 @@ import React, { useState } from 'react';
 export interface Props {
   name: string;
   url: string;
-  /** Target del <a>: '_blank' | '_self' | ... */
   target?: React.HTMLAttributeAnchorTarget;
-  /** Rel adicional; si usas _blank, se agregará automáticamente 'noopener noreferrer' */
   rel?: string;
   className?: string;
-  /** aria-label opcional para accesibilidad si el texto no es suficientemente descriptivo */
   ariaLabel?: string;
 }
 
@@ -25,23 +22,29 @@ export default function SocialMediaButton({
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
 
-  // Estados visuales unificados: hover OR focus
+  // Estados visuales unificados
   const isActive = hovered || focused;
 
+  // Variantes para el color del texto
+  // Usamos los hex exactos de tu nueva paleta para que la transición sea fluida
   const parentVariants = {
-    normal: { color: 'white' }, // Texto blanco por defecto
-    hover: { color: 'black' },  // Texto negro cuando el fondo se llena de blanco
+    normal: { color: '#E0E0E0' }, // Tu nuevo blanco suave
+    hover: { color: '#121212' },  // Tu nuevo negro suave (contrasta con el fondo blanco que entra)
   };
 
   const childVariants = {
     normal: { width: '0%' },
     hover: {
       width: '100%',
-      transition: { duration: 0, width: { type: 'spring', stiffness: 50 } },
+      transition: { 
+        type: 'spring', 
+        stiffness: 100, // Un poco más firme para que se sienta táctil
+        damping: 20,
+        duration: 0.3 
+      },
     },
   };
 
-  // Rel seguro por defecto si usamos _blank
   const computedRel =
     target === '_blank'
       ? ['noopener', 'noreferrer', rel].filter(Boolean).join(' ')
@@ -52,10 +55,15 @@ export default function SocialMediaButton({
       href={url}
       target={target}
       rel={computedRel}
+      // CAMBIOS CLAVE: 
+      // 1. font-archivoblack para consistencia con proyectos.
+      // 2. tracking-tighter para ese look premium de bloque.
+      // 3. uppercase para maximizar el estilo "Technical Artist".
       className={
         className ??
-        'relative text-inherit font-ibmmono flex flex-col py-1 focus:outline-none'
+        'relative text-inherit font-archivoblack uppercase tracking-tighter flex flex-col py-1 focus:outline-none overflow-hidden'
       }
+      initial="normal"
       animate={isActive ? 'hover' : 'normal'}
       variants={parentVariants}
       onHoverStart={() => setHovered(true)}
@@ -64,17 +72,17 @@ export default function SocialMediaButton({
       onBlur={() => setFocused(false)}
       aria-label={ariaLabel ?? name}
     >
-      <p className="z-20">{name}</p>
+      {/* Texto centrado y por encima del fondo animado */}
+      <span className="relative z-20 px-4">{name}</span>
 
-      {/* Barra de fondo animada */}
+      {/* Barra de fondo animada:
+          Usa bg-white (que ahora es tu #E0E0E0)
+      */}
       <motion.div
-        animate={isActive ? 'hover' : 'normal'}
         variants={childVariants}
-        className="absolute left-0 top-0 bottom-0 bg-white" // ahora blanco
+        className="absolute left-0 top-0 bottom-0 bg-white z-10"
         aria-hidden="true"
-      >
-        &nbsp;
-      </motion.div>
+      />
     </motion.a>
   );
 }

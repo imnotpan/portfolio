@@ -27,6 +27,7 @@
       ],
       "redirectLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
+    
     {
       "key": "minina",
       "i18n": {
@@ -52,6 +53,33 @@
       ],
       "redirectLink": "https://www.youtube.com/watch?v=oE2rfyhIsuk"
     },
+    {
+  "key": "nuclear_dome",
+  "i18n": {
+    "en": {
+      "headerTitle": "NUCLEAR DOME - POST-APOCALYPTIC SURVIVAL",
+      "title": "Nuclear Dome",
+      "description": "A post-apocalyptic survival game inspired by titles like Nuclear Throne, Enter the Gungeon, and Super Crate Box. Its release is expected for 2027."
+    },
+    "es": {
+      "headerTitle": "NUCLEAR DOME - SUPERVIVENCIA POST-APOCALÍPTICA",
+      "title": "Nuclear Dome",
+      "description": "Juego de supervivencia post-apocalíptico inspirado en títulos como Nuclear Throne, Enter the Gungeon y Super Crate Box. Su lanzamiento está previsto para el año 2027."
+    }
+  },
+  "tags": ["GAME", "PIXELART", "MOCKUP", "SURVIVAL", "DEVELOPMENT"],
+  "mainImage": "/static/img/pixel/nuclear_dome/main.gif",
+  "images": [
+    "/static/img/pixel/nuclear_dome/img_1.gif",
+    "/static/img/pixel/nuclear_dome/img_2.gif",
+    "/static/img/pixel/nuclear_dome/img_3.png",
+    "/static/img/pixel/nuclear_dome/img_4.png",
+    "/static/img/pixel/nuclear_dome/img_5.png",
+    "/static/img/pixel/nuclear_dome/img_6.png",
+    "/static/img/pixel/nuclear_dome/img_7.png"
+  ],
+  "redirectLink": ""
+},
     {
       "key": "postersuach",
       "i18n": {
@@ -90,7 +118,7 @@
         }
       },
       "tags": ["GAME", "RUNNER", "PIXELART", "MOCKUP", "PROTOTYPE"],
-      "mainImage": "/static/img/pixel/rat/main.png",
+      "mainImage": "/static/img/pixel/rat/img_1.gif",
       "images": [
         "/static/img/pixel/rat/img_1.gif",
         "/static/img/pixel/rat/img_2.png",
@@ -100,6 +128,55 @@
       ],
       "redirectLink": ""
     },
+    {
+  "key": "esencia",
+  "i18n": {
+    "en": {
+      "headerTitle": "L9KAY - ESENCIA (OFFICIAL VIDEO)",
+      "title": "Esencia",
+      "description": "Full creative direction, editing, and pixel art production for L9kay's 'Esencia'. This project showcases an atmospheric urban aesthetic, featuring custom character designs and frame-by-frame animations integrated through a cinematic editing process."
+    },
+    "es": {
+      "headerTitle": "L9KAY - ESENCIA (VIDEO OFICIAL)",
+      "title": "Esencia",
+      "description": "Dirección creativa integral, edición y producción de pixel art para 'Esencia' de L9kay. El proyecto destaca por su estética urbana atmosférica, con diseños de personajes personalizados y animaciones tradicionales integradas mediante un proceso de montaje cinematográfico."
+    }
+  },
+  "tags": ["PIXELART", "DIRECTION", "EDITING", "ANIMATION", "MUSICVIDEO"],
+  "mainImage": "/static/img/pixel/esencia/main.jpeg",
+  "images": [
+    "/static/img/pixel/esencia/img_1.png",
+    "/static/img/pixel/esencia/img_2.png",
+    "/static/img/pixel/esencia/img_3.png",
+    "/static/img/pixel/esencia/img_4.png"
+  ],
+  "redirectLink": "https://www.youtube.com/watch?v=kpwai908-TY"
+},
+  {
+  "key": "wakeup",
+  "i18n": {
+    "en": {
+      "headerTitle": "FLOR DE RAP X PORTAVOZ - WAKE UP",
+      "title": "Wake Up",
+      "description": "Art direction, storyboard, and animations for the official music video of 'Wake Up' by Flor de Rap and Portavoz. The project employs a 16-bit retro gaming aesthetic to narrate a social critique, integrating game interfaces, character portraits, and cinematic pixel art scenes."
+    },
+    "es": {
+      "headerTitle": "FLOR DE RAP X PORTAVOZ - WAKE UP",
+      "title": "Wake Up",
+      "description": "Dirección de arte, storyboard y animaciones para el video oficial de 'Wake Up' de Flor de Rap y Portavoz. El proyecto utiliza una estética retro de videojuegos de 16-bits para narrar una historia de crítica social, integrando interfaces de juego, retratos de personajes y escenas cinemáticas en pixel art."
+    }
+  },
+  "tags": ["PIXELART", "ANIMATION", "STORYBOARD", "MUSICVIDEO", "CHARACTER DESIGN"],
+  "mainImage": "/static/img/pixel/wakeup/main.png",
+  "images": [
+    "/static/img/pixel/wakeup/img_1.png",
+    "/static/img/pixel/wakeup/img_2.png",
+    "/static/img/pixel/wakeup/img_3.png",
+    "/static/img/pixel/wakeup/img_4.png",
+    "/static/img/pixel/wakeup/img_5.png"
+  ],
+  "redirectLink": "https://www.youtube.com/watch?v=buNO6n7wzZc"
+},
     {
       "key": "tinygolf",
       "i18n": {
