@@ -5,8 +5,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import FullScreenOverview from './components/projects/FullScreenOverview';
 import NavBar from './sections/NavBar';
 import Home from './sections/Home';
-import AboutMe from './sections/AboutMe';
-import Services from './sections/Services';
 import Projects from './sections/Projects';
 import Footer from './sections/Footer';
 import SocialMediaButton from './components/home/SocialMediaButton';

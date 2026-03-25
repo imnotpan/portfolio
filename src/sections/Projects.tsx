@@ -1,8 +1,7 @@
 // src/sections/Projects.tsx
 import  { useRef, useMemo } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PortfolioCarousel from '../components/projects/PortfolioCarousel';
-import useTextWriteAppear from '../hooks/useText';
 import { useLanguageStore } from '../store/useLenguageStore';
 import PortfolioGrid from '../components/projects/PortfolioGrid';
 
