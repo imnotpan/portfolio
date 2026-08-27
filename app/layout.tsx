@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   description:
     "IMNOTAPAN is a pixel artist and animator creating characters, worlds and animated visuals for games and brands.",
   icons: {
-    icon: "/images/static/ICON.png",
-    shortcut: "/images/static/ICON.png",
-    apple: "/images/static/ICON.png",
+    icon: "/ICON%20LANDING.png",
+    shortcut: "/ICON%20LANDING.png",
+    apple: "/ICON%20LANDING.png",
   },
 };
 
