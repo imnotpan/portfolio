@@ -227,6 +227,10 @@ button:focus-visible {
   gap: clamp(4px, 0.75vw, 8px);
 }
 
+.hero-runner-group-right {
+  transform: translateX(-5%);
+}
+
 .hero-runner {
   display: block;
   width: clamp(78px, 9.8vw, 123px);
