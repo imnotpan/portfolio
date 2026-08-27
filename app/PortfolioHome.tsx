@@ -747,7 +747,7 @@ export default function PortfolioHome() {
             <div className="hero-logo-stack" aria-label="IMNOTAPAN">
               <img
                 className="hero-logo hero-logo-spin"
-                src="/images/static/ICON2.png"
+                src="/images/static/icon2.png"
                 alt=""
                 aria-hidden="true"
               />
