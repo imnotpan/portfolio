@@ -1,0 +1,943 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import type { CSSProperties } from "react";
+
+type Category =
+  | "TODO"
+  | "PERSONAJES"
+  | "MOCKUPS"
+  | "ENVIRONEMTN"
+  | "ILLUSTRATION"
+  | "ANIMATIONS";
+
+type Artwork = {
+  id: string;
+  title: string;
+  src: string;
+  category: Exclude<Category, "TODO">;
+  description?: string;
+  mockupSpan?: number;
+};
+
+type AnimationVideo = {
+  id: string;
+  title: string;
+  youtubeId: string;
+  description: string;
+  meta?: string;
+};
+
+const filters: Category[] = [
+  "PERSONAJES",
+  "MOCKUPS",
+  "ENVIRONEMTN",
+  "ILLUSTRATION",
+  "ANIMATIONS",
+];
+
+const filterLabels: Record<Category, { en: string; es: string }> = {
+  TODO: { en: "ALL WORK", es: "TODO EL TRABAJO" },
+  PERSONAJES: { en: "CHARACTERS", es: "PERSONAJES" },
+  MOCKUPS: { en: "GAME MOCKUPS", es: "MOCKUPS DE JUEGO" },
+  ENVIRONEMTN: { en: "ENVIRONMENTS", es: "ENTORNOS" },
+  ILLUSTRATION: { en: "ILLUSTRATION", es: "ILUSTRACION" },
+  ANIMATIONS: { en: "ANIMATION", es: "ANIMACION" },
+};
+
+const highlights = [
+  {
+    name: "HAYAKU ISLAND OF DARKNESS",
+    href: "https://store.steampowered.com/app/2402500/Hayaku_and_the_Island_of_Darkness/",
+  },
+  {
+    name: "CARRERA",
+    href: "#work",
+  },
+  {
+    name: "MININA - SPREEN X CARRERA",
+    href: "https://www.youtube.com/results?search_query=MININA+SPREEN+X+CARRERA",
+  },
+];
+
+const animationVideos: AnimationVideo[] = [
+  {
+    id: "youtube-oE2rfyhIsuk",
+    title: "CARRE & SPREEN - MININA",
+    youtubeId: "oE2rfyhIsuk",
+    description:
+      "Pixel art animation and visual production developed for the official music release, combining expressive characters, environments and animated storytelling into a distinctive retro-inspired visual.",
+    meta: "26M+ views on YouTube",
+  },
+  {
+    id: "youtube-55e3xPOoa7I",
+    title: "MARCIANEKE - ESA NOCHE",
+    youtubeId: "55e3xPOoa7I",
+    description:
+      "16-bit animated music visual created for Marcianeke, translating the identity and atmosphere of the track into a fully illustrated pixel art world built around characters, environments and animation.",
+    meta: "1.3M+ views on YouTube",
+  },
+  {
+    id: "youtube-kpwai908-TY",
+    title: "LE'KAYS - ESENCIA",
+    youtubeId: "kpwai908-TY",
+    description:
+      "Animated pixel art visual developed for Le'Kays, combining character animation, stylized environments and visual storytelling to build a distinctive identity around the music release.",
+    meta: "60K+ views on YouTube",
+  },
+  {
+    id: "youtube-8UqTzBiikf0",
+    title: "RODI GARRIDO - QUE MIERDA ES ESTO",
+    youtubeId: "8UqTzBiikf0",
+    description:
+      "Pixel art animated sequence created for the digital film Que Mierda es Esto, bringing its irreverent visual identity into a handcrafted animated intro designed specifically for the production.",
+    meta: "Featured across national media including CNN Chile, La Cuarta and AS Chile",
+  },
+];
+
+const artworks: Artwork[] = [
+  {
+    id: "wolf-character-study",
+    title: "Wolf Character Study",
+    src: "/characters/BaseWolf.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "beams-character-animation",
+    title: "Beams Character Animation",
+    src: "/characters/Beams.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "boss-character-animation",
+    title: "Boss Character Animation",
+    src: "/characters/BOSS.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "bouncer-character-animation",
+    title: "Bouncer Character Animation",
+    src: "/characters/Bouncer.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "character-animation-exploration",
+    title: "Character Animation Exploration",
+    src: "/characters/CharacterAnims 0BACKUP copy.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "character-design-exploration",
+    title: "Character Design Exploration",
+    src: "/characters/Design Character v3.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "enemy-character-design-b",
+    title: "Enemy Character Design B",
+    src: "/characters/EnemyB.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "enemy-character-design-c",
+    title: "Enemy Character Design C",
+    src: "/characters/EnemyC.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "frog-character-exploration",
+    title: "Frog Character Exploration",
+    src: "/characters/FROG_EXPLORATION.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "goblin-character-design",
+    title: "Goblin Character Design",
+    src: "/characters/GOBLIN.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "haalan-character-design",
+    title: "Haalan Character Design",
+    src: "/characters/HAALAN_BASE.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "hollowhorn-shaman-design",
+    title: "Hollowhorn Shaman Design",
+    src: "/characters/Hollowhorn Shaman.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "judge-character-design",
+    title: "Judge Character Design",
+    src: "/characters/Judge.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "knight-character-design",
+    title: "Knight Character Design",
+    src: "/characters/KNIGHT.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-01",
+    title: "Creature Design 01",
+    src: "/characters/MonstersStatic1.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-02",
+    title: "Creature Design 02",
+    src: "/characters/MonstersStatic2.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-03",
+    title: "Creature Design 03",
+    src: "/characters/MonstersStatic3.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-04",
+    title: "Creature Design 04",
+    src: "/characters/MonstersStatic4.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-05",
+    title: "Creature Design 05",
+    src: "/characters/MonstersStatic5.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-06",
+    title: "Creature Design 06",
+    src: "/characters/MonstersStatic6.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-07",
+    title: "Creature Design 07",
+    src: "/characters/MonstersStatic7.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-08",
+    title: "Creature Design 08",
+    src: "/characters/MonstersStatic8.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-09",
+    title: "Creature Design 09",
+    src: "/characters/MonstersStatic9.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "creature-design-10",
+    title: "Creature Design 10",
+    src: "/characters/MonstersStatic10.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "orc-character-design",
+    title: "Orc Character Design",
+    src: "/characters/orc_enemy copy.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "paladinko-character-design",
+    title: "Paladinko Character Design",
+    src: "/characters/PALADINKO MOCKUP copy.png",
+    category: "PERSONAJES",
+  },
+  {
+    id: "player-character-animation",
+    title: "Player Character Animation",
+    src: "/characters/Player_backup_1 copy.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "rat-character-design",
+    title: "Rat Character Design",
+    src: "/characters/RatDesignFinal copy.gif",
+    category: "PERSONAJES",
+  },
+  {
+    id: "asia-environment-study",
+    title: "Asia Environment Study",
+    src: "/images/static/img/Environment/Asia_Background.png",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "bamboo-forest-environment",
+    title: "Bamboo Forest Environment",
+    src: "/images/static/img/Environment/BambooForest.png",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "challenge-environment-design",
+    title: "Challenge Environment Design",
+    src: "/images/static/img/Environment/Challenge_Background.png",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "hayaku-military-environment",
+    title: "Hayaku Military Environment",
+    src: "/images/static/img/Environment/hayaku_1.png",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "hayaku-mountain-environment",
+    title: "Hayaku Mountain Environment",
+    src: "/images/static/img/Environment/hayaku_2.png",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "nova-beach-environment",
+    title: "Nova Beach Environment",
+    src: "/images/static/img/Environment/Nova_Beach_Background.png",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "modular-parallax-environment",
+    title: "Modular Parallax Environment",
+    src: "/images/static/img/Environment/pixel-parallax-full-horizontal-1x (3).gif",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "parallax-world-building-study",
+    title: "Parallax World Building Study",
+    src: "/images/static/img/Environment/pixel-parallax-pan-right-2x.gif",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "animated-environment-study",
+    title: "Animated Environment Study",
+    src: "/images/static/img/Environment/pixel-parallax-pan-right-3x.gif",
+    category: "ENVIRONEMTN",
+  },
+  {
+    id: "visual-development-study",
+    title: "Visual Development Study",
+    src: "/images/static/img/Illustrations/BOCETO.png",
+    category: "ILLUSTRATION",
+  },
+  {
+    id: "character-visual-development",
+    title: "Character Visual Development",
+    src: "/images/static/img/Illustrations/BOCETO 2.png",
+    category: "ILLUSTRATION",
+  },
+  {
+    id: "animated-stream-visual-brb",
+    title: "Animated Stream Visual: BRB",
+    src: "/images/static/img/Illustrations/BRB SCREEN.png",
+    category: "ILLUSTRATION",
+  },
+  {
+    id: "game-ui-character-selection",
+    title: "Game UI & Character Selection",
+    src: "/images/static/img/Illustrations/CharacterSelection.png",
+    category: "ILLUSTRATION",
+  },
+  {
+    id: "creature-illustration",
+    title: "Creature Illustration",
+    src: "/images/static/img/Illustrations/Painterly_Gremlin.png",
+    category: "ILLUSTRATION",
+  },
+  {
+    id: "animated-stream-visual-starting-soon",
+    title: "Animated Stream Visual: Starting Soon",
+    src: "/images/static/img/Illustrations/STARTING SOON copy.png",
+    category: "ILLUSTRATION",
+  },
+  {
+    id: "celtic-fantasy-world",
+    title: "Celtic Fantasy World",
+    src: "/images/static/img/Mockups/CELTIC - ZELDA LIKE.png",
+    category: "MOCKUPS",
+    description:
+      "Top-down game mockup developed as a cohesive fantasy world, balancing terrain readability, character scale and classic adventure atmosphere.",
+    mockupSpan: 30,
+  },
+  {
+    id: "castle-environment-mockup",
+    title: "Castle Environment Mockup",
+    src: "/images/static/img/Mockups/Castle_Mockup.png",
+    category: "MOCKUPS",
+    description:
+      "Modular castle environment designed with layered depth and a focused palette for clear, production-ready world building.",
+    mockupSpan: 30,
+  },
+  {
+    id: "ufo-grab-arcade-game-mockup",
+    title: "UFO Grab: Arcade Game Mockup",
+    src: "/images/static/img/Mockups/Mockup-UFOGRAB copy.png",
+    category: "MOCKUPS",
+    description:
+      "Arcade game mockup built around fast target readability, bold silhouettes and a centered composition.",
+    mockupSpan: 70,
+  },
+  {
+    id: "nuclear-dome-sci-fi-world",
+    title: "Nuclear Dome: Sci-Fi World",
+    src: "/images/static/img/Mockups/NUCLEAR DOME.png",
+    category: "MOCKUPS",
+    description:
+      "Large-scale sci-fi environment shaped by industrial structures, side-scrolling readability and color blocks that separate playable spaces.",
+    mockupSpan: 23,
+  },
+  {
+    id: "paladinko-game-art-mockup",
+    title: "Paladinko: Game Art Mockup",
+    src: "/images/static/img/Mockups/PALADINKO MOCKUP.png",
+    category: "MOCKUPS",
+    description:
+      "Game art mockup bringing character, UI and environment together as one readable vertical gameplay scene.",
+    mockupSpan: 63,
+  },
+  {
+    id: "platform-goblin-game-world",
+    title: "Platform Goblin: Game World",
+    src: "/images/static/img/Mockups/PLATFORM GOBLIN.png",
+    category: "MOCKUPS",
+    description:
+      "Side-scrolling world study combining enemies, terrain and background elements with clear gameplay readability.",
+    mockupSpan: 30,
+  },
+  {
+    id: "rat-character-world-mockup",
+    title: "Rat: Character & World Mockup",
+    src: "/images/static/img/Mockups/RAT copy.png",
+    category: "MOCKUPS",
+    description:
+      "Vertical game scene pairing a central character with a dense environment to establish mood, personality and visual direction.",
+    mockupSpan: 58,
+  },
+  {
+    id: "western-world-environment-art",
+    title: "Western World & Environment Art",
+    src: "/images/static/img/Mockups/WesternMockup.png",
+    category: "MOCKUPS",
+    description:
+      "Panoramic western environment built with a warm palette and confident shapes for immediate scene readability.",
+    mockupSpan: 27,
+  },
+];
+
+const languageStorageKey = "imnotapan-portfolio-language";
+const galleryOrderStorageKey = "imnotapan-portfolio-gallery-order";
+const galleryHiddenStorageKey = "imnotapan-portfolio-gallery-hidden";
+const galleryEditModeStorageKey = "imnotapan-portfolio-gallery-edit-mode";
+const defaultOrderIndexMap = Object.fromEntries(
+  artworks.map((artwork, index) => [artwork.id, index]),
+) as Record<string, number>;
+
+export default function PortfolioHome() {
+  const [activeFilter, setActiveFilter] = useState<Category>("PERSONAJES");
+  const [isSpanish, setIsSpanish] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeVideoIds, setActiveVideoIds] = useState<Record<string, boolean>>({});
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [artworkOrderIndexMap, setArtworkOrderIndexMap] = useState<Record<string, number>>(defaultOrderIndexMap);
+  const [hiddenArtworkIds, setHiddenArtworkIds] = useState<string[]>([]);
+  const [draggedArtworkId, setDraggedArtworkId] = useState<string | null>(null);
+  const [hasLoadedGalleryState, setHasLoadedGalleryState] = useState(false);
+  const languageQuery = isSpanish ? "?lang=es" : "";
+
+  useEffect(() => {
+    const languageFromUrl = new URLSearchParams(window.location.search).get("lang");
+    const nextLanguage =
+      languageFromUrl === "es" ||
+      (languageFromUrl === null && localStorage.getItem(languageStorageKey) === "es");
+
+    setIsSpanish(nextLanguage);
+    localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
+  }, []);
+
+  useEffect(() => {
+    const savedOrder = localStorage.getItem(galleryOrderStorageKey);
+    const savedHidden = localStorage.getItem(galleryHiddenStorageKey);
+    const savedEditMode = localStorage.getItem(galleryEditModeStorageKey);
+    const allArtworkIds = artworks.map((artwork) => artwork.id);
+
+    if (savedOrder) {
+      try {
+        const parsedOrder = JSON.parse(savedOrder);
+
+        if (parsedOrder && typeof parsedOrder === "object" && !Array.isArray(parsedOrder)) {
+          const nextOrderIndexMap = { ...defaultOrderIndexMap };
+
+          for (const [id, value] of Object.entries(parsedOrder)) {
+            if (allArtworkIds.includes(id) && typeof value === "number" && Number.isFinite(value)) {
+              nextOrderIndexMap[id] = value;
+            }
+          }
+
+          setArtworkOrderIndexMap(nextOrderIndexMap);
+        }
+      } catch {
+        localStorage.removeItem(galleryOrderStorageKey);
+      }
+    }
+
+    if (savedHidden) {
+      try {
+        const parsedHidden = JSON.parse(savedHidden);
+
+        if (Array.isArray(parsedHidden)) {
+          setHiddenArtworkIds(parsedHidden.filter((id): id is string => typeof id === "string" && allArtworkIds.includes(id)));
+        }
+      } catch {
+        localStorage.removeItem(galleryHiddenStorageKey);
+      }
+    }
+
+    setIsEditMode(savedEditMode === "true");
+    setHasLoadedGalleryState(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasLoadedGalleryState) return;
+    localStorage.setItem(galleryOrderStorageKey, JSON.stringify(artworkOrderIndexMap));
+  }, [artworkOrderIndexMap, hasLoadedGalleryState]);
+
+  useEffect(() => {
+    if (!hasLoadedGalleryState) return;
+    localStorage.setItem(galleryHiddenStorageKey, JSON.stringify(hiddenArtworkIds));
+  }, [hiddenArtworkIds, hasLoadedGalleryState]);
+
+  useEffect(() => {
+    if (!hasLoadedGalleryState) return;
+    localStorage.setItem(galleryEditModeStorageKey, String(isEditMode));
+  }, [isEditMode, hasLoadedGalleryState]);
+
+  const orderedArtworks = useMemo(() => {
+    return [...artworks].sort((leftArtwork, rightArtwork) => {
+      const leftIndex = artworkOrderIndexMap[leftArtwork.id] ?? defaultOrderIndexMap[leftArtwork.id] ?? 0;
+      const rightIndex = artworkOrderIndexMap[rightArtwork.id] ?? defaultOrderIndexMap[rightArtwork.id] ?? 0;
+
+      if (leftIndex === rightIndex) {
+        return (defaultOrderIndexMap[leftArtwork.id] ?? 0) - (defaultOrderIndexMap[rightArtwork.id] ?? 0);
+      }
+
+      return leftIndex - rightIndex;
+    });
+  }, [artworkOrderIndexMap]);
+
+  const visibleArtworks = useMemo(
+    () =>
+      activeFilter === "TODO"
+        ? orderedArtworks.filter((artwork) => !hiddenArtworkIds.includes(artwork.id))
+        : orderedArtworks.filter(
+            (artwork) => artwork.category === activeFilter && !hiddenArtworkIds.includes(artwork.id),
+          ),
+    [activeFilter, hiddenArtworkIds, orderedArtworks],
+  );
+
+  const hiddenArtworks = useMemo(
+    () => orderedArtworks.filter((artwork) => hiddenArtworkIds.includes(artwork.id)),
+    [hiddenArtworkIds, orderedArtworks],
+  );
+
+  const activeArtwork =
+    activeIndex === null ? null : visibleArtworks[activeIndex] ?? null;
+
+  const closeLightbox = useCallback(() => {
+    setActiveIndex(null);
+  }, []);
+
+  const showPrevious = useCallback(() => {
+    setActiveIndex((index) => {
+      if (index === null || visibleArtworks.length === 0) return index;
+      return (index - 1 + visibleArtworks.length) % visibleArtworks.length;
+    });
+  }, [visibleArtworks.length]);
+
+  const showNext = useCallback(() => {
+    setActiveIndex((index) => {
+      if (index === null || visibleArtworks.length === 0) return index;
+      return (index + 1) % visibleArtworks.length;
+    });
+  }, [visibleArtworks.length]);
+
+  const playVideo = (videoId: string) => {
+    setActiveVideoIds((currentVideoIds) => ({
+      ...currentVideoIds,
+      [videoId]: true,
+    }));
+  };
+
+  const reorderVisibleArtworks = useCallback((fromId: string, toId: string) => {
+    if (fromId === toId) return;
+
+    setArtworkOrderIndexMap((currentMap) => {
+      const visibleIds = visibleArtworks.map((artwork) => artwork.id);
+      const fromVisibleIndex = visibleIds.indexOf(fromId);
+      const toVisibleIndex = visibleIds.indexOf(toId);
+
+      if (fromVisibleIndex === -1 || toVisibleIndex === -1) {
+        return currentMap;
+      }
+
+      const nextVisibleIds = [...visibleIds];
+      const [movedId] = nextVisibleIds.splice(fromVisibleIndex, 1);
+      nextVisibleIds.splice(toVisibleIndex, 0, movedId);
+
+      const nextMap = { ...currentMap };
+      const sortedVisibleIndexes = visibleIds
+        .map((id) => currentMap[id] ?? defaultOrderIndexMap[id] ?? 0)
+        .sort((left, right) => left - right);
+
+      nextVisibleIds.forEach((id, index) => {
+        nextMap[id] = sortedVisibleIndexes[index] ?? index;
+      });
+
+      return nextMap;
+    });
+  }, [visibleArtworks]);
+
+  const hideArtwork = useCallback((artworkId: string) => {
+    setHiddenArtworkIds((currentIds) => (currentIds.includes(artworkId) ? currentIds : [...currentIds, artworkId]));
+
+    setActiveIndex((currentIndex) => {
+      if (currentIndex === null) return currentIndex;
+      const currentArtwork = visibleArtworks[currentIndex];
+      return currentArtwork?.id === artworkId ? null : currentIndex;
+    });
+  }, [visibleArtworks]);
+
+  const restoreArtwork = useCallback((artworkId: string) => {
+    setHiddenArtworkIds((currentIds) => currentIds.filter((id) => id !== artworkId));
+  }, []);
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") showPrevious();
+      if (event.key === "ArrowRight") showNext();
+    };
+
+    document.body.classList.add("lightbox-open");
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.classList.remove("lightbox-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeIndex, closeLightbox, showNext, showPrevious]);
+
+  return (
+    <main className="portfolio-shell">
+      <header className="site-header">
+        <Link className="site-logo" href="/" aria-label="Kevin Medina, aka IMNOTAPAN">
+          <span className="site-logo-name">KEVIN MEDINA</span>
+          <span className="site-logo-alias">aka IMNOTAPAN</span>
+        </Link>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-controls="main-navigation"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav
+          id="main-navigation"
+          className={`site-nav${isMenuOpen ? " is-open" : ""}`}
+          aria-label="Main navigation"
+        >
+          <a href="#work" aria-current="page" onClick={() => setIsMenuOpen(false)}>
+            {isSpanish ? "TRABAJO" : "WORK"}
+          </a>
+          <Link href={`/about${languageQuery}`} onClick={() => setIsMenuOpen(false)}>
+            {isSpanish ? "SOBRE MI" : "ABOUT"}
+          </Link>
+          <button
+            className="language-toggle"
+            type="button"
+            aria-label="Change language"
+            onClick={() => {
+              const nextLanguage = !isSpanish;
+              const url = new URL(window.location.href);
+
+              url.searchParams.set("lang", nextLanguage ? "es" : "en");
+              window.history.replaceState(null, "", url);
+              localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
+              setIsSpanish(nextLanguage);
+              setIsMenuOpen(false);
+            }}
+          >
+            ES / EN
+          </button>
+        </nav>
+      </header>
+
+      <section className="icon-banner" aria-label="IMNOTAPAN portfolio">
+        <div className="icon-banner-content">
+          <div className="hero-figure-row" aria-label="IMNOTAPAN banner characters">
+            <div className="hero-runner-group hero-runner-group-left" aria-hidden="true">
+              <img className="hero-runner hero-runner-left" src="/CharactersRunning/KNIGHT RUNNING.gif" alt="" />
+              <img className="hero-runner hero-runner-left" src="/CharactersRunning/DIMITRIRUNNING.gif" alt="" />
+            </div>
+
+            <div className="hero-logo-stack" aria-label="IMNOTAPAN">
+              <img
+                className="hero-logo hero-logo-spin"
+                src="/images/static/ICON2.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <img
+                className="hero-logo hero-logo-front"
+                src="/images/static/ICON.png"
+                alt="IMNOTAPAN"
+              />
+            </div>
+
+            <div className="hero-runner-group hero-runner-group-right" aria-hidden="true">
+              <img className="hero-runner hero-runner-right" src="/CharactersRunning/WalkCycleBeams.gif" alt="" />
+              <img className="hero-runner hero-runner-right" src="/CharactersRunning/RATRUNNING.gif" alt="" />
+            </div>
+          </div>
+
+          <div className="hero-intro">
+            <p>
+              <span className="hero-title">
+                {isSpanish ? "ARTISTA DE PIXEL ART Y ANIMADOR." : "PIXEL ARTIST AND ANIMATOR."}
+              </span>
+              <span className="hero-kicker">
+                {isSpanish
+                  ? "PERSONAJES, MUNDOS Y VISUALES ANIMADOS PARA JUEGOS Y MARCAS."
+                  : "CHARACTERS, WORLDS AND ANIMATED VISUALS FOR GAMES & BRANDS."}
+              </span>
+            </p>
+
+            <p className="hero-description">
+              {isSpanish
+                ? <>Actualmente trabajo como artista de fondos y tilesets en <a href="https://store.steampowered.com/app/2402500/Hayaku_and_the_Island_of_Darkness/" target="_blank" rel="noopener noreferrer">Hayaku! Island of Darkness</a>, mientras sigo abierto a colaborar en nuevos proyectos, juegos y propuestas creativas.</>
+                : <>I currently work as a background and tileset artist on <a href="https://store.steampowered.com/app/2402500/Hayaku_and_the_Island_of_Darkness/" target="_blank" rel="noopener noreferrer">Hayaku! Island of Darkness</a>, while staying open to new collaborations across games, projects and creative commissions.</>}
+            </p>
+
+            <a className="hero-cta" href="#work">
+              {isSpanish ? "VER TRABAJO" : "VIEW WORK"}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="portfolio-filters" aria-label="Work filters">
+        {filters.map((filter) => (
+          <button
+            key={filter}
+            className="filter-button"
+            type="button"
+            aria-pressed={activeFilter === filter}
+            data-active={activeFilter === filter}
+            onClick={() => {
+              setActiveFilter(filter);
+              closeLightbox();
+            }}
+          >
+            {filterLabels[filter][isSpanish ? "es" : "en"]}
+          </button>
+        ))}
+      </section>
+
+      {false && isEditMode && hiddenArtworks.length > 0 ? (
+        <section className="hidden-artworks-panel" aria-label="Hidden gallery items">
+          <p>{isSpanish ? "OCULTAS" : "HIDDEN"}</p>
+          <div className="hidden-artworks-list">
+            {hiddenArtworks.map((artwork) => (
+              <button
+                key={artwork.id}
+                className="hidden-artwork-chip"
+                type="button"
+                onClick={() => restoreArtwork(artwork.id)}
+              >
+                {artwork.title}
+              </button>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {activeFilter !== "ANIMATIONS" ? (
+        <>
+          <section
+            className={`gallery-grid ${activeFilter === "MOCKUPS" ? "gallery-grid-mockups" : ""}`}
+            aria-label="Work gallery"
+            data-editing={isEditMode}
+          >
+            {visibleArtworks.map((artwork, index) => (
+              <button
+                key={artwork.id}
+                className={`gallery-tile ${artwork.category === "MOCKUPS" ? "gallery-tile-mockup" : ""}`}
+                type="button"
+                draggable={isEditMode}
+                style={
+                  artwork.category === "MOCKUPS"
+                    ? ({
+                        "--mockup-span": artwork.mockupSpan,
+                      } as CSSProperties)
+                    : undefined
+                }
+                data-dragging={draggedArtworkId === artwork.id}
+                aria-label={`Open ${artwork.title}`}
+                onDragStart={(event) => {
+                  if (!isEditMode) return;
+                  event.dataTransfer.effectAllowed = "move";
+                  event.dataTransfer.setData("text/plain", artwork.id);
+                  setDraggedArtworkId(artwork.id);
+                }}
+                onDragOver={(event) => {
+                  if (!isEditMode || !draggedArtworkId) return;
+                  event.preventDefault();
+                  event.dataTransfer.dropEffect = "move";
+                }}
+                onDrop={(event) => {
+                  if (!isEditMode) return;
+                  event.preventDefault();
+                  const fromId = event.dataTransfer.getData("text/plain") || draggedArtworkId;
+                  if (fromId) {
+                    reorderVisibleArtworks(fromId, artwork.id);
+                  }
+                  setDraggedArtworkId(null);
+                }}
+                onDragEnd={() => {
+                  setDraggedArtworkId(null);
+                }}
+                onClick={() => {
+                  if (isEditMode) return;
+                  setActiveIndex(index);
+                }}
+              >
+                {isEditMode ? (
+                  <span className="gallery-tile-handle" aria-hidden="true">
+                    DRAG
+                  </span>
+                ) : null}
+                {isEditMode ? (
+                  <span className="gallery-tile-delete-wrap">
+                    <span
+                      className="gallery-tile-delete"
+                      role="button"
+                      tabIndex={0}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        hideArtwork(artwork.id);
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          hideArtwork(artwork.id);
+                        }
+                      }}
+                    >
+                      ×
+                    </span>
+                  </span>
+                ) : null}
+                <img src={artwork.src} alt={artwork.title} loading="lazy" />
+                <span className="gallery-tile-overlay" aria-hidden="true" />
+              </button>
+            ))}
+          </section>
+        </>
+      ) : null}
+
+      {activeFilter === "ANIMATIONS" || activeFilter === "TODO" ? (
+        <section className="animation-list" aria-label="Animation reel">
+          {animationVideos.map((video) => (
+            <button
+              key={video.id}
+              className="animation-item"
+              type="button"
+              onClick={() => playVideo(video.id)}
+            >
+              <div className="animation-player">
+                {activeVideoIds[video.id] ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <img
+                    src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                  />
+                )}
+              </div>
+
+              <div className="animation-copy">
+                <h2>{video.title}</h2>
+                <p>{video.description}</p>
+                {video.meta ? <span>{video.meta}</span> : null}
+              </div>
+            </button>
+          ))}
+        </section>
+      ) : null}
+
+      {activeArtwork ? (
+        <div className="lightbox" role="dialog" aria-modal="true" onClick={closeLightbox}>
+          <button
+            className="lightbox-close"
+            type="button"
+            aria-label="Close image viewer"
+            onClick={closeLightbox}
+          >
+            X
+          </button>
+
+          <button
+            className="lightbox-arrow lightbox-arrow-left"
+            type="button"
+            aria-label="Previous image"
+            onClick={(event) => {
+              event.stopPropagation();
+              showPrevious();
+            }}
+          >
+            ‹
+          </button>
+
+          <div className="lightbox-stage" onClick={(event) => event.stopPropagation()}>
+            <img
+              className="lightbox-image"
+              src={activeArtwork.src}
+              alt={activeArtwork.title}
+            />
+          </div>
+
+          <button
+            className="lightbox-arrow lightbox-arrow-right"
+            type="button"
+            aria-label="Next image"
+            onClick={(event) => {
+              event.stopPropagation();
+              showNext();
+            }}
+          >
+            ›
+          </button>
+        </div>
+      ) : null}
+    </main>
+  );
+}
