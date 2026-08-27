@@ -883,10 +883,15 @@ a, button, a:focus, a:focus-visible, button:focus, button:focus-visible {
   width: 100%;
   height: 100%;
   image-rendering: pixelated;
+  opacity: 0;
   filter: saturate(.9);
-  transition: filter .16s, transform .16s;
+  transition: filter .16s, opacity .24s, transform .16s;
   display: block;
   transform: scale(1.3125);
+}
+
+.gallery-tile img.is-loaded {
+  opacity: 1;
 }
 
 .gallery-grid-mockups {

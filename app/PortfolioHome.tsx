@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
 type Category =
@@ -437,6 +438,57 @@ const defaultOrderIndexMap = Object.fromEntries(
   artworks.map((artwork, index) => [artwork.id, index]),
 ) as Record<string, number>;
 
+const mockupImageDimensions: Record<string, { width: number; height: number }> = {
+  "celtic-fantasy-world": { width: 960, height: 720 },
+  "castle-environment-mockup": { width: 1202, height: 902 },
+  "ufo-grab-arcade-game-mockup": { width: 675, height: 1200 },
+  "nuclear-dome-sci-fi-world": { width: 1344, height: 756 },
+  "paladinko-game-art-mockup": { width: 1052, height: 1680 },
+  "platform-goblin-game-world": { width: 960, height: 720 },
+  "rat-character-world-mockup": { width: 1620, height: 2370 },
+  "western-world-environment-art": { width: 1080, height: 720 },
+};
+
+function GalleryImage({ artwork }: { artwork: Artwork }) {
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const imageClassName = hasLoaded ? "gallery-image is-loaded" : "gallery-image";
+  const onImageReady = () => setHasLoaded(true);
+  const mockupDimensions = mockupImageDimensions[artwork.id];
+
+  if (mockupDimensions) {
+    return (
+      <Image
+        className={imageClassName}
+        src={artwork.src}
+        alt={artwork.title}
+        width={mockupDimensions.width}
+        height={mockupDimensions.height}
+        sizes="(max-width: 700px) calc(100vw - 40px), 18vw"
+        quality={75}
+        loading="lazy"
+        decoding="async"
+        onLoad={onImageReady}
+        onError={onImageReady}
+      />
+    );
+  }
+
+  return (
+    <Image
+      className={imageClassName}
+      src={artwork.src}
+      alt={artwork.title}
+      fill
+      sizes="(max-width: 700px) calc(100vw - 40px), 18vw"
+      quality={75}
+      loading="lazy"
+      decoding="async"
+      onLoad={onImageReady}
+      onError={onImageReady}
+    />
+  );
+}
+
 export default function PortfolioHome() {
   const [activeFilter, setActiveFilter] = useState<Category>("PERSONAJES");
   const [isSpanish, setIsSpanish] = useState(false);
@@ -850,7 +902,7 @@ export default function PortfolioHome() {
                     </span>
                   </span>
                 ) : null}
-                <img src={artwork.src} alt={artwork.title} loading="lazy" />
+                <GalleryImage artwork={artwork} />
                 <span className="gallery-tile-overlay" aria-hidden="true" />
               </button>
             ))}
