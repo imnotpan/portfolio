@@ -416,7 +416,6 @@ const artworks = [
         mockupSpan: 27
     }
 ];
-const languageStorageKey = "imnotapan-portfolio-language";
 const galleryOrderStorageKey = "imnotapan-portfolio-gallery-order";
 const galleryHiddenStorageKey = "imnotapan-portfolio-gallery-hidden";
 const galleryEditModeStorageKey = "imnotapan-portfolio-gallery-edit-mode";
@@ -458,6 +457,20 @@ const mockupImageDimensions = {
         height: 720
     }
 };
+function getThumbnailSrc(src) {
+    const thumbnailExtension = src.toLowerCase().endsWith(".gif") ? ".gif" : ".png";
+    return `/images/thumbnails${src.replace(/\.[^.]+$/, thumbnailExtension)}`;
+}
+function getArtworkAlt(artwork) {
+    const prefix = {
+        PERSONAJES: "Pixel art character artwork",
+        MOCKUPS: "Pixel art game mockup",
+        ENVIRONEMTN: "Pixel art environment artwork",
+        ILLUSTRATION: "Pixel art illustration",
+        ANIMATIONS: "Pixel art animation"
+    }[artwork.category];
+    return `${prefix}: ${artwork.title}`;
+}
 function GalleryImage({ artwork }) {
     const [hasLoaded, setHasLoaded] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const imageClassName = hasLoaded ? "gallery-image is-loaded" : "gallery-image";
@@ -466,8 +479,8 @@ function GalleryImage({ artwork }) {
     if (mockupDimensions) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
             className: imageClassName,
-            src: artwork.src,
-            alt: artwork.title,
+            src: getThumbnailSrc(artwork.src),
+            alt: getArtworkAlt(artwork),
             width: mockupDimensions.width,
             height: mockupDimensions.height,
             sizes: "(max-width: 700px) calc(100vw - 40px), 18vw",
@@ -478,14 +491,14 @@ function GalleryImage({ artwork }) {
             onError: onImageReady
         }, void 0, false, {
             fileName: "[project]/app/PortfolioHome.tsx",
-            lineNumber: 460,
+            lineNumber: 480,
             columnNumber: 7
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
         className: imageClassName,
-        src: artwork.src,
-        alt: artwork.title,
+        src: getThumbnailSrc(artwork.src),
+        alt: getArtworkAlt(artwork),
         fill: true,
         sizes: "(max-width: 700px) calc(100vw - 40px), 18vw",
         quality: 75,
@@ -495,13 +508,12 @@ function GalleryImage({ artwork }) {
         onError: onImageReady
     }, void 0, false, {
         fileName: "[project]/app/PortfolioHome.tsx",
-        lineNumber: 477,
+        lineNumber: 497,
         columnNumber: 5
     }, this);
 }
-function PortfolioHome() {
+function PortfolioHome({ locale }) {
     const [activeFilter, setActiveFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("PERSONAJES");
-    const [isSpanish, setIsSpanish] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isMenuOpen, setIsMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [activeIndex, setActiveIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [activeVideoIds, setActiveVideoIds] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({});
@@ -510,13 +522,9 @@ function PortfolioHome() {
     const [hiddenArtworkIds, setHiddenArtworkIds] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [draggedArtworkId, setDraggedArtworkId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [hasLoadedGalleryState, setHasLoadedGalleryState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const languageQuery = isSpanish ? "?lang=es" : "";
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const languageFromUrl = new URLSearchParams(window.location.search).get("lang");
-        const nextLanguage = languageFromUrl === "es" || languageFromUrl === null && localStorage.getItem(languageStorageKey) === "es";
-        setIsSpanish(nextLanguage);
-        localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
-    }, []);
+    const isSpanish = locale === "es";
+    const homePath = isSpanish ? "/es" : "/";
+    const aboutPath = isSpanish ? "/es/about" : "/about";
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const savedOrder = localStorage.getItem(galleryOrderStorageKey);
         const savedHidden = localStorage.getItem(galleryHiddenStorageKey);
@@ -686,13 +694,14 @@ function PortfolioHome() {
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
         className: "portfolio-shell",
+        lang: locale,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
                 className: "site-header",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         className: "site-logo",
-                        href: "/",
+                        href: homePath,
                         "aria-label": "Kevin Medina, aka IMNOTAPAN",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -700,7 +709,7 @@ function PortfolioHome() {
                                 children: "KEVIN MEDINA"
                             }, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 693,
+                                lineNumber: 704,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -708,13 +717,13 @@ function PortfolioHome() {
                                 children: "aka IMNOTAPAN"
                             }, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 694,
+                                lineNumber: 705,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 692,
+                        lineNumber: 703,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -727,23 +736,23 @@ function PortfolioHome() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 704,
+                                lineNumber: 715,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 705,
+                                lineNumber: 716,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 706,
+                                lineNumber: 717,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 696,
+                        lineNumber: 707,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -758,47 +767,39 @@ function PortfolioHome() {
                                 children: isSpanish ? "TRABAJO" : "WORK"
                             }, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 713,
+                                lineNumber: 724,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                href: `/about${languageQuery}`,
+                                href: aboutPath,
                                 onClick: ()=>setIsMenuOpen(false),
                                 children: isSpanish ? "SOBRE MI" : "ABOUT"
                             }, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 716,
+                                lineNumber: 727,
                                 columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                 className: "language-toggle",
-                                type: "button",
                                 "aria-label": "Change language",
-                                onClick: ()=>{
-                                    const nextLanguage = !isSpanish;
-                                    const url = new URL(window.location.href);
-                                    url.searchParams.set("lang", nextLanguage ? "es" : "en");
-                                    window.history.replaceState(null, "", url);
-                                    localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
-                                    setIsSpanish(nextLanguage);
-                                    setIsMenuOpen(false);
-                                },
+                                href: isSpanish ? "/" : "/es",
+                                onClick: ()=>setIsMenuOpen(false),
                                 children: "ES / EN"
                             }, void 0, false, {
                                 fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 719,
+                                lineNumber: 730,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 708,
+                        lineNumber: 719,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/PortfolioHome.tsx",
-                lineNumber: 691,
+                lineNumber: 702,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -821,7 +822,7 @@ function PortfolioHome() {
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 743,
+                                            lineNumber: 745,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -830,13 +831,13 @@ function PortfolioHome() {
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 744,
+                                            lineNumber: 746,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 742,
+                                    lineNumber: 744,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -845,12 +846,12 @@ function PortfolioHome() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             className: "hero-logo hero-logo-spin",
-                                            src: "/images/static/ICON2.png",
+                                            src: "/images/static/icon2.png",
                                             alt: "",
                                             "aria-hidden": "true"
                                         }, void 0, false, {
                                             fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 748,
+                                            lineNumber: 750,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -859,13 +860,13 @@ function PortfolioHome() {
                                             alt: "IMNOTAPAN"
                                         }, void 0, false, {
                                             fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 754,
+                                            lineNumber: 756,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 747,
+                                    lineNumber: 749,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -878,7 +879,7 @@ function PortfolioHome() {
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 762,
+                                            lineNumber: 764,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -887,46 +888,38 @@ function PortfolioHome() {
                                             alt: ""
                                         }, void 0, false, {
                                             fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 763,
+                                            lineNumber: 765,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 761,
+                                    lineNumber: 763,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/PortfolioHome.tsx",
-                            lineNumber: 741,
+                            lineNumber: 743,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "hero-intro",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "hero-title",
-                                            children: isSpanish ? "ARTISTA DE PIXEL ART Y ANIMADOR." : "PIXEL ARTIST AND ANIMATOR."
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 769,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "hero-kicker",
-                                            children: isSpanish ? "PERSONAJES, MUNDOS Y VISUALES ANIMADOS PARA JUEGOS Y MARCAS." : "CHARACTERS, WORLDS AND ANIMATED VISUALS FOR GAMES & BRANDS."
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/PortfolioHome.tsx",
-                                            lineNumber: 772,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                    className: "hero-title",
+                                    children: isSpanish ? "Artista de Pixel Art y Animador para Juegos, Marcas y Música" : "Pixel Artist & Animator for Games, Brands & Music"
+                                }, void 0, false, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 768,
+                                    lineNumber: 770,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "hero-kicker",
+                                    children: isSpanish ? "Creo personajes expresivos de pixel art, animación y mundos estilizados para juegos, marcas y producciones digitales." : "I create expressive pixel art characters, animation and stylized worlds for games, brands and digital productions."
+                                }, void 0, false, {
+                                    fileName: "[project]/app/PortfolioHome.tsx",
+                                    lineNumber: 773,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -987,40 +980,51 @@ function PortfolioHome() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/PortfolioHome.tsx",
-                            lineNumber: 767,
+                            lineNumber: 769,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/PortfolioHome.tsx",
-                    lineNumber: 740,
+                    lineNumber: 742,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/PortfolioHome.tsx",
-                lineNumber: 739,
+                lineNumber: 741,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 id: "work",
                 className: "portfolio-filters",
-                "aria-label": "Work filters",
-                children: filters.map((filter)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        className: "filter-button",
-                        type: "button",
-                        "aria-pressed": activeFilter === filter,
-                        "data-active": activeFilter === filter,
-                        onClick: ()=>{
-                            setActiveFilter(filter);
-                            closeLightbox();
-                        },
-                        children: filterLabels[filter][isSpanish ? "es" : "en"]
-                    }, filter, false, {
+                "aria-labelledby": "selected-work-title",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                        id: "selected-work-title",
+                        className: "sr-only",
+                        children: "Selected Work"
+                    }, void 0, false, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 794,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
+                        lineNumber: 793,
+                        columnNumber: 9
+                    }, this),
+                    filters.map((filter)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            className: "filter-button",
+                            type: "button",
+                            "aria-pressed": activeFilter === filter,
+                            "data-active": activeFilter === filter,
+                            onClick: ()=>{
+                                setActiveFilter(filter);
+                                closeLightbox();
+                            },
+                            children: filterLabels[filter][isSpanish ? "es" : "en"]
+                        }, filter, false, {
+                            fileName: "[project]/app/PortfolioHome.tsx",
+                            lineNumber: 795,
+                            columnNumber: 11
+                        }, this))
+                ]
+            }, void 0, true, {
                 fileName: "[project]/app/PortfolioHome.tsx",
                 lineNumber: 792,
                 columnNumber: 7
@@ -1039,7 +1043,7 @@ function PortfolioHome() {
                                 "--mockup-span": artwork.mockupSpan
                             } : undefined,
                             "data-dragging": draggedArtworkId === artwork.id,
-                            "aria-label": `Open ${artwork.title}`,
+                            "aria-label": `View ${artwork.title} artwork`,
                             onDragStart: (event)=>{
                                 if (!isEditMode) return;
                                 event.dataTransfer.effectAllowed = "move";
@@ -1074,7 +1078,7 @@ function PortfolioHome() {
                                     children: "DRAG"
                                 }, void 0, false, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 879,
+                                    lineNumber: 880,
                                     columnNumber: 19
                                 }, this) : null,
                                 isEditMode ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1097,19 +1101,19 @@ function PortfolioHome() {
                                         children: "×"
                                     }, void 0, false, {
                                         fileName: "[project]/app/PortfolioHome.tsx",
-                                        lineNumber: 885,
+                                        lineNumber: 886,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 884,
+                                    lineNumber: 885,
                                     columnNumber: 19
                                 }, this) : null,
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(GalleryImage, {
                                     artwork: artwork
                                 }, void 0, false, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 905,
+                                    lineNumber: 906,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1117,97 +1121,108 @@ function PortfolioHome() {
                                     "aria-hidden": "true"
                                 }, void 0, false, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 906,
+                                    lineNumber: 907,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, artwork.id, true, {
                             fileName: "[project]/app/PortfolioHome.tsx",
-                            lineNumber: 836,
+                            lineNumber: 837,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/app/PortfolioHome.tsx",
-                    lineNumber: 830,
+                    lineNumber: 831,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/PortfolioHome.tsx",
-                lineNumber: 829,
+                lineNumber: 830,
                 columnNumber: 9
             }, this) : null,
             activeFilter === "ANIMATIONS" || activeFilter === "TODO" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 className: "animation-list",
-                "aria-label": "Animation reel",
-                children: animationVideos.map((video)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        className: "animation-item",
-                        type: "button",
-                        onClick: ()=>playVideo(video.id),
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "animation-player",
-                                children: activeVideoIds[video.id] ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
-                                    src: `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`,
-                                    title: video.title,
-                                    allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-                                    allowFullScreen: true
+                "aria-labelledby": "animation-reel-title",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                        id: "animation-reel-title",
+                        className: "sr-only",
+                        children: "Pixel Art Character Animation"
+                    }, void 0, false, {
+                        fileName: "[project]/app/PortfolioHome.tsx",
+                        lineNumber: 916,
+                        columnNumber: 11
+                    }, this),
+                    animationVideos.map((video)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            className: "animation-item",
+                            type: "button",
+                            onClick: ()=>playVideo(video.id),
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "animation-player",
+                                    children: activeVideoIds[video.id] ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
+                                        src: `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`,
+                                        title: video.title,
+                                        allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+                                        allowFullScreen: true
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/PortfolioHome.tsx",
+                                        lineNumber: 926,
+                                        columnNumber: 19
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`,
+                                        alt: video.title,
+                                        loading: "lazy"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/PortfolioHome.tsx",
+                                        lineNumber: 933,
+                                        columnNumber: 19
+                                    }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
                                     lineNumber: 924,
-                                    columnNumber: 19
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`,
-                                    alt: video.title,
-                                    loading: "lazy"
-                                }, void 0, false, {
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "animation-copy",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                            children: video.title
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/PortfolioHome.tsx",
+                                            lineNumber: 942,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            children: video.description
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/PortfolioHome.tsx",
+                                            lineNumber: 943,
+                                            columnNumber: 17
+                                        }, this),
+                                        video.meta ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: video.meta
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/PortfolioHome.tsx",
+                                            lineNumber: 944,
+                                            columnNumber: 31
+                                        }, this) : null
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/app/PortfolioHome.tsx",
-                                    lineNumber: 931,
-                                    columnNumber: 19
+                                    lineNumber: 941,
+                                    columnNumber: 15
                                 }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 922,
-                                columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "animation-copy",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        children: video.title
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/PortfolioHome.tsx",
-                                        lineNumber: 940,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        children: video.description
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/PortfolioHome.tsx",
-                                        lineNumber: 941,
-                                        columnNumber: 17
-                                    }, this),
-                                    video.meta ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: video.meta
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/PortfolioHome.tsx",
-                                        lineNumber: 942,
-                                        columnNumber: 31
-                                    }, this) : null
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/PortfolioHome.tsx",
-                                lineNumber: 939,
-                                columnNumber: 15
-                            }, this)
-                        ]
-                    }, video.id, true, {
-                        fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 916,
-                        columnNumber: 13
-                    }, this))
-            }, void 0, false, {
+                            ]
+                        }, video.id, true, {
+                            fileName: "[project]/app/PortfolioHome.tsx",
+                            lineNumber: 918,
+                            columnNumber: 13
+                        }, this))
+                ]
+            }, void 0, true, {
                 fileName: "[project]/app/PortfolioHome.tsx",
-                lineNumber: 914,
+                lineNumber: 915,
                 columnNumber: 9
             }, this) : null,
             activeArtwork ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1224,7 +1239,7 @@ function PortfolioHome() {
                         children: "X"
                     }, void 0, false, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 951,
+                        lineNumber: 953,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1238,7 +1253,7 @@ function PortfolioHome() {
                         children: "‹"
                     }, void 0, false, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 960,
+                        lineNumber: 962,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1247,15 +1262,15 @@ function PortfolioHome() {
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             className: "lightbox-image",
                             src: activeArtwork.src,
-                            alt: activeArtwork.title
+                            alt: getArtworkAlt(activeArtwork)
                         }, void 0, false, {
                             fileName: "[project]/app/PortfolioHome.tsx",
-                            lineNumber: 973,
+                            lineNumber: 975,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 972,
+                        lineNumber: 974,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1269,19 +1284,19 @@ function PortfolioHome() {
                         children: "›"
                     }, void 0, false, {
                         fileName: "[project]/app/PortfolioHome.tsx",
-                        lineNumber: 980,
+                        lineNumber: 982,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/PortfolioHome.tsx",
-                lineNumber: 950,
+                lineNumber: 952,
                 columnNumber: 9
             }, this) : null
         ]
     }, void 0, true, {
         fileName: "[project]/app/PortfolioHome.tsx",
-        lineNumber: 690,
+        lineNumber: 701,
         columnNumber: 5
     }, this);
 }

@@ -1,0 +1,27 @@
+1:"$Sreact.fragment"
+2:I[8274,["500","static/chunks/500-b13bb91f5a6311b6.js","437","static/chunks/437-b7ecceef2e1a935e.js","311","static/chunks/311-24c81701b64f6fa9.js","527","static/chunks/app/es/page-5c61f03443b93cba.js"],"default"]
+3:I[484,[],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[484,[],"ViewportBoundary"]
+9:I[484,[],"MetadataBoundary"]
+a:I[6869,[],"IconMark"]
+c:I[7121,[],""]
+d:I[4581,[],""]
+:HL["/_next/static/css/d6cf331c6aa24c08.css","style"]
+7:X
+f:X
+f:C
+0:{"buildId":"Uw8zIc3UzYXiOFwlpUew-","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"locale":"es"}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Artista de Pixel Art y Animador para Juegos y Marcas | Kevin Medina"}],["$","meta","1",{"name":"description","content":"Kevin Medina, también conocido como IMNOTAPAN, es un artista de pixel art y animador freelance que crea personajes, animación, entornos y arte para videojuegos, marcas y producciones digitales."}],["$","meta","2",{"name":"application-name","content":"IMNOTAPAN"}],["$","meta","3",{"name":"creator","content":"Kevin Medina"}],["$","meta","4",{"name":"publisher","content":"IMNOTAPAN"}],["$","meta","5",{"name":"robots","content":"index, follow"}],["$","link","6",{"rel":"canonical","href":"https://www.imnotapan.com/es"}],["$","link","7",{"rel":"alternate","hrefLang":"en","href":"https://www.imnotapan.com"}],["$","link","8",{"rel":"alternate","hrefLang":"es","href":"https://www.imnotapan.com/es"}],["$","link","9",{"rel":"alternate","hrefLang":"x-default","href":"https://www.imnotapan.com"}],["$","meta","10",{"property":"og:title","content":"Artista de Pixel Art y Animador para Juegos y Marcas | Kevin Medina"}],["$","meta","11",{"property":"og:description","content":"Kevin Medina, también conocido como IMNOTAPAN, es un artista de pixel art y animador freelance que crea personajes, animación, entornos y arte para videojuegos, marcas y producciones digitales."}],["$","meta","12",{"property":"og:url","content":"https://www.imnotapan.com/es"}],["$","meta","13",{"property":"og:image","content":"https://www.imnotapan.com/ICON%20LANDING.png"}],["$","meta","14",{"property":"og:type","content":"website"}],["$","meta","15",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","16",{"name":"twitter:title","content":"Artista de Pixel Art y Animador para Juegos y Marcas | Kevin Medina"}],["$","meta","17",{"name":"twitter:description","content":"Kevin Medina, también conocido como IMNOTAPAN, es un artista de pixel art y animador freelance que crea personajes, animación, entornos y arte para videojuegos, marcas y producciones digitales."}],["$","meta","18",{"name":"twitter:image","content":"https://www.imnotapan.com/ICON%20LANDING.png"}],["$","link","19",{"rel":"shortcut icon","href":"/ICON%20LANDING.png"}],["$","link","20",{"rel":"icon","href":"/favicon.ico?c14f67b9d30c8846","type":"image/x-icon","sizes":"256x256"}],["$","link","21",{"rel":"icon","href":"/ICON%20LANDING.png"}],["$","link","22",{"rel":"apple-touch-icon","href":"/ICON%20LANDING.png"}],["$","$La","23",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@b","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"isPartial":"$@e","staleTime":"$7","varyParams":"$f"},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d6cf331c6aa24c08.css","precedence":"next"}]],["$","html",null,{"lang":"en","className":"__variable_246ccd __variable_c29908 h-full antialiased","children":["$","body",null,{"className":"min-h-full flex flex-col","children":[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"IMNOTAPAN\",\"alternateName\":\"Kevin Medina\",\"url\":\"https://www.imnotapan.com\"}"}}],["$","$Lc",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}],"notFound":[["$","main",null,{"className":"portfolio-shell not-found-page","children":["$","section",null,{"aria-labelledby":"not-found-title","children":[["$","p",null,{"className":"project-view-kicker","children":"404"}],["$","h1",null,{"id":"not-found-title","children":"This pixel scene could not be found."}],["$","p",null,{"children":"Return to the portfolio or get in touch about a new project."}],["$","nav",null,{"aria-label":"404 navigation","children":["$L10","$L11","$L12"]}]]}]}],[]]}]]}]}]]}],"isPartial":"$@13","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@14","rootVaryParams":null,"needsRuntimeRequest":"$@15"}
+16:I[8500,["500","static/chunks/500-b13bb91f5a6311b6.js","345","static/chunks/app/not-found-d8d31d950180592f.js"],""]
+5:null
+10:["$","$L16",null,{"href":"/#work","children":"View work"}]
+11:["$","$L16",null,{"href":"/about","children":"About"}]
+12:["$","a",null,{"href":"mailto:imnotapan@gmail.com?subject=Project%20inquiry","children":"Start a project"}]
+7:300
+15:true
+7:C
+14:0
+b:"$undefined"
+e:"$undefined"
+13:"$undefined"
+6:"$undefined"

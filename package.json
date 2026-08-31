@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:thumbnails": "node scripts/generate-gallery-thumbnails.mjs",
+    "generate:thumbnails:force": "node scripts/generate-gallery-thumbnails.mjs --force"
   },
   "dependencies": {
     "next": "16.3.3",

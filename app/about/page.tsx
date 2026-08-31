@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
-const languageStorageKey = "imnotapan-portfolio-language";
+import { useState } from "react";
 
 const socialLinks = [
   {
@@ -40,25 +38,20 @@ function SocialIcon({ type }: { type: string }) {
   );
 }
 
-export default function AboutPage() {
-  const [isSpanish, setIsSpanish] = useState(false);
+type AboutPageProps = {
+  locale?: "en" | "es";
+};
+
+export default function AboutPage({ locale = "en" }: AboutPageProps) {
+  const isSpanish = locale === "es";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const languageQuery = isSpanish ? "?lang=es" : "";
-
-  useEffect(() => {
-    const languageFromUrl = new URLSearchParams(window.location.search).get("lang");
-    const nextLanguage =
-      languageFromUrl === "es" ||
-      (languageFromUrl === null && localStorage.getItem(languageStorageKey) === "es");
-
-    setIsSpanish(nextLanguage);
-    localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
-  }, []);
+  const homePath = isSpanish ? "/es" : "/";
+  const aboutPath = isSpanish ? "/es/about" : "/about";
 
   return (
-    <main className="portfolio-shell">
+    <main className="portfolio-shell" lang={locale}>
       <header className="site-header">
-        <Link className="site-logo" href="/" aria-label="Kevin Medina, aka IMNOTAPAN">
+        <Link className="site-logo" href={homePath} aria-label="Kevin Medina, aka IMNOTAPAN">
           <span className="site-logo-name">KEVIN MEDINA</span>
           <span className="site-logo-alias">aka IMNOTAPAN</span>
         </Link>
@@ -79,29 +72,20 @@ export default function AboutPage() {
           className={`site-nav${isMenuOpen ? " is-open" : ""}`}
           aria-label="Main navigation"
         >
-          <Link href={`/${languageQuery}#work`} onClick={() => setIsMenuOpen(false)}>
+          <Link href={`${homePath}#work`} onClick={() => setIsMenuOpen(false)}>
             {isSpanish ? "TRABAJO" : "WORK"}
           </Link>
-          <Link href={`/about${languageQuery}`} aria-current="page" onClick={() => setIsMenuOpen(false)}>
+          <Link href={aboutPath} aria-current="page" onClick={() => setIsMenuOpen(false)}>
             {isSpanish ? "SOBRE MI" : "ABOUT"}
           </Link>
-          <button
+          <Link
             className="language-toggle"
-            type="button"
             aria-label="Change language"
-            onClick={() => {
-              const nextLanguage = !isSpanish;
-              const url = new URL(window.location.href);
-
-              url.searchParams.set("lang", nextLanguage ? "es" : "en");
-              window.history.replaceState(null, "", url);
-              localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
-              setIsSpanish(nextLanguage);
-              setIsMenuOpen(false);
-            }}
+            href={isSpanish ? "/about" : "/es/about"}
+            onClick={() => setIsMenuOpen(false)}
           >
             ES / EN
-          </button>
+          </Link>
         </nav>
       </header>
 
@@ -165,6 +149,11 @@ export default function AboutPage() {
             {isSpanish
               ? <><strong>Contacto:</strong> <a href="mailto:imnotapan@gmail.com">imnotapan@gmail.com</a></>
               : <><strong>Contact:</strong> <a href="mailto:imnotapan@gmail.com">imnotapan@gmail.com</a></>}
+          </p>
+          <p className="about-contact">
+            {isSpanish
+              ? <>Disponible para proyectos freelance de pixel art, animación y arte para videojuegos. <a href="mailto:imnotapan@gmail.com?subject=Project%20inquiry">Inicia un proyecto</a>.</>
+              : <>Available for freelance pixel art, animation and game art projects. <a href="mailto:imnotapan@gmail.com?subject=Project%20inquiry">Start a project</a>.</>}
           </p>
         </div>
       </section>

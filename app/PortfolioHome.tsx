@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { projects } from "./data/projects";
 
 type Category =
   | "TODO"
@@ -20,6 +21,10 @@ type Artwork = {
   category: Exclude<Category, "TODO">;
   description?: string;
   mockupSpan?: number;
+};
+
+type PortfolioHomeProps = {
+  locale: "en" | "es";
 };
 
 type AnimationVideo = {
@@ -430,7 +435,6 @@ const artworks: Artwork[] = [
   },
 ];
 
-const languageStorageKey = "imnotapan-portfolio-language";
 const galleryOrderStorageKey = "imnotapan-portfolio-gallery-order";
 const galleryHiddenStorageKey = "imnotapan-portfolio-gallery-hidden";
 const galleryEditModeStorageKey = "imnotapan-portfolio-gallery-edit-mode";
@@ -449,6 +453,23 @@ const mockupImageDimensions: Record<string, { width: number; height: number }> =
   "western-world-environment-art": { width: 1080, height: 720 },
 };
 
+function getThumbnailSrc(src: string) {
+  const thumbnailExtension = src.toLowerCase().endsWith(".gif") ? ".gif" : ".png";
+  return `/images/thumbnails${src.replace(/\.[^.]+$/, thumbnailExtension)}`;
+}
+
+function getArtworkAlt(artwork: Artwork) {
+  const prefix = {
+    PERSONAJES: "Pixel art character artwork",
+    MOCKUPS: "Pixel art game mockup",
+    ENVIRONEMTN: "Pixel art environment artwork",
+    ILLUSTRATION: "Pixel art illustration",
+    ANIMATIONS: "Pixel art animation",
+  }[artwork.category];
+
+  return `${prefix}: ${artwork.title}`;
+}
+
 function GalleryImage({ artwork }: { artwork: Artwork }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const imageClassName = hasLoaded ? "gallery-image is-loaded" : "gallery-image";
@@ -459,8 +480,8 @@ function GalleryImage({ artwork }: { artwork: Artwork }) {
     return (
       <Image
         className={imageClassName}
-        src={artwork.src}
-        alt={artwork.title}
+        src={getThumbnailSrc(artwork.src)}
+        alt={getArtworkAlt(artwork)}
         width={mockupDimensions.width}
         height={mockupDimensions.height}
         sizes="(max-width: 700px) calc(100vw - 40px), 18vw"
@@ -476,8 +497,8 @@ function GalleryImage({ artwork }: { artwork: Artwork }) {
   return (
     <Image
       className={imageClassName}
-      src={artwork.src}
-      alt={artwork.title}
+      src={getThumbnailSrc(artwork.src)}
+      alt={getArtworkAlt(artwork)}
       fill
       sizes="(max-width: 700px) calc(100vw - 40px), 18vw"
       quality={75}
@@ -489,9 +510,8 @@ function GalleryImage({ artwork }: { artwork: Artwork }) {
   );
 }
 
-export default function PortfolioHome() {
+export default function PortfolioHome({ locale }: PortfolioHomeProps) {
   const [activeFilter, setActiveFilter] = useState<Category>("PERSONAJES");
-  const [isSpanish, setIsSpanish] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [activeVideoIds, setActiveVideoIds] = useState<Record<string, boolean>>({});
@@ -500,17 +520,9 @@ export default function PortfolioHome() {
   const [hiddenArtworkIds, setHiddenArtworkIds] = useState<string[]>([]);
   const [draggedArtworkId, setDraggedArtworkId] = useState<string | null>(null);
   const [hasLoadedGalleryState, setHasLoadedGalleryState] = useState(false);
-  const languageQuery = isSpanish ? "?lang=es" : "";
-
-  useEffect(() => {
-    const languageFromUrl = new URLSearchParams(window.location.search).get("lang");
-    const nextLanguage =
-      languageFromUrl === "es" ||
-      (languageFromUrl === null && localStorage.getItem(languageStorageKey) === "es");
-
-    setIsSpanish(nextLanguage);
-    localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
-  }, []);
+  const isSpanish = locale === "es";
+  const homePath = isSpanish ? "/es" : "/";
+  const aboutPath = isSpanish ? "/es/about" : "/about";
 
   useEffect(() => {
     const savedOrder = localStorage.getItem(galleryOrderStorageKey);
@@ -599,6 +611,9 @@ export default function PortfolioHome() {
 
   const activeArtwork =
     activeIndex === null ? null : visibleArtworks[activeIndex] ?? null;
+  const activeProject = activeArtwork
+    ? projects.find((project) => project.image === activeArtwork.src)
+    : undefined;
 
   const closeLightbox = useCallback(() => {
     setActiveIndex(null);
@@ -687,9 +702,9 @@ export default function PortfolioHome() {
   }, [activeIndex, closeLightbox, showNext, showPrevious]);
 
   return (
-    <main className="portfolio-shell">
+    <main className="portfolio-shell" lang={locale}>
       <header className="site-header">
-        <Link className="site-logo" href="/" aria-label="Kevin Medina, aka IMNOTAPAN">
+        <Link className="site-logo" href={homePath} aria-label="Kevin Medina, aka IMNOTAPAN">
           <span className="site-logo-name">KEVIN MEDINA</span>
           <span className="site-logo-alias">aka IMNOTAPAN</span>
         </Link>
@@ -713,26 +728,17 @@ export default function PortfolioHome() {
           <a href="#work" aria-current="page" onClick={() => setIsMenuOpen(false)}>
             {isSpanish ? "TRABAJO" : "WORK"}
           </a>
-          <Link href={`/about${languageQuery}`} onClick={() => setIsMenuOpen(false)}>
+          <Link href={aboutPath} onClick={() => setIsMenuOpen(false)}>
             {isSpanish ? "SOBRE MI" : "ABOUT"}
           </Link>
-          <button
+          <Link
             className="language-toggle"
-            type="button"
             aria-label="Change language"
-            onClick={() => {
-              const nextLanguage = !isSpanish;
-              const url = new URL(window.location.href);
-
-              url.searchParams.set("lang", nextLanguage ? "es" : "en");
-              window.history.replaceState(null, "", url);
-              localStorage.setItem(languageStorageKey, nextLanguage ? "es" : "en");
-              setIsSpanish(nextLanguage);
-              setIsMenuOpen(false);
-            }}
+            href={isSpanish ? "/" : "/es"}
+            onClick={() => setIsMenuOpen(false)}
           >
             ES / EN
-          </button>
+          </Link>
         </nav>
       </header>
 
@@ -765,15 +771,13 @@ export default function PortfolioHome() {
           </div>
 
           <div className="hero-intro">
-            <p>
-              <span className="hero-title">
-                {isSpanish ? "ARTISTA DE PIXEL ART Y ANIMADOR." : "PIXEL ARTIST AND ANIMATOR."}
-              </span>
-              <span className="hero-kicker">
-                {isSpanish
-                  ? "PERSONAJES, MUNDOS Y VISUALES ANIMADOS PARA JUEGOS Y MARCAS."
-                  : "CHARACTERS, WORLDS AND ANIMATED VISUALS FOR GAMES & BRANDS."}
-              </span>
+            <h1 className="hero-title">
+              {isSpanish ? "Artista de Pixel Art y Animador para Juegos, Marcas y Música" : "Pixel Artist & Animator for Games, Brands & Music"}
+            </h1>
+            <p className="hero-kicker">
+              {isSpanish
+                ? "Creo personajes expresivos de pixel art, animación y mundos estilizados para juegos, marcas y producciones digitales."
+                : "I create expressive pixel art characters, animation and stylized worlds for games, brands and digital productions."}
             </p>
 
             <p className="hero-description">
@@ -789,7 +793,8 @@ export default function PortfolioHome() {
         </div>
       </section>
 
-      <section id="work" className="portfolio-filters" aria-label="Work filters">
+      <section id="work" className="portfolio-filters" aria-labelledby="selected-work-title">
+        <h2 id="selected-work-title" className="sr-only">Selected Work</h2>
         {filters.map((filter) => (
           <button
             key={filter}
@@ -846,7 +851,7 @@ export default function PortfolioHome() {
                     : undefined
                 }
                 data-dragging={draggedArtworkId === artwork.id}
-                aria-label={`Open ${artwork.title}`}
+                aria-label={`View ${artwork.title} artwork`}
                 onDragStart={(event) => {
                   if (!isEditMode) return;
                   event.dataTransfer.effectAllowed = "move";
@@ -911,7 +916,8 @@ export default function PortfolioHome() {
       ) : null}
 
       {activeFilter === "ANIMATIONS" || activeFilter === "TODO" ? (
-        <section className="animation-list" aria-label="Animation reel">
+        <section className="animation-list" aria-labelledby="animation-reel-title">
+          <h2 id="animation-reel-title" className="sr-only">Pixel Art Character Animation</h2>
           {animationVideos.map((video) => (
             <button
               key={video.id}
@@ -973,8 +979,13 @@ export default function PortfolioHome() {
             <img
               className="lightbox-image"
               src={activeArtwork.src}
-              alt={activeArtwork.title}
+              alt={getArtworkAlt(activeArtwork)}
             />
+            {activeProject ? (
+              <Link className="lightbox-project-link" href={`/work/${activeProject.slug}`}>
+                View project details
+              </Link>
+            ) : null}
           </div>
 
           <button

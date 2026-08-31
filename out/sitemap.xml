@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+<loc>https://www.imnotapan.com/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.imnotapan.com/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://www.imnotapan.com/es" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.imnotapan.com/" />
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/es</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.imnotapan.com/" />
+<xhtml:link rel="alternate" hreflang="es" href="https://www.imnotapan.com/es" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.imnotapan.com/" />
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/about</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.imnotapan.com/about" />
+<xhtml:link rel="alternate" hreflang="es" href="https://www.imnotapan.com/es/about" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.imnotapan.com/about" />
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/es/about</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.imnotapan.com/about" />
+<xhtml:link rel="alternate" hreflang="es" href="https://www.imnotapan.com/es/about" />
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.imnotapan.com/about" />
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/celtic-fantasy-world</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/CELTIC%20-%20ZELDA%20LIKE.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/castle-environment-mockup</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/Castle_Mockup.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/ufo-grab-arcade-game-mockup</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/Mockup-UFOGRAB%20copy.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/nuclear-dome-sci-fi-world</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/NUCLEAR%20DOME.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/paladinko-game-art-mockup</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/PALADINKO%20MOCKUP.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/platform-goblin-game-world</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/PLATFORM%20GOBLIN.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/rat-character-world-mockup</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/RAT%20copy.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://www.imnotapan.com/work/western-world-environment-art</loc>
+<image:image>
+<image:loc>https://www.imnotapan.com/images/static/img/Mockups/WesternMockup.png</image:loc>
+</image:image>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+</urlset>
