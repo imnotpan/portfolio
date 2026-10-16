@@ -1,24 +1,27 @@
 import type { MetadataRoute } from "next";
-import { projects } from "./data/projects";
-import { absoluteUrl } from "./lib/site";
+import { caseStudies } from "./data/work";
+import { absoluteUrl, localePath } from "./lib/site";
 
 export const dynamic = "force-static";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const localizedPages: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), changeFrequency: "monthly", priority: 1, alternates: { languages: { en: absoluteUrl("/"), es: absoluteUrl("/es"), "x-default": absoluteUrl("/") } } },
-    { url: absoluteUrl("/es"), changeFrequency: "monthly", priority: 0.9, alternates: { languages: { en: absoluteUrl("/"), es: absoluteUrl("/es"), "x-default": absoluteUrl("/") } } },
-    { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.7, alternates: { languages: { en: absoluteUrl("/about"), es: absoluteUrl("/es/about"), "x-default": absoluteUrl("/about") } } },
-    { url: absoluteUrl("/es/about"), changeFrequency: "monthly", priority: 0.6, alternates: { languages: { en: absoluteUrl("/about"), es: absoluteUrl("/es/about"), "x-default": absoluteUrl("/about") } } },
-  ];
+function pair(path: string, extra: Partial<MetadataRoute.Sitemap[number]> = {}): MetadataRoute.Sitemap {
+  const languages = { en: absoluteUrl(path), es: absoluteUrl(localePath("es", path)), "x-default": absoluteUrl(path) };
+  return (["en", "es"] as const).map((locale) => ({
+    url: absoluteUrl(localePath(locale, path)),
+    alternates: { languages },
+    ...extra,
+  }));
+}
 
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...localizedPages,
-    ...projects.map((project) => ({
-      url: absoluteUrl(`/work/${project.slug}`),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-      images: [absoluteUrl(project.image)],
-    })),
+    ...pair("/", { priority: 1 }),
+    ...pair("/about", { priority: 0.6 }),
+    ...caseStudies.flatMap((study) =>
+      pair(`/work/${study.slug}`, {
+        priority: 0.8,
+        images: [study.cover].filter(Boolean).map((src) => absoluteUrl(`/media/${src}`)),
+      }),
+    ),
   ];
 }
