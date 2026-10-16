@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/macbook/1.%20IMNOTAPAN/portfolio/app/(es)/layout.tsx"],"sourcesContent":["import { RootDocument, rootMetadata, rootViewport } from \"../components/RootDocument\";\n\nexport const metadata = rootMetadata;\nexport const viewport = rootViewport;\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return <RootDocument locale=\"es\">{children}</RootDocument>;\n}\n"],"names":["metadata","viewport","Layout","children","locale"],"mappings":";;;;;;;;;AAAA;;;AAEO,MAAMA,WAAW,kJAAY;AAC7B,MAAMC,WAAW,kJAAY;AAErB,SAASC,OAAO,EAAEC,QAAQ,EAAiC;IACxE,qBAAO,8OAAC,kJAAY;QAACC,QAAO;kBAAMD;;;;;;AACpC"}}]
+}

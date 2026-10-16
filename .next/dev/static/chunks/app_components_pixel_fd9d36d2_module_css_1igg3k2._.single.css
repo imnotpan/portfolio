@@ -1,0 +1,19 @@
+/* [project]/app/components/pixel_fd9d36d2.module.css [app-client] (css) */
+@font-face {
+  size-adjust: 160%;
+  ascent-override: 62%;
+  descent-override: 14%;
+  font-family: pixel;
+  src: url("../media/AsepriteFont.p.1738tozkkjdym.woff2") format("woff2");
+  font-display: swap;
+}
+
+.pixel_fd9d36d2-module__L_92sa__className {
+  font-family: pixel, ui-monospace, Menlo, monospace;
+}
+
+.pixel_fd9d36d2-module__L_92sa__variable {
+  --font-pixel: "pixel", ui-monospace, Menlo, monospace;
+}
+
+/*# sourceMappingURL=app_components_pixel_fd9d36d2_module_css_1igg3k2._.single.css.map*/

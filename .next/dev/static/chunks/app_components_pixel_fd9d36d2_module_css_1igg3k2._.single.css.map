@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/components/pixel_fd9d36d2.module.css"],"sourcesContent":["@font-face {\n    size-adjust: 160%;\nascent-override: 62%;\ndescent-override: 14%;\nfont-family: 'pixel';\n    src: url('@vercel/turbopack-next/internal/font/local/font?{%22path%22:%22../fonts/AsepriteFont.woff2%22,%22preload%22:true,%22has_size_adjust%22:false}') format('woff2');\n    font-display: swap;\n    \n}\n\n\n.className {\n    font-family: 'pixel', ui-monospace, Menlo, monospace;\n    \n}\n.variable {\n    --font-pixel: 'pixel', ui-monospace, Menlo, monospace;\n}\n\n"],"names":[],"mappings":"AAAA;;;;;;;;;AAWA;;;;AAIA"}}]
+}
