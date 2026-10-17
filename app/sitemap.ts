@@ -1,11 +1,31 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl } from "./lib/site";
+import { caseStudies } from "./data/work";
+import { getMedia } from "./lib/media";
+import { absoluteUrl, localePath } from "./lib/site";
 
 export const dynamic = "force-static";
 
+function pair(path: string, extra: Partial<MetadataRoute.Sitemap[number]> = {}): MetadataRoute.Sitemap {
+  const languages = { en: absoluteUrl(path), es: absoluteUrl(localePath("es", path)), "x-default": absoluteUrl(path) };
+  return (["en", "es"] as const).map((locale) => ({
+    url: absoluteUrl(localePath(locale, path)),
+    alternates: { languages },
+    ...extra,
+  }));
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
-    { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.7 },
+    ...pair("/", { priority: 1 }),
+    ...pair("/about", { priority: 0.6 }),
+    ...caseStudies.flatMap((study) =>
+      pair(`/work/${study.slug}`, {
+        priority: 0.8,
+        images: [
+          ...[study.cover, ...study.gallery].filter(Boolean).map((src) => absoluteUrl(getMedia(src).src)),
+          ...(study.youtubeId ? [absoluteUrl(getMedia(`youtube/${study.youtubeId}`).src)] : []),
+        ],
+      }),
+    ),
   ];
 }
