@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteNav } from "./SiteNav";
 import { copy } from "../lib/copy";
 import { localePath, type Locale } from "../lib/site";
 
@@ -8,7 +9,7 @@ type SiteHeaderProps = {
   alternatePath: string;
 };
 
-/** Four links fit on every screen, so there is no menu to open: contact is always one tap away. */
+/** Inline links on desktop, a dropdown menu on phones. */
 export function SiteHeader({ locale, alternatePath }: SiteHeaderProps) {
   const t = copy[locale].nav;
   const home = localePath(locale, "/");
@@ -21,7 +22,7 @@ export function SiteHeader({ locale, alternatePath }: SiteHeaderProps) {
         <span className="brand-alias">aka IMNOTAPAN</span>
       </Link>
 
-      <nav className="site-nav" aria-label="Main">
+      <SiteNav label={locale === "en" ? "Menu" : "Menú"}>
         <Link className="nav-work" href={`${home}#work`}>{t.work}</Link>
         <Link className="nav-anim" href={`${home}#animation`}>{t.animation}</Link>
         <Link href={localePath(locale, "/about")}>{t.about}</Link>
@@ -30,7 +31,7 @@ export function SiteHeader({ locale, alternatePath }: SiteHeaderProps) {
           <span className="sr-only">{t.language}</span>
         </Link>
         <Link className="nav-contact" href={`${home}#contact`}>{t.contact}</Link>
-      </nav>
+      </SiteNav>
     </header>
   );
 }

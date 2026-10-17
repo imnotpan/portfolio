@@ -30,7 +30,7 @@ function youtubeImage(id: string) {
 }
 
 /** Tiles in the first (default) category that load eagerly. */
-const EAGER_TILES = 3;
+const EAGER_TILES = 6;
 
 /** Tile edge per layout (px) and the grid gap beside it: 3 fixed columns, 3 fluid columns, 2 columns on phones. */
 const LAYOUTS = { lg: { edge: 400, gap: 12 }, md: { edge: 300, gap: 8 }, sm: { edge: 170, gap: 6 } } as const;

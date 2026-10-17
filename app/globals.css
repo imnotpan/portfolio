@@ -313,7 +313,11 @@ p {
   box-shadow: 3px 3px 0 var(--ink);
 }
 
-@media (max-width: 640px) {
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 760px) {
   .brand-name {
     font-size: var(--px-s);
   }
@@ -322,25 +326,59 @@ p {
     display: none;
   }
 
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    border: 2px solid var(--ink);
+    background: var(--bg);
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 3px;
+    background: var(--ink);
+  }
+
   .site-nav {
-    gap: 12px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px var(--gutter) 20px;
+    background: var(--bg);
+    border-bottom: 2px solid var(--ink);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  }
+
+  .site-nav[data-open="true"] {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .site-nav a {
+    padding: 16px 0 14px;
+    font-size: var(--px-m);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   }
 
   .site-nav .nav-contact {
-    padding: 8px 8px 6px;
-  }
-}
-
-/* The brand already links to the work; keep the bar to what fits. */
-@media (max-width: 760px) {
-  .nav-anim {
-    display: none;
-  }
-}
-
-@media (max-width: 440px) {
-  .nav-work {
-    display: none;
+    margin-top: 16px;
+    padding: 16px 14px 14px;
+    border-bottom: 0;
+    text-align: center;
   }
 }
 
@@ -2332,12 +2370,6 @@ p {
 
   .contact h2 {
     font-size: 70px;
-  }
-}
-
-@media (max-width: 860px) {
-  .site-nav a:not(.button) {
-    font-size: var(--px-l);
   }
 }
 
