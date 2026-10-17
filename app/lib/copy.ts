@@ -46,6 +46,7 @@ export const copy = {
     caseLabel: { animation: "Pixel Art Music Video", environments: "Pixel Art Environments", mockups: "Pixel Art Game Art", illustration: "Pixel Art Illustration", characters: "Pixel Art Characters" },
     caseStudy: { about: "About the project", details: "Project details", gallery: "Gallery", year: "Year", back: "All work", role: "Role", client: "Client", deliverables: "Deliverables", tools: "Tools", type: "Type", watch: "Watch", more: "More projects", cta: "Need art like this for your project?", next: "Next project" },
     about: { kicker: "About", facts: "Quick facts" },
+    service: { how: "How I work", makes: "What I make", formats: "Delivered as", clients: "Clients", projects: "Projects", deliverables: "Deliverables", more: "More about" },
   },
   es: {
     nav: { work: "Trabajo", animation: "Animación", about: "Sobre mí", contact: "Contacto", language: "English", languageShort: "EN", skip: "Saltar al contenido" },
@@ -92,6 +93,7 @@ export const copy = {
     caseLabel: { animation: "Videoclip en pixel art", environments: "Escenarios en pixel art", mockups: "Arte de juego en pixel art", illustration: "Ilustración en pixel art", characters: "Personajes en pixel art" },
     caseStudy: { about: "Sobre el proyecto", details: "Detalles del proyecto", gallery: "Galería", year: "Año", back: "Todo el trabajo", role: "Rol", client: "Cliente", deliverables: "Entregables", tools: "Herramientas", type: "Tipo", watch: "Ver", more: "Más proyectos", cta: "¿Necesitas un arte así para tu proyecto?", next: "Siguiente proyecto" },
     about: { kicker: "Sobre mí", facts: "En resumen" },
+    service: { how: "Cómo trabajo", makes: "Qué hago", formats: "Entrega", clients: "Clientes", projects: "Proyectos", deliverables: "Entregables", more: "Más sobre" },
   },
 } satisfies Record<Locale, unknown>;
 

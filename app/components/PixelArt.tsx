@@ -9,7 +9,10 @@ type PixelArtProps = {
   variant?: "thumb" | "full";
   /** Layout width hint for lossy pieces that ship a lighter rendition. */
   sizes?: string;
+  /** Above the fold and the likely LCP image: eager and high fetch priority. Use on one image per page. */
   priority?: boolean;
+  /** Above the fold but not the LCP: eager without competing for bandwidth. */
+  eager?: boolean;
 };
 
 /**
@@ -17,7 +20,7 @@ type PixelArtProps = {
  * native resolution and are scaled up by CSS with nearest-neighbour sampling;
  * animations fall back to their first frame when reduced motion is requested.
  */
-export function PixelArt({ src, alt, className = "", variant = "full", sizes = "100vw", priority = false }: PixelArtProps) {
+export function PixelArt({ src, alt, className = "", variant = "full", sizes = "100vw", priority = false, eager = false }: PixelArtProps) {
   const entry = getMedia(src);
   const classes = `pixel-art${entry.pixelated ? " is-pixelated" : ""}${className ? ` ${className}` : ""}`;
 
@@ -31,7 +34,7 @@ export function PixelArt({ src, alt, className = "", variant = "full", sizes = "
         poster={entry.poster as string}
         width={entry.width}
         height={entry.height}
-        eager={priority}
+        eager={priority || eager}
       />
     );
   }
@@ -50,7 +53,7 @@ export function PixelArt({ src, alt, className = "", variant = "full", sizes = "
       alt={alt}
       width={entry.width}
       height={entry.height}
-      loading={priority ? "eager" : "lazy"}
+      loading={priority || eager ? "eager" : "lazy"}
       decoding={priority ? "sync" : "async"}
       fetchPriority={priority ? "high" : undefined}
     />

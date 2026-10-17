@@ -5,7 +5,7 @@ export type Locale = "en" | "es";
 export const siteUrl = "https://www.imnotapan.com";
 export const siteName = "IMNOTAPAN";
 export const artistName = "Kevin Medina";
-export const contactEmail = "imnotapan@gmail.com";
+export const contactEmail = "contact@imnotapan.com";
 export const defaultOgImage = "/og-image.png";
 export const itchProfileUrl = "https://imnotapan.itch.io";
 export const youtubeChannelUrl = "https://www.youtube.com/@imnotapan";
@@ -69,7 +69,7 @@ export function pageMetadata({
       siteName,
       locale: locale === "es" ? "es_CL" : "en_US",
       alternateLocale: locale === "es" ? "en_US" : "es_CL",
-      images: [{ url: image, alt: imageAlt }],
+      images: [{ url: image, alt: imageAlt, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

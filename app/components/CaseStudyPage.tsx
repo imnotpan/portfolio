@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { serviceFor } from "../data/services";
 import { caseStudies, type CaseStudy } from "../data/work";
 import { copy } from "../lib/copy";
 import { getMedia } from "../lib/media";
@@ -19,13 +20,20 @@ function youtubeImage(id: string) {
   return { src: entry.src, thumb: entry.thumb as string };
 }
 
+/** Search snippet: the summary plus what was delivered, kept within ~160 characters. */
+function caseDescription(study: CaseStudy, locale: Locale) {
+  const summary = study.summary[locale];
+  const withDeliverables = `${summary} ${copy[locale].service.deliverables}: ${study.deliverables[locale].join(", ").toLowerCase()}.`;
+  return withDeliverables.length <= 160 ? withDeliverables : summary;
+}
+
 export function caseStudyMetadata(study: CaseStudy, locale: Locale): Metadata {
   const label = study.slug.includes("film-intro") ? (locale === "es" ? "Animación en pixel art" : "Pixel Art Animation") : copy[locale].caseLabel[study.category];
   return pageMetadata({
     locale,
     path: `/work/${study.slug}`,
     title: `${study.title} — ${label} | Kevin Medina`,
-    description: study.summary[locale],
+    description: caseDescription(study, locale),
     image: ogImage(study),
     imageAlt: `${study.title} — ${copy[locale].byline}`,
     type: "article",
@@ -45,6 +53,8 @@ export function CaseStudyPage({ study, locale }: { study: CaseStudy; locale: Loc
   const images = [study.cover, ...study.gallery].filter(Boolean).map((src) => absoluteUrl(getMedia(src).src));
   if (study.youtubeId) images.push(absoluteUrl(youtubeImage(study.youtubeId).src));
   const byline = t.byline;
+  const service = serviceFor(study);
+  const servicePath = service ? localePath(locale, `/${service.slug}`) : undefined;
 
   return (
     <>
@@ -82,7 +92,8 @@ export function CaseStudyPage({ study, locale }: { study: CaseStudy; locale: Loc
               "@type": "BreadcrumbList",
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: siteName, item: absoluteUrl(localePath(locale, "/")) },
-                { "@type": "ListItem", position: 2, name: study.title, item: url },
+                ...(service && servicePath ? [{ "@type": "ListItem", position: 2, name: service.name[locale], item: absoluteUrl(servicePath) }] : []),
+                { "@type": "ListItem", position: service ? 3 : 2, name: study.title, item: url },
               ],
             },
             personJsonLd,
@@ -94,6 +105,12 @@ export function CaseStudyPage({ study, locale }: { study: CaseStudy; locale: Loc
       <main id="main" className="case">
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href={`${localePath(locale, "/")}#work`}>← {t.caseStudy.back}</Link>
+          {service && servicePath ? (
+            <>
+              <span aria-hidden="true"> / </span>
+              <Link href={servicePath}>{service.name[locale]}</Link>
+            </>
+          ) : null}
         </nav>
 
         <header className="case-head">

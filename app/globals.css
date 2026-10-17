@@ -727,6 +727,8 @@ p {
 
 .work-head .kicker {
   margin-bottom: 8px;
+  /* The tinted band needs the deeper red to reach 4.5:1. */
+  color: var(--accent-deep);
 }
 
 .work-title,
@@ -737,6 +739,20 @@ p {
 
 .work-head {
   margin-bottom: 16px;
+}
+
+/* One quiet link from each home section to its service page. */
+.section-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-family: var(--pixel);
+  font-size: var(--px-s);
+  text-decoration: none;
+}
+
+.section-link:hover {
+  color: var(--accent-deep);
 }
 
 @media (max-width: 960px) {
@@ -1665,6 +1681,12 @@ p {
   padding: 104px var(--gutter) 0;
 }
 
+.breadcrumbs {
+  color: var(--muted);
+  font-family: var(--pixel);
+  font-size: var(--px-s);
+}
+
 .breadcrumbs a {
   color: var(--muted);
   font-family: var(--pixel);
@@ -1746,7 +1768,8 @@ p {
 }
 
 .case-facts dt {
-  color: var(--accent);
+  /* On the tinted panel the brighter red falls under 4.5:1. */
+  color: var(--accent-deep);
   font-family: var(--pixel);
   font-size: var(--px-s);
 }

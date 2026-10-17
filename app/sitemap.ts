@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { services } from "./data/services";
 import { caseStudies } from "./data/work";
 import { getMedia } from "./lib/media";
 import { absoluteUrl, localePath } from "./lib/site";
@@ -17,6 +18,7 @@ function pair(path: string, extra: Partial<MetadataRoute.Sitemap[number]> = {}):
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pair("/", { priority: 1 }),
+    ...services.flatMap((service) => pair(`/${service.slug}`, { priority: 0.9 })),
     ...pair("/about", { priority: 0.6 }),
     ...caseStudies.flatMap((study) =>
       pair(`/work/${study.slug}`, {

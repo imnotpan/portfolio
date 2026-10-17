@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   path: "/",
   title: "Kevin Medina — Freelance Pixel Artist & Animator | IMNOTAPAN",
   description:
-    "Kevin Medina (IMNOTAPAN), freelance pixel artist & animator: game sprites, characters, environments and tilesets for studios, plus pixel art music videos for brands and artists — 26M+ views on Minina.",
+    "Freelance pixel artist & animator from Chile: game sprites, tilesets and environments, plus pixel art music videos — 26M+ views on Minina. Hayaku! on Steam.",
 });
 
 export default function Page() {

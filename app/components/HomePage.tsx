@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getService } from "../data/services";
 import { artworks, categories, getCaseStudy } from "../data/work";
 import { copy } from "../lib/copy";
 import { getMedia } from "../lib/media";
@@ -136,6 +137,8 @@ export function HomePage({ locale }: { locale: Locale }) {
     };
   });
 
+  const gamesService = getService("game-pixel-art")!;
+  const videosService = getService("pixel-art-music-videos")!;
   const reels = reelSlugs.map((slug) => getCaseStudy(slug)).filter((study) => study?.youtubeId);
 
   const runner = (item: (typeof cast)[number]) => {
@@ -144,11 +147,11 @@ export function HomePage({ locale }: { locale: Locale }) {
     const style = { "--nw": getMedia(item.src).nativeWidth } as React.CSSProperties;
     return item.slug ? (
       <Link key={item.key} className={className} style={style} prefetch={false} href={caseHref(item.slug)} aria-label={t.hero.cast[item.key]} data-tip={t.hero.cast[item.key]}>
-        <PixelArt src={item.src} alt="" priority />
+        <PixelArt src={item.src} alt="" eager />
       </Link>
     ) : (
       <span key={item.key} className={className} style={style} aria-hidden="true">
-        <PixelArt src={item.src} alt="" priority />
+        <PixelArt src={item.src} alt="" eager />
       </span>
     );
   };
@@ -190,7 +193,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <div className="cast">
               {cast.slice(0, 2).map(runner)}
               <Link className="cast-logo" prefetch={false} href={localePath(locale, "/about")} aria-label={t.hero.cast.logo}>
-                <PixelArt src="/images/static/icon2.png" alt="" className="cast-logo-back" priority />
+                <PixelArt src="/images/static/icon2.png" alt="" className="cast-logo-back" eager />
                 <PixelArt src="/images/static/ICON.png" alt="" className="cast-logo-front" priority />
               </Link>
               {cast.slice(2).map(runner)}
@@ -208,6 +211,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <header className="work-head">
             <p className="kicker">{t.gallery.kicker}</p>
             <h2 id="work-title" className="work-title">{t.gallery.title}</h2>
+            <Link className="section-link" href={localePath(locale, `/${gamesService.slug}`)}>{gamesService.name[locale]} →</Link>
           </header>
           <GalleryShell
             items={lightboxItems}
@@ -246,7 +250,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                     alt={`${artwork.title[locale]} — ${categoryLabel[artwork.category]}, ${t.byline}`}
                     variant="thumb"
                     sizes="(max-width: 720px) 50vw, 33vw"
-                    priority={eagerIds.has(artwork.id)}
+                    eager={eagerIds.has(artwork.id)}
                   />
                   <span className="tile-meta">
                     <span className="tile-title">{artwork.title[locale]}</span>
@@ -262,6 +266,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <header className="animation-head">
             <p className="kicker">{t.animation.kicker}</p>
             <h2 id="animation-title" className="animation-title">{t.animation.title}</h2>
+            <Link className="section-link" href={localePath(locale, `/${videosService.slug}`)}>{videosService.name[locale]} →</Link>
           </header>
           <div className="reels">
             {reels.map((study) =>

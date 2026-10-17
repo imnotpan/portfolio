@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { services } from "../data/services";
 import { copy } from "../lib/copy";
 import { contactEmail, localePath, socialLinks, type Locale } from "../lib/site";
 
@@ -19,6 +20,9 @@ export function Footer({ locale }: { locale: Locale }) {
           <Link href={`${home}#animation`}>{t.nav.animation}</Link>
           <Link href={`${home}#contact`}>{t.nav.contact}</Link>
           <Link href={localePath(locale, "/about")}>{t.nav.about}</Link>
+          {services.map((service) => (
+            <Link key={service.slug} href={localePath(locale, `/${service.slug}`)}>{service.name[locale]}</Link>
+          ))}
         </nav>
         <nav aria-label={locale === "es" ? "Redes" : "Social"} className="footer-links">
           {socialLinks.map((link) => (
