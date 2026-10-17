@@ -89,6 +89,29 @@ export function GalleryShell({ items, filters, labels, children }: GalleryShellP
     window.history.replaceState(null, "", url);
   };
 
+  // Tiles of other categories sit hidden with lazy images; mobile browsers can leave them blank
+  // when a tab is revealed, so fetch the shown ones right away and retry any that fail once.
+  useEffect(() => {
+    for (const image of document.querySelectorAll<HTMLImageElement>(".tile img")) {
+      if (image.loading === "lazy" && image.getClientRects().length > 0) image.loading = "eager";
+    }
+  }, [filter]);
+
+  useEffect(() => {
+    const retry = (event: Event) => {
+      const image = event.target;
+      if (!(image instanceof HTMLImageElement) || image.dataset.retried) return;
+      image.dataset.retried = "1";
+      const url = image.currentSrc || image.src;
+      window.setTimeout(() => {
+        image.srcset = "";
+        image.src = `${url}${url.includes("?") ? "&" : "?"}r=${Date.now()}`;
+      }, 1200);
+    };
+    document.addEventListener("error", retry, true);
+    return () => document.removeEventListener("error", retry, true);
+  }, []);
+
   const close = useCallback(() => setIndex(null), []);
   const step = useCallback(
     (delta: number) => setIndex((current) => (current === null ? current : (current + delta + visible.length) % visible.length)),
