@@ -694,6 +694,22 @@ p {
   -webkit-font-smoothing: none;
 }
 
+.intro-now {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.intro-now strong {
+  color: var(--ink);
+}
+
+.intro-now a {
+  margin-left: 4px;
+  color: var(--accent-deep);
+  white-space: nowrap;
+}
+
 
 
 
@@ -2130,7 +2146,8 @@ p {
   gap: 4px;
 }
 
-.about .credit-project a {
+.about .credit-project a,
+.credit-name {
   color: var(--ink);
   font-family: var(--pixel);
   font-size: var(--px-s);

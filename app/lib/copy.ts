@@ -6,7 +6,8 @@ export const copy = {
     hero: {
       kicker: "Freelance pixel artist & animator",
       title: "Pixel art & animation for games, brands and music.",
-      lead: "Characters, worlds and music videos — 26M+ views on Minina, tilesets for Hayaku! on Steam.",
+      lead: "Characters, worlds and music videos — 26M+ views on Minina.",
+      now: { label: "Now", text: "artist on", and: "and", link: "Experience" },
       status: "Open for freelance",
       primary: "Start a project",
       canvas: "Canvas background",
@@ -53,7 +54,8 @@ export const copy = {
     hero: {
       kicker: "Pixel artist y animador freelance",
       title: "Pixel art y animación para videojuegos, marcas y música.",
-      lead: "Personajes, mundos y videoclips — más de 26M de vistas en Minina, tilesets para Hayaku! en Steam.",
+      lead: "Personajes, mundos y videoclips — más de 26M de vistas en Minina.",
+      now: { label: "Ahora", text: "artista en", and: "y", link: "Experiencia" },
       status: "Disponible para freelance",
       primary: "Hablemos de tu proyecto",
       canvas: "Fondo del lienzo",

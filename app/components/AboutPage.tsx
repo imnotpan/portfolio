@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getCaseStudy } from "../data/work";
 import { copy } from "../lib/copy";
-import { absoluteUrl, contactEmail, localePath, mailto, personJsonLd, socialLinks, steamHayakuUrl, type Locale } from "../lib/site";
+import { absoluteUrl, contactEmail, localePath, mailto, personJsonLd, socialLinks, steamHayakuUrl, steamRockBottomUrl, type Locale } from "../lib/site";
 import { CopyEmail } from "./CopyEmail";
 import { Footer } from "./Footer";
 import { JsonLd } from "./JsonLd";
@@ -10,11 +10,38 @@ import { SiteHeader } from "./SiteHeader";
 
 /** Shipped, public work a studio can check, most relevant to game teams first. */
 const creditSlugs = [
-  "hayaku-island-of-darkness",
   "minina-carre-spreen-music-video",
   "esa-noche-marcianeke-music-video",
   "zapping-rodi-garrido-film-intro",
   "esencia-lekays-music-video",
+];
+
+/** Current studio roles, newest first. */
+const experience: {
+  project: string;
+  href?: Record<Locale, string>;
+  role: Record<Locale, string>;
+  start: Record<Locale, string>;
+  end?: Record<Locale, string>;
+}[] = [
+  {
+    project: "Rock Bottom",
+    href: { en: steamRockBottomUrl, es: `${steamRockBottomUrl}?l=spanish` },
+    role: { en: "Artist & animator", es: "Artista y animador" },
+    start: { en: "Oct 2026", es: "Oct 2026" },
+  },
+  {
+    project: "Hayaku! Island of Darkness",
+    href: { en: steamHayakuUrl, es: `${steamHayakuUrl}?l=spanish` },
+    role: { en: "Tileset & background artist", es: "Artista de tiles y fondos" },
+    start: { en: "Jun 2026", es: "Jun 2026" },
+  },
+  {
+    project: "GameyGamepad",
+    role: { en: "Lead pixel artist · game mockups & animation", es: "Lead pixel artist · mockups de juego y animación" },
+    start: { en: "Jul 2025", es: "Jul 2025" },
+    end: { en: "Mar 2026", es: "Mar 2026" },
+  },
 ];
 
 const content = {
@@ -30,7 +57,7 @@ const content = {
     bioTitle: "Bio",
     bio: [
       <>
-        I currently work as a <strong>background and tileset artist on <a href={steamHayakuUrl} target="_blank" rel="noopener noreferrer">Hayaku! Island of Darkness</a></strong>, an action game coming to Steam: modular tiles, parallax layers and props the team assembles in-engine.
+        I currently work as a <strong>background and tileset artist on <a href={steamHayakuUrl} target="_blank" rel="noopener noreferrer">Hayaku! Island of Darkness</a></strong>, an action game coming to Steam: modular tiles, parallax layers and props the team assembles in-engine. I’m also an <strong>artist and animator on <a href={steamRockBottomUrl} target="_blank" rel="noopener noreferrer">Rock Bottom</a></strong>.
       </>,
       <>
         My animation has been part of <strong>music videos and productions with more than 27 million combined views</strong>, for artists and creators such as Carre &amp; Spreen, Marcianeke, Le&apos;Kays and Rodi Garrido.
@@ -47,8 +74,13 @@ const content = {
       ["Languages", "Spanish · English"],
       ["Tools", "Aseprite · Unity · GameMaker"],
       ["Education", "Computer Engineering"],
-      ["Now", "Hayaku! Island of Darkness"],
+      ["Now", "Rock Bottom · Hayaku!"],
     ],
+    careerKicker: "Career",
+    careerTitle: "Experience.",
+    careerCols: { project: "Project", role: "Role", period: "Period" },
+    present: "present",
+    inDev: "In development",
     creditsKicker: "Track record",
     creditsTitle: "Selected credits.",
     cols: { project: "Project", role: "Role", result: "Result" },
@@ -69,7 +101,7 @@ const content = {
     bioTitle: "Bio",
     bio: [
       <>
-        Actualmente trabajo como <strong>artista de fondos y tilesets en <a href={steamHayakuUrl} target="_blank" rel="noopener noreferrer">Hayaku! Island of Darkness</a></strong>, un juego de acción que llegará a Steam: tiles modulares, capas de parallax y props que el equipo arma en el motor.
+        Actualmente trabajo como <strong>artista de fondos y tilesets en <a href={steamHayakuUrl} target="_blank" rel="noopener noreferrer">Hayaku! Island of Darkness</a></strong>, un juego de acción que llegará a Steam: tiles modulares, capas de parallax y props que el equipo arma en el motor. También soy <strong>artista y animador en <a href={`${steamRockBottomUrl}?l=spanish`} target="_blank" rel="noopener noreferrer">Rock Bottom</a></strong>.
       </>,
       <>
         Mi animación ha sido parte de <strong>videoclips y producciones que suman más de 27 millones de reproducciones</strong>, para artistas y creadores como Carre &amp; Spreen, Marcianeke, Le&apos;Kays y Rodi Garrido.
@@ -86,8 +118,13 @@ const content = {
       ["Idiomas", "Español · Inglés"],
       ["Herramientas", "Aseprite · Unity · GameMaker"],
       ["Estudios", "Ingeniería Civil Informática"],
-      ["Ahora", "Hayaku! Island of Darkness"],
+      ["Ahora", "Rock Bottom · Hayaku!"],
     ],
+    careerKicker: "Carrera profesional",
+    careerTitle: "Experiencia.",
+    careerCols: { project: "Proyecto", role: "Rol", period: "Periodo" },
+    present: "actualidad",
+    inDev: "En desarrollo",
     creditsKicker: "Trayectoria",
     creditsTitle: "Créditos destacados.",
     cols: { project: "Proyecto", role: "Rol", result: "Resultado" },
@@ -177,6 +214,38 @@ export function AboutPage({ locale }: { locale: Locale }) {
               ))}
             </dl>
           </div>
+        </section>
+
+        <section className="about-credits" aria-labelledby="career-title">
+          <p className="kicker">{c.careerKicker}</p>
+          <h2 id="career-title" className="about-section-title">{c.careerTitle}</h2>
+          <ol className="credits">
+            <li className="credits-head" aria-hidden="true">
+              <span>{c.careerCols.project}</span>
+              <span>{c.careerCols.role}</span>
+              <span>{c.careerCols.period}</span>
+            </li>
+            {experience.map((job) => (
+              <li key={job.project} className="credit">
+                <span className="credit-project">
+                  {job.href ? (
+                    <a href={job.href[locale]} target="_blank" rel="noopener noreferrer">{job.project} ↗</a>
+                  ) : (
+                    <span className="credit-name">{job.project}</span>
+                  )}
+                  {job.end ? null : <span className="credit-kind">Steam · {c.inDev}</span>}
+                </span>
+                <span className="credit-role">
+                  <span className="credit-label">{c.careerCols.role}: </span>
+                  {job.role[locale]}
+                </span>
+                <span className="credit-result">
+                  <span className="credit-label">{c.careerCols.period}: </span>
+                  {job.start[locale]} – {job.end ? job.end[locale] : c.present}
+                </span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="about-credits" aria-labelledby="credits-title">

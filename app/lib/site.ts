@@ -10,6 +10,7 @@ export const defaultOgImage = "/og-image.png";
 export const itchProfileUrl = "https://imnotapan.itch.io";
 export const youtubeChannelUrl = "https://www.youtube.com/@imnotapan";
 export const steamHayakuUrl = "https://store.steampowered.com/app/2402500/Hayaku_and_the_Island_of_Darkness/";
+export const steamRockBottomUrl = "https://store.steampowered.com/app/4297840/Rock_Bottom/";
 
 export const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/imnotapan/" },

@@ -203,6 +203,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               <p className="kicker">{t.hero.kicker}</p>
               <h1 id="intro-title" className="intro-title">{t.hero.title}</h1>
               <p className="intro-lead">{t.hero.lead}</p>
+              <p className="intro-now">
+                {t.hero.now.label}: {t.hero.now.text} <strong>Rock Bottom</strong> {t.hero.now.and} <strong>Hayaku!</strong>{" "}
+                <Link href={`${localePath(locale, "/about")}#career-title`}>→ {t.hero.now.link}</Link>
+              </p>
             </div>
           </CanvasStage>
         </section>
